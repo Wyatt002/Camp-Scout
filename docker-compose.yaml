@@ -1,22 +1,20 @@
 volumes:
-  cookit:
+  campscout-data:
     external: true
   pg-admin:
     external: true
 
 services:
   fastapi:
-    environment:
-      CORS_HOST: http://localhost:3000
     build:
       context: api
       dockerfile: Dockerfile.dev
     ports:
       - 8000:8000
     volumes:
-      - ./api:/app
+      - ./campscout:/app
     environment:
-      DATABASE_URL: postgresql://example_user:secret@postgres/example_db
+      DATABASE_URL: postgresql://adminuser:campscout1@postgres/campscout
 
   ghi:
     image: node:lts-bullseye
@@ -31,19 +29,18 @@ services:
       NODE_ENV: development
       HOST: "0.0.0.0"
       PUBLIC_URL: http://localhost:3000
-      REACT_APP_API_HOST: ${REACT_APP_API_HOST}
-
+      REACT_APP_API_HOST: http://localhost:8000
 
     postgres:
-        image: postgres:14.5-bullseye
-        volumes:
-            - postgres-data:/var/lib/postgresql/data
-        environment:
-            POSTGRES_PASSWORD: secret
-            POSTGRES_USER: example_user
-            POSTGRES_DB: example_db
-        ports:
-            - 15432:5432
+      image: postgres:15.3-bullseye
+      volumes:
+        - campscout-data:/var/lib/postgresql/data
+      environment:
+        POSTGRES_PASSWORD: campscout1
+        POSTGRES_USER: adminuser
+        POSTGRES_DB: campscout
+      ports:
+        - 15432:5432
 
   pg-admin:
     image: dpage/pgadmin4
@@ -52,6 +49,6 @@ services:
     ports:
       - 8082:80
     environment:
-      PGADMIN_DEFAULT_EMAIL: me@me.com
-      PGADMIN_DEFAULT_PASSWORD: password
+      PGADMIN_DEFAULT_EMAIL: adminuser@campscout.com
+      PGADMIN_DEFAULT_PASSWORD: campscout1
       PGADMIN_DISABLE_POSTFIX: 1

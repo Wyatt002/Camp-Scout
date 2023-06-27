@@ -43,7 +43,7 @@
   * Authorization: Bearer token
 
 * Request shape (JSON):
-    ```json
+```json
 {
   "first_name": string,
   "last_name": string,
@@ -57,7 +57,7 @@
 * Response: The Accounts API will create, update, or delete an account for a user on the Camp Scout website. Users will need to enter in all of the information listed to create an account.
 
 * Response shape (JSON):
-    ```json
+```json
 {
   "first_name": string,
   "last_name": string,
@@ -66,7 +66,7 @@
   "avatar": string,
   "created": date,
 }
-    ```
+```
 
 ## Reviews
 
@@ -77,7 +77,7 @@
   * Authorization: Bearer token
 
 * Request shape (JSON):
-    ```json
+```json
 {
   "account_id": int,
   "facility_id": int,
@@ -139,7 +139,7 @@
   * q: facility_id
 
 * Request shape (JSON):
-    ```json
+```json
 {
   "facility_id": int,
 }

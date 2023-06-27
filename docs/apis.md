@@ -49,7 +49,7 @@
   "last_name": string,
   "email": string,
   "password": string,
-  "avatar": url,
+  "avatar": string,
   "created": date,
 }
     ```
@@ -152,7 +152,7 @@
    "name": string,
    "description": string,
    "campsite_available": (...),
-   "directionsUrl": url,
+   "directionsUrl": string,
    "amenities": (...),
    "accessibility": (...),
    "operatingHours": string,
@@ -190,7 +190,7 @@
    "pictures": [],
    "wishlist": (...),
    "location": string,
-   "avatar": url,
-   "banner": url,
+   "avatar": string,
+   "banner": string,
 }
     ```

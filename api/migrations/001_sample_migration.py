@@ -15,7 +15,7 @@ steps = [
         # "Down" SQL statement
         """
         DROP TABLE dummy;
-        """
+        """,
     ],
     [
         """
@@ -32,7 +32,7 @@ steps = [
         # drop the table
         """
         DROP TABLE account;
-        """
+        """,
     ],
     [
         # "Up"
@@ -54,7 +54,7 @@ steps = [
         DROP TABLE profile;
         """,
     ],
-        [
+    [
         # "Up"
         """
         CREATE TABLE review (
@@ -67,9 +67,7 @@ steps = [
         """,
         # "Down"
         """
-        DROP TABLE profile;
+        DROP TABLE review;
         """,
     ],
-
-
 ]

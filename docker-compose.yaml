@@ -7,15 +7,20 @@ volumes:
 services:
   fastapi:
     build:
-      context: ./api
+      context: ./camp_scout_service
       dockerfile: ./Dockerfile.dev
     ports:
       - 8000:8000
     volumes:
-      - ./api:/app
+      - ./camp_scout_service:/app
     environment:
       CORS_HOST: http://localhost:3000
       DATABASE_URL: postgresql://adminuser:passcamp@postgres:5432/campscout_db
+      SIGNING_KEY: testing0signkey
+      WAIT_HOSTS: postgres:5432
+      WAIT_BEFORE: 5
+      WAIT_TIMEOUT: 60
+      PORT: 8000
 
   ghi:
     image: node:lts-bullseye

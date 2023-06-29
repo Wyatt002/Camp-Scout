@@ -1,3 +1,19 @@
+## June 28, 2023
+
+Today we began to work on:
+
+* Finalized our SQL tables
+* Getting our authenticator/authentication working
+
+Today we worked together as a group with Brian R sharing his screen as we tried to
+get our authenticator to worked.  We played around with it for awhile and managed
+to work out several errors that were inhibiting our progress but we weren't able
+to get it working by the end of the day.
+
+We did however finalize and test our data tables, happy with the columsn we created
+for it we were able to successfully use 'SELECT' and 'INSERT INTO' to both view and
+populate them.
+
 ## June 27, 2023
 
 Today, I worked on:

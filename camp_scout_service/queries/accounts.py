@@ -2,12 +2,6 @@ from pydantic import BaseModel
 from queries.pool import pool
 from jwtdown_fastapi.authentication import Token
 
-class Account(BaseModel):
-    id: str
-    username: str
-    fullname: str
-    email: str
-    hashed_password: str
 
 class AccountIn(BaseModel):
     username: str
@@ -15,10 +9,20 @@ class AccountIn(BaseModel):
     email: str
     password: str
 
+
 class AccountOut(AccountIn):
     id: str
 
+
 class AccountOutWithPassword(AccountOut):
+    hashed_password: str
+
+
+class Account(BaseModel):
+    id: str
+    username: str
+    fullname: str
+    email: str
     hashed_password: str
 
 class AccountQueries:

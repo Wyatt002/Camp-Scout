@@ -7,9 +7,7 @@ steps = [
             first_name VARCHAR(50) NOT NULL,
             last_name VARCHAR(50) NOT NULL,
             email VARCHAR(50) NOT NULL,
-            password VARCHAR(50) NOT NULL,
-            avatar VARCHAR(200) NOT NULL,
-            created VARCHAR(50) NOT NULL
+            password VARCHAR(350) NOT NULL
         );
         """,
         # "Down" SQL statement

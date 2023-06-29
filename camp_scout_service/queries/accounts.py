@@ -3,6 +3,10 @@ from queries.pool import pool
 from jwtdown_fastapi.authentication import Token
 
 
+class DuplicateAccountError(ValueError):
+    pass
+
+
 class Account(BaseModel):
     id: int
     email: str
@@ -18,7 +22,7 @@ class AccountIn(BaseModel):
     last_name: str
 
 
-class AccountOut(AccountIn):
+class AccountOut(BaseModel):
     id: str
     email: str
     first_name: str
@@ -30,7 +34,7 @@ class AccountOutWithPassword(AccountOut):
 
 
 class AccountQueries:
-    def get_one(self, email: str) -> Account:
+    def get(self, username: str) -> AccountOutWithPassword:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 result = db.execute(
@@ -38,11 +42,12 @@ class AccountQueries:
                     SELECT id
                         , email
                         , password
-                        , full_name
-                    FROM accounts
+                        , first_name
+                        , last_name
+                    FROM account
                     WHERE email = %s;
                     """,
-                    [email],
+                    (username,),
                 )
                 record = result.fetchone()
                 if record is None:

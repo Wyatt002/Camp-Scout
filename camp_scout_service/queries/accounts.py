@@ -2,31 +2,36 @@ from pydantic import BaseModel
 from queries.pool import pool
 from jwtdown_fastapi.authentication import Token
 
+
 class DuplicateAccountError(ValueError):
     pass
 
+
 class Account(BaseModel):
-    id: str
-    username: str
+    id: int
     email: str
     hashed_password: str
     first_name: str
     last_name: str
 
+
 class AccountIn(BaseModel):
-    email: str
     password: str
+    email: str
     first_name: str
     last_name: str
 
-class AccountOut(AccountIn):
+
+class AccountOut(BaseModel):
     id: str
     email: str
     first_name: str
     last_name: str
+
 
 class AccountOutWithPassword(AccountOut):
     hashed_password: str
+
 
 class AccountQueries:
     def get(self, username: str) -> AccountOutWithPassword:
@@ -36,13 +41,13 @@ class AccountQueries:
                     """
                     SELECT id
                         , email
-                        , hashed_password
+                        , password
                         , first_name
                         , last_name
-                    FROM accounts
+                    FROM account
                     WHERE email = %s;
                     """,
-                    (username,)
+                    (username,),
                 )
                 record = result.fetchone()
                 if record is None:
@@ -69,7 +74,12 @@ class AccountQueries:
                     VALUES (%s, %s, %s, %s)
                     RETURNING id;
                     """,
-                    [account.email, hashed_password, account.first_name, account.last_name]
+                    [
+                        account.email,
+                        hashed_password,
+                        account.first_name,
+                        account.last_name,
+                    ],
                 )
                 id = result.fetchone()[0]
                 return Account(
@@ -77,5 +87,5 @@ class AccountQueries:
                     email=account.email,
                     hashed_password=hashed_password,
                     first_name=account.first_name,
-                    last_name=account.last_name
+                    last_name=account.last_name,
                 )

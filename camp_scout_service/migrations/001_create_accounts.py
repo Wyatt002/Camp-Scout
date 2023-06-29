@@ -13,7 +13,7 @@ steps = [
         # "Down" SQL statement
         """
         DROP TABLE account;
-        """
+        """,
     ],
     [
         # "Up" SQL statement
@@ -30,6 +30,6 @@ steps = [
         # "Down" SQL statement
         """
         DROP TABLE review;
-        """
-    ]
+        """,
+    ],
 ]

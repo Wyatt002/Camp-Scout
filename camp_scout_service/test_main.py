@@ -21,3 +21,4 @@ def test_create_account():
         },
     )
     assert response.status_code == 200
+    assert response.json()

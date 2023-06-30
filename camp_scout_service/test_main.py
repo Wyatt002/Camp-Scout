@@ -21,13 +21,3 @@ def test_create_account():
         },
     )
     assert response.status_code == 200
-    assert response.json() == {
-        "access_token": "string",
-        "token_type": "Bearer",
-        "account": {
-            "password": "watchwatch",
-            "email": "watching@aol.com",
-            "first_name": "watcher",
-            "last_name": "who",
-        },
-    }

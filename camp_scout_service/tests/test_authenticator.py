@@ -1,9 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import os
-import authenticator
-from fastapi import APIRouter
-from routers import accounts
+from queries.accounts import AccountQueries
 from main import app
 from fastapi.testclient import TestClient
 
@@ -21,3 +19,13 @@ def test_create_account():
         },
     )
     assert response.status_code == 200
+
+
+def test_get_account():
+    response = AccountQueries.get(client, "test@aol.com")
+    assert (
+        response.email == "test@aol.com"
+        and response.first_name == "tester"
+        and response.last_name == "testing"
+        and response.hashed_password != "testing"
+    )

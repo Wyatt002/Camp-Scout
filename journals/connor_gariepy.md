@@ -1,3 +1,18 @@
+## July 10, 2023
+
+Today we worked on:
+* Our unit tests for the Authenticator
+* Signing up on the frontend
+
+Today we worked on getting our sign up page on the frontend working to allow a user
+to create an account, when making the account it has the user input their email, first
+name, last name, a password and a confirmation of that password to verify it matches
+with the entered password, if it does it will make a call to our api and create a new
+account.
+
+While we worked on this I fiddled around with the unit tests for our Authenticator and
+managed to get another one working, learning as I go.
+
 ## June 30, 2023
 
 Today we worked on:

@@ -1,9 +1,12 @@
-import { useEffect, useState } from "react";
+//import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Construct from "./Construct.js";
-import ErrorNotification from "./ErrorNotification";
+//import Construct from "./Construct.js";
+//import ErrorNotification from "./ErrorNotification";
+import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
+
 import "./App.css";
 import SignupForm from "./signup.js";
+import LoginForm from "./login.js";
 
 
 function App() {
@@ -27,15 +30,17 @@ function App() {
 //     getData();
   // }, []);
   return (
-    <BrowserRouter>
-    <div className="container">
-     <Routes>
-        <Route path="/accounts" >
-          <Route path="signup" element={<SignupForm />} />
-        </Route>
-     </Routes>
-    </div>
-    </BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/accounts">
+            <Route path="signup" element={<SignupForm />} />
+            <Route path="login" element={<LoginForm />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
+
   );
 }
 

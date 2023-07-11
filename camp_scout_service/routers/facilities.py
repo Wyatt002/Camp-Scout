@@ -22,10 +22,10 @@ router = APIRouter()
 
 
 @router.get("/api/facilities")
-async def get_camp_list(stateCode: str):
+async def get_camp_list(state_code: str):
     nps_url = "https://developer.nps.gov/api/v1/campgrounds"
     nps_params = {
-        "stateCode": stateCode,
+        "stateCode": state_code,
         "api_key": api_key,
     }
     response = requests.get(nps_url, params=nps_params)
@@ -55,10 +55,10 @@ async def get_camp_list(stateCode: str):
 
 
 @router.get("/api/facility_details")
-async def get_camp_details(q: str):
+async def get_camp_details(facility_id: str):
     nps_url = "https://developer.nps.gov/api/v1/campgrounds"
     nps_params = {
-        "q": q,
+        "q": facility_id,
         "api_key": api_key,
     }
     response = requests.get(nps_url, params=nps_params)

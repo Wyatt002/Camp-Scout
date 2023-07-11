@@ -8,7 +8,7 @@ function SignupForm() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [success, setSuccess] = useState(false);
+    // const [success, setSuccess] = useState(false);
 
     const handleFirstNameChange = (event) => {
         const value = event.target.value;
@@ -66,11 +66,12 @@ function SignupForm() {
             setEmail('');
             setPassword('');
             setConfirmPassword('');
+		}
 
-            setSuccess(true);
-        } else {
-            setSuccess(false);
-        }
+        //     setSuccess(true);
+        // } else {
+        //     setSuccess(false);
+        // }
 
         }
     }
@@ -80,7 +81,7 @@ function SignupForm() {
 			<div className="offset-3 col-6">
 				<div className="shadow p-4 mt-4">
 					<h1>Create An Account</h1>
-                    {success && <p>Account created successfully!</p>}
+                    {/* {success && <p>Account created successfully!</p>} */}
 					<form onSubmit={handleSubmit} id="sign-up-form">
 						<div className="form-floating mb-3">
 							<input

@@ -1,3 +1,12 @@
+## July 11, 2023
+
+Today we worked on:
+
+I started the day finishing up the last of the scrubbing I started before our vacation
+and remade branches I made for 'api-weather' and 'api-facilities' to remove prior
+commit history with the old api keys I used, while the keys themselves are rotated and
+no longer valid I didn't like having that there in the commit and preferred a clean slate.
+
 ## July 10, 2023
 
 Today we worked on:

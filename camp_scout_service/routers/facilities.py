@@ -21,7 +21,7 @@ api_key = os.getenv("NPS_API_KEY")
 router = APIRouter()
 
 
-@router.get("/api/nps_campgrounds")
+@router.get("/api/facilities")
 async def get_camp_list(stateCode: str):
     nps_url = "https://developer.nps.gov/api/v1/campgrounds"
     nps_params = {
@@ -54,7 +54,7 @@ async def get_camp_list(stateCode: str):
         return camps
 
 
-@router.get("/api/nps_campground_details")
+@router.get("/api/facility_details")
 async def get_camp_details(q: str):
     nps_url = "https://developer.nps.gov/api/v1/campgrounds"
     nps_params = {

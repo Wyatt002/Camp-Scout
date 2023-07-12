@@ -10,9 +10,9 @@ function LoginForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
         login(email, password);
-        console.log(`email: ${email} password: ${password}`);
         e.target.reset();
     };
+
 
     return (
         <div className="row">

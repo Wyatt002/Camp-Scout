@@ -1,4 +1,3 @@
-
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import { useState } from "react";
 
@@ -9,12 +8,10 @@ const LoginForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const username = email;
-        login(username, password);
-        console.log(`email: ${email} password: ${password}`);
-        console.log(login);
+        login(email, password);
         e.target.reset();
     };
+
 
     return (
         <div className="row">

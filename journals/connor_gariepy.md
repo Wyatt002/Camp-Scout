@@ -1,8 +1,38 @@
+## July 12, 2023
+
+Today we worked on:
+* Implementing login on the frontend
+* Expanded unit tests for 'api-facilities'
+
+Today we worked on figuring out the 'invalid <!DOCTYPE>' issue we were running into and
+discovered it was due to forgetting to include the 'baseUrl' in the 'App.js', the rest
+of our code was perfectly fine and did it jobs perfectly, allowing us to login with any
+users that existed within our database.  Once we were sure everything worked we pushed
+it to the development branch and created a merge request to the main, Brian J handled
+the request and it was merged with main.  We all pulled from main and made sure
+everything still worked as intended and were satisfied with the results.  We also
+did light testing on the 'logout' feature and found it was very easy to implement, we
+plan to include it into the navbar and have it hidden if a user is not logged in, if a
+user is not logged in it will instead show a 'Signup' and 'Login' button.
+
+While they were handling the merge request I revisited some of my tests on the
+'api-facilities' and decided to add an extra step of validation by making the
+'/api/facilities' endpoint require the input to be a two-letter state code since on the
+front-end this is how the search will be done, with the user selecting a state from a
+dropdown and the two-letter abbreviation being used in the api query, so just incase by
+some strange circumstance a user manages to search something that isn't on the list, the
+backend will verify its integrity and if the input is not on the list returns 'None'.
+
+Tomorrow I intend to do a once over on both 'api-facilities' and 'api-weather' to make
+sure they are working how I want them to and that the unit tests are functioning as
+intended before making a merge request for both of them.  We hope to start on the
+main-page tomorrow, and the 'api-facilities' will be needed for that.
+
 ## July 11, 2023
 
 Today we worked on:
 * Unit tests for 'api-weather' and 'api-facilities'
-* Implenting login on the front-end
+* Implementing login on the frontend
 
 I started the day finishing up the last of the scrubbing I started before our vacation
 and remade branches I made for 'api-weather' and 'api-facilities' to remove prior

@@ -29,8 +29,9 @@ function App() {
 //     }
 //     getData();
   // }, []);
+  const baseURL = process.env.REACT_APP_API_HOST
   return (
-    <AuthProvider>
+    <AuthProvider baseURL={baseURL}>
       <BrowserRouter>
         <Routes>
           <Route path="/accounts">

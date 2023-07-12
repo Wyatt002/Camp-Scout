@@ -80,7 +80,7 @@ function SignupForm() {
         <div className="row">
 			<div className="offset-3 col-6">
 				<div className="shadow p-4 mt-4">
-					<h1>Create An Account</h1>
+					<h1 style={{ color: "white", textShadow: "1px 1px 2px #000000" }}>Create An Account</h1>
                     {/* {success && <p>Account created successfully!</p>} */}
 					<form onSubmit={handleSubmit} id="sign-up-form">
 						<div className="form-floating mb-3">

@@ -2,48 +2,52 @@
 
 ### Log in
 
-* Endpoint path: /token
-* Endpoint method: POST
+- Endpoint path: /token
+- Endpoint method: POST
 
-* Request shape (form):
-  * username: string
-  * password: string
+- Request shape (form):
 
-* Response: Account information and a token
-* Response shape (JSON):
-    ```json
-    {
-      "account": {
-        «key»: type»,
-      },
-      "token": string
-    }
-    ```
+  - email: string
+  - password: string
+
+- Response: Account information and a token
+- Response shape (JSON):
+  ```json
+  {
+    "account": {
+      «key»: type»,
+    },
+    "token": string
+  }
+  ```
 
 ### Log out
 
-* Endpoint path: /token
-* Endpoint method: DELETE
+- Endpoint path: /token
+- Endpoint method: DELETE
 
-* Headers:
-  * Authorization: Bearer token
+- Headers:
 
-* Response: Always true
-* Response shape (JSON):
-    ```json
-    true
-    ```
+  - Authorization: Bearer token
+
+- Response: Always true
+- Response shape (JSON):
+  ```json
+  true
+  ```
 
 ## Account
 
-* Endpoint path: `GET`, `PUT`, `DELETE`, `POST`,
-* Endpoint method: `/api/accounts`, `/api/account/<int:pk>`,
+- Endpoint path: `GET`, `PUT`, `DELETE`, `POST`,
+- Endpoint method: `/api/accounts`, `/api/account/<int:pk>`,
 
-* Headers:
-  * Authorization: Bearer token
+- Headers:
 
-* Request shape (JSON):
-```json
+  - Authorization: Bearer token
+
+- Request shape (JSON):
+
+````json
 {
   "first_name": string,
   "last_name": string,
@@ -66,18 +70,20 @@
   "avatar": string,
   "created": date,
 }
-```
+````
 
 ## Reviews
 
-* Endpoint path: `GET`,`DELETE`, `POST`,
-* Endpoint method: `/api/reviews`,`/api/reviews/<int:pk>`,
+- Endpoint path: `GET`,`DELETE`, `POST`,
+- Endpoint method: `/api/reviews`,`/api/reviews/<int:pk>`,
 
-* Headers:
-  * Authorization: Bearer token
+- Headers:
 
-* Request shape (JSON):
-```json
+  - Authorization: Bearer token
+
+- Request shape (JSON):
+
+````json
 {
   "account_id": int,
   "facility_id": int,
@@ -194,3 +200,4 @@
    "banner": url,
 }
     ```
+````

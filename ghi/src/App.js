@@ -10,6 +10,7 @@ import LoginForm from "./login.js";
 
 
 function App() {
+  const baseUrl = process.env.REACT_APP_API_HOST
 // const [launchInfo, setLaunchInfo] = useState([]);
 //   const [error, setError] = useState(null);
 //   useEffect(() => {
@@ -31,10 +32,14 @@ function App() {
   // }, []);
   const baseURL = process.env.REACT_APP_API_HOST
   return (
+<<<<<<< HEAD
     <AuthProvider baseURL={baseURL}>
+=======
+    <AuthProvider baseUrl={baseUrl}>
+>>>>>>> login
       <BrowserRouter>
         <Routes>
-          <Route path="/accounts">
+          <Route path="accounts">
             <Route path="signup" element={<SignupForm />} />
             <Route path="login" element={<LoginForm />} />
           </Route>

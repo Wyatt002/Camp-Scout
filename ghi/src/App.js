@@ -6,8 +6,9 @@ import LoginForm from "./login.js";
 
 
 function App() {
+  const baseUrl = process.env.REACT_APP_API_HOST;
   return (
-    <AuthProvider>
+    <AuthProvider baseUrl={baseUrl}>
       <BrowserRouter>
         <Routes>
           <Route path="/accounts">
@@ -17,7 +18,6 @@ function App() {
         </Routes>
       </BrowserRouter>
     </AuthProvider>
-
   );
 }
 

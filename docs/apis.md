@@ -115,7 +115,7 @@
 }
 ```
 
-* Response: Based on query, view of all related faclities will be displayed.
+* Response: Based on query, view of all related faclities will be displayed with minimal details and contact information.
 * Response shape (JSON):
 ```json
 {
@@ -145,7 +145,7 @@
 }
 ```
 
-* Response: Detail view with pertinent campsite information.
+* Response: Detail view with pertinent campsite information, obtained using a specific 'facility_id' whether manually input or obtained from the `/api/facilities`.
 * Response shape (JSON):
 ```json
 {

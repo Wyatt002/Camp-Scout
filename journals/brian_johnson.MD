@@ -25,3 +25,11 @@ Once revised I was able to get the authenticator to work!
 Today, I worked on:
 
 * Worked with Jennifer and Connor to connect to two third party APIs.  We successfully connected to NPS(national parks) and Open Weather APIs.
+
+## July 11, 2023
+
+Today, I worked on:
+
+* Solved a CORS issue we were having with the sign up page.  We had to update docker.yaml file to not to only have CORS_HOST with one location.  We had both localhost 3000 and 8000 listed.
+
+Still working with team to resolve syntax error we are getting at login page.  Receiving error SyntaxError: Unexpected token '<', "<!DOCTYPE "... is not valid JSON.

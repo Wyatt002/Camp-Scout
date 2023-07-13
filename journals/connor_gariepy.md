@@ -1,3 +1,7 @@
+## July 13, 2023
+Today we worked on:
+* Implementing and merging 'api-facilities' and 'api-weather'
+
 ## July 12, 2023
 
 Today we worked on:

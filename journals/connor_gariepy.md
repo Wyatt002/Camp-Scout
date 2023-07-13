@@ -1,6 +1,27 @@
 ## July 13, 2023
 Today we worked on:
 * Implementing and merging 'api-facilities' and 'api-weather'
+* Started to work on 'api-profile'
+* Began working on the main page
+
+To start the day off I went through the proccess of creating a merge request for both
+the 'api-facilities' branch and 'api-weather' branch, I passed each request to both
+Brians and after each one was approved they were merged to main one after the other.
+Before merging them I did go through the imports and other unused code to clean it up
+a little bit to look a bit cleaner, once everything was merged we did one more test
+through everything for good measure both on fastapi and my unit tests and everything
+came back working.
+
+Brian J and I began to work on the 'api-profile' so we could create GET, POST, PUT,
+and DELETE endpoints for the profiles, we spent awhile trying to get things working by
+starting with the POST and were able to successfully create one, after that we created
+two GET endpoints, one for obtaining a profile with a matching 'account_id' and another
+that returned a list of all profiles.  Both of these endpoints worked, and by the time
+we finished those the end of the day had rolled around.
+
+While we worked on that, Brian R and Jen began to work on the main page of our frontend
+and got a placeholder template working, they have big plans for it and will hopefully
+have the /api/facilities working with it soon.
 
 ## July 12, 2023
 

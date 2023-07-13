@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import './signup.css'
 
-
 function SignupForm() {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');

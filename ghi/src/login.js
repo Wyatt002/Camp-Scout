@@ -1,5 +1,6 @@
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import { useState } from "react";
+import "./signup.css";
 
 const LoginForm = () => {
     const [email, setEmail] = useState("");
@@ -17,8 +18,8 @@ const LoginForm = () => {
         <div className="row">
         <div className="offset-3 col-6">
             <div className="shadow p-4 mt-4">
-            <div className="card text-bg-light mb-3">
-                <h5 className="card-header">Login</h5>
+
+                <h1>Login</h1>
                 <div className="card-body">
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">
@@ -50,7 +51,6 @@ const LoginForm = () => {
                 </div>
             </div>
             </div>
-        </div>
         </div>
     );
 };

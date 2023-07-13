@@ -3,7 +3,6 @@ from fastapi.middleware.cors import CORSMiddleware
 import os
 from authenticator import authenticator
 from fastapi import APIRouter
-from routers import accounts
 from routers import accounts, facilities
 
 app = FastAPI()

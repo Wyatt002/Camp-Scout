@@ -1,18 +1,7 @@
 import requests
-from pydantic import BaseModel, Field
-from typing import Optional
-from fastapi import (
-    Depends,
-    HTTPException,
-    status,
-    Response,
-    APIRouter,
-    Request,
-)
-
+from fastapi import APIRouter
 from dotenv import load_dotenv
 import os
-import json
 
 
 load_dotenv()

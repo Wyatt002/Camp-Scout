@@ -8,10 +8,6 @@ class DuplicateAccountError(ValueError):
     pass
 
 
-class DuplicateAccountError(ValueError):
-    pass
-
-
 class MyAuthenticator(Authenticator):
     async def get_account_data(
         self,

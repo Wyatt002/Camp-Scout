@@ -168,6 +168,54 @@
 }
 ```
 
+## Weather
+
+* Endpoint path: `GET`,
+* Endpoint method: `/api/weather`,
+* Query parameters:
+  * lat: float, lon: float
+
+* Request shape (JSON):
+```json
+{
+  "lat": float,
+  "lon": float,
+}
+```
+
+* Response: Detail view that returns a 5-day forecast when given two float parameters: lat and lon, returning detailed information based on these coordinates.
+* Response shape (JSON):
+```json
+{
+  "1": {
+    "temp": float,
+    "temp_min": float,
+    "temp_max": float,
+    "feels_like": float,
+    "humidity": int,
+    "weather": string,
+    "weather_description": string,
+    "weather_icon": string,
+    "clouds": int,
+    "wind": float,
+    "visiblity": int,
+    "date": string
+  },
+  "2": {
+    ...
+  },
+  "3": {
+    ...
+  },
+  "4": {
+    ...
+  },
+  "5": {
+    ...
+  }
+}
+```
+
 ## Profile
 
 * Endpoint path: `GET`, `PUT`,

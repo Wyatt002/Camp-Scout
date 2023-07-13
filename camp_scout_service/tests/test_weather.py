@@ -1,6 +1,3 @@
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-import os
 from main import app
 from fastapi.testclient import TestClient
 

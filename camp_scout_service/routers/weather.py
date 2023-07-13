@@ -1,22 +1,10 @@
-from pydantic import BaseModel
-from typing import Optional
-from fastapi import (
-    Depends,
-    HTTPException,
-    status,
-    Response,
-    APIRouter,
-    Request,
-)
+import requests
+from fastapi import APIRouter
 from dotenv import load_dotenv
 import os
-import json
-
 
 load_dotenv()
 api_key = os.getenv("OPEN_WEATHER_API_KEY")
-import requests
-
 
 router = APIRouter()
 

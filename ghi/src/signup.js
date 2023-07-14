@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './signup.css'
+import styles from './signup.module.css';
 
 
 function SignupForm() {
@@ -77,6 +77,7 @@ function SignupForm() {
     }
 
     return (
+		<div className={styles.signupBackground}>
         <div className="row">
 			<div className="offset-3 col-6">
 				<div className="shadow p-4 mt-4">
@@ -152,6 +153,7 @@ function SignupForm() {
 					</form>
 				</div>
 			</div>
+		</div>
 		</div>
     );
 }

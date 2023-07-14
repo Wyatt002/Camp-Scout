@@ -1,0 +1,65 @@
+.card {
+    border: 1px solid #ccc; /* A light border */
+    border-radius: 10px; /* Slightly rounded corners */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* A light shadow for a professional look */
+    max-width: 540px;
+    margin: auto;
+    text-align: left;
+    font-family: arial;
+    background-color: #F3F2EF; /* Background color that matches your theme */
+}
+
+.mb-3 {
+    margin-bottom: 1rem; /* Space between cards */
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.g-0 {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.colMd4 {
+    flex: 0 0 auto;
+    width: 33.33333333%;
+}
+
+.colMd8 {
+    flex: 0 0 auto;
+    width: 66.66666667%;
+}
+
+.imgFluid {
+    max-width: 100%;
+    height: auto;
+}
+
+.roundedStart {
+    border-top-left-radius: calc(.25rem - 1px);
+    border-bottom-left-radius: calc(.25rem - 1px);
+}
+
+.cardBody {
+    padding: 1.25rem;
+}
+
+.cardTitle {
+    margin-bottom: .75rem;
+    font-size: 1.25rem;
+    color: #333121; /* Color that matches your theme */
+}
+
+.cardText {
+    margin-bottom: 1.25rem;
+    color: #333121; /* Color that matches your theme */
+}
+
+.textMuted {
+    color: #6c757d; /* Muted text color, adjust as needed */
+}

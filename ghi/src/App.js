@@ -7,7 +7,7 @@ import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
 import "./App.css";
 import SignupForm from "./signup.js";
 import LoginForm from "./login.js";
-
+import MainPage from './Main';
 
 function App() {
   const baseUrl = process.env.REACT_APP_API_HOST
@@ -34,6 +34,7 @@ function App() {
     <AuthProvider baseUrl={baseUrl}>
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<MainPage />} />
           <Route path="accounts">
             <Route path="signup" element={<SignupForm />} />
             <Route path="login" element={<LoginForm />} />

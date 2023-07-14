@@ -33,3 +33,11 @@ Today, I worked on:
 * Solved a CORS issue we were having with the sign up page.  We had to update docker.yaml file to not to only have CORS_HOST with one location.  We had both localhost 3000 and 8000 listed.
 
 Still working with team to resolve syntax error we are getting at login page.  Receiving error SyntaxError: Unexpected token '<', "<!DOCTYPE "... is not valid JSON.
+
+## July 12, 2023
+
+* Finalized weather and national park service APIs.  Connor created merge request and we approved.
+
+## July 13, 2023
+
+*  Brian R. and Jennifer worked on organizing the main page and Nav.js.  Connor and I worked on FastAPI for profile page.

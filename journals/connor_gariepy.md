@@ -1,4 +1,25 @@
+## July 14, 2023
+
+Today we worked on:
+* Implenting unit tests for 'api-profile'
+* The front-end's main page and navbar
+
+Today Brian J and I worked on the unit tests for the 'api-profile' after we successfully
+made a 'get' endpoint for getting all profiles or one specific profile and a 'post'
+endpoint for creating profiles.  We managed to get a test for get_all and create working
+but still need to get our test for get_one working.
+
+While we did that, Brian R and Jen worked on the main page and the navbar and made more
+progress on that.
+
+On monday I will check and see if we'd like to declare our API keys in the
+docker-compose.yaml and put the .env for our API keys in the top level of the directory
+instead of storing it in routers, this will take some fiddling on my part to make it
+work this way instead but might be cleaner and look nicer, while we've been told both
+are valid ways to go about it I will ask first and see what the group likes more.
+
 ## July 13, 2023
+
 Today we worked on:
 * Implementing and merging 'api-facilities' and 'api-weather'
 * Started to work on 'api-profile'

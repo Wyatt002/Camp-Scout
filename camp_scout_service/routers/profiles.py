@@ -1,6 +1,6 @@
 import requests
 from fastapi import APIRouter, Depends
-from typing import List
+from typing import List, Optional
 from queries.profiles import ProfileIn, ProfileOut, ProfileQueries
 
 router = APIRouter()
@@ -17,7 +17,7 @@ def get_all_profiles(
 def get_profile(
     account_id: int,
     repo: ProfileQueries = Depends(),
-) -> ProfileOut:
+) -> Optional[ProfileOut]:
     return repo.get_one(account_id)
 
 

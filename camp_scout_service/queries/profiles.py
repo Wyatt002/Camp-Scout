@@ -49,7 +49,7 @@ class ProfileQueries:
                     data.append(profile)
                 return data
 
-    def get_one(self, account_id: int) -> ProfileOut:
+    def get_one(self, account_id: int) -> Optional[ProfileOut]:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 result = db.execute(

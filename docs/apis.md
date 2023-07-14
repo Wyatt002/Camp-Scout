@@ -2,48 +2,52 @@
 
 ### Log in
 
-* Endpoint path: /token
-* Endpoint method: POST
+- Endpoint path: /token
+- Endpoint method: POST
 
-* Request shape (form):
-  * username: string
-  * password: string
+- Request shape (form):
 
-* Response: Account information and a token
-* Response shape (JSON):
-    ```json
-    {
-      "account": {
-        «key»: type»,
-      },
-      "token": string
-    }
-    ```
+  - email: string
+  - password: string
+
+- Response: Account information and a token
+- Response shape (JSON):
+  ```json
+  {
+    "account": {
+      «key»: type»,
+    },
+    "token": string
+  }
+  ```
 
 ### Log out
 
-* Endpoint path: /token
-* Endpoint method: DELETE
+- Endpoint path: /token
+- Endpoint method: DELETE
 
-* Headers:
-  * Authorization: Bearer token
+- Headers:
 
-* Response: Always true
-* Response shape (JSON):
-    ```json
-    true
-    ```
+  - Authorization: Bearer token
+
+- Response: Always true
+- Response shape (JSON):
+  ```json
+  true
+  ```
 
 ## Account
 
-* Endpoint path: `GET`, `PUT`, `DELETE`, `POST`,
-* Endpoint method: `/api/accounts`, `/api/account/<int:pk>`,
+- Endpoint path: `GET`, `PUT`, `DELETE`, `POST`,
+- Endpoint method: `/api/accounts`, `/api/account/<int:pk>`,
 
-* Headers:
-  * Authorization: Bearer token
+- Headers:
 
-* Request shape (JSON):
-```json
+  - Authorization: Bearer token
+
+- Request shape (JSON):
+
+````json
 {
   "first_name": string,
   "last_name": string,
@@ -66,17 +70,19 @@
   "avatar": string,
   "created": date,
 }
-```
+````
 
 ## Reviews
 
-* Endpoint path: `GET`,`DELETE`, `POST`,
-* Endpoint method: `/api/reviews`,`/api/reviews/<int:pk>`,
+- Endpoint path: `GET`,`DELETE`, `POST`,
+- Endpoint method: `/api/reviews`,`/api/reviews/<int:pk>`,
 
-* Headers:
-  * Authorization: Bearer token
+- Headers:
 
-* Request shape (JSON):
+  - Authorization: Bearer token
+
+- Request shape (JSON):
+
 ```json
 {
   "account_id": int,
@@ -88,8 +94,9 @@
 }
 ```
 
-* Response: The reviews API will be tied to the accounts and users will update.
-* Response shape (JSON):
+- Response: The reviews API will be tied to the accounts and users will update.
+- Response shape (JSON):
+
 ```json
 {
   "account_id": int,
@@ -103,20 +110,23 @@
 
 ## Facilities List
 
-* Endpoint path: `GET`,
-* Endpoint method: `/api/facilities`,
-* Query parameters:
-  * state_code: string
+- Endpoint path: `GET`,
+- Endpoint method: `/api/facilities`,
+- Query parameters:
 
-* Request shape (JSON):
+  - state_code: string
+
+- Request shape (JSON):
+
 ```json
 {
   "state_code": string,
 }
 ```
 
-* Response: Based on query, view of all related faclities will be displayed with minimal details and contact information.
-* Response shape (JSON):
+- Response: Based on query, view of all related faclities will be displayed with minimal details and contact information.
+- Response shape (JSON):
+
 ```json
 {
   "1": {
@@ -133,20 +143,23 @@
 
 ## Facility Details
 
-* Endpoint path: `GET`,
-* Endpoint method: `/api/facility_details`,
-* Query parameters:
-  * facility_id: string
+- Endpoint path: `GET`,
+- Endpoint method: `/api/facility_details`,
+- Query parameters:
 
-* Request shape (JSON):
+  - facility_id: string
+
+- Request shape (JSON):
+
 ```json
 {
   "facility_id": string,
 }
 ```
 
-* Response: Detail view with pertinent campsite information, obtained using a specific 'facility_id' whether manually input or obtained from the `/api/facilities`.
-* Response shape (JSON):
+- Response: Detail view with pertinent campsite information, obtained using a specific 'facility_id' whether manually input or obtained from the `/api/facilities`.
+- Response shape (JSON):
+
 ```json
 {
   "facility_id": string,
@@ -170,12 +183,14 @@
 
 ## Weather
 
-* Endpoint path: `GET`,
-* Endpoint method: `/api/weather`,
-* Query parameters:
-  * lat: float, lon: float
+- Endpoint path: `GET`,
+- Endpoint method: `/api/weather`,
+- Query parameters:
 
-* Request shape (JSON):
+  - lat: float, lon: float
+
+- Request shape (JSON):
+
 ```json
 {
   "lat": float,
@@ -183,8 +198,9 @@
 }
 ```
 
-* Response: Detail view that returns a 5-day forecast when given two float parameters: lat and lon, returning detailed information based on these coordinates.
-* Response shape (JSON):
+- Response: Detail view that returns a 5-day forecast when given two float parameters: lat and lon, returning detailed information based on these coordinates.
+- Response shape (JSON):
+
 ```json
 {
   "1": {
@@ -218,24 +234,26 @@
 
 ## Profile
 
-* Endpoint path: `GET`, `PUT`,
-* Endpoint method: `/api/profile`, `/api/profile/<int:pk>`,
-* Query parameters:
-  * q: acccount_id
+- Endpoint path: `GET`, `PUT`,
+- Endpoint method: `/api/profile`, `/api/profile/<int:pk>`,
+- Query parameters:
 
-* Headers:
-  * Authorization: Bearer token
+  - q: acccount_id
 
-* Request shape (JSON):
-    ```json
+- Headers:
+
+  - Authorization: Bearer token
+
+- Request shape (JSON):
+  `json
 {
   "account_id": int,
 }
-    ```
+    `
 
-* Response: Detal page for account user.
-* Response shape (JSON):
-    ```json
+- Response: Detal page for account user.
+- Response shape (JSON):
+  `json
 {
    "account_id": (first, last, email),
    "description": string,
@@ -247,4 +265,4 @@
    "avatar": url,
    "banner": url,
 }
-    ```
+    `

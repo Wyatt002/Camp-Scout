@@ -1,7 +1,9 @@
 from main import app
+from pydantic import BaseModel
 from fastapi.testclient import TestClient
 from queries.profiles import ProfileQueries, ProfileOut, ProfileIn
 from typing import List, Optional
+from authenticator import authenticator
 
 client = TestClient(app)
 
@@ -124,20 +126,6 @@ def test_create_profile():
     assert response.json() == expected
 
 
-class UpdateProfileQueriesMock:
-    def update(self, account_id, profile) -> ProfileOut:
-        return ProfileOut(
-            id=1,
-            description="I like to camp a lot",
-            goals="I want to camp even more",
-            status="I am a camper",
-            location="New York City",
-            avatar="https://www.google.com",
-            banner_url="https://www.google.com",
-            account_id=1,
-        )
-
-
 def test_get_profile():
     # Arrange
     app.dependency_overrides[ProfileQueries] = ProfileQueriesMock
@@ -160,8 +148,37 @@ def test_get_profile():
     assert response.json() == expected
 
 
+class UpdateProfileQueriesMock:
+    def update(self, account_id, profile) -> ProfileOut:
+        return ProfileOut(
+            id=1,
+            description="I like to camp a lot",
+            goals="I want to camp even more",
+            status="I am a camper",
+            location="New York City",
+            avatar="https://www.google.com",
+            banner_url="https://www.google.com",
+            account_id=1,
+        )
+
+
+class FakeAccountLogin(BaseModel):
+    email: str
+    password: str
+
+
+def fake_get_current_account_data():
+    return FakeAccountLogin(
+        email="tester@gmail.com",
+        password="testing",
+    )
+
+
 def test_update_profile():
     # Arrange
+    app.dependency_overrides[
+        authenticator.get_current_account_data
+    ] = fake_get_current_account_data
     app.dependency_overrides[ProfileQueries] = UpdateProfileQueriesMock
     json = {
         "description": "I like to camp a lot",

@@ -1,6 +1,7 @@
 import requests
 from fastapi import APIRouter, Depends
 from typing import List, Optional
+from authenticator import authenticator
 from queries.profiles import (
     ProfileIn,
     ProfileInUpdate,
@@ -38,6 +39,7 @@ def create_profile(
 def update_profile(
     account_id: int,
     profile: ProfileInUpdate,
+    account_data: dict = Depends(authenticator.get_current_account_data),
     repo: ProfileQueries = Depends(),
 ):
     return repo.update(account_id, profile)

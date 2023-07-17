@@ -1,5 +1,8 @@
 import React, { useState } from "react";
+<<<<<<< HEAD
 import styles from './signup.module.css';
+=======
+>>>>>>> main
 
 
 function SignupForm() {
@@ -77,6 +80,7 @@ function SignupForm() {
     }
 
     return (
+<<<<<<< HEAD
 		<div className={styles.signupBackground}>
         <div className="row">
 			<div className="offset-3 col-6">
@@ -151,7 +155,84 @@ function SignupForm() {
 						</div>
 						<button className="btn btn-primary">Create</button>
 					</form>
+=======
+		<div className="Signup-Container">
+			<div className="row">
+			<div className="offset-3 col-6">
+				<div className="shadow p-4 mt-4">
+				<h1>Sign Up! </h1>
+				{success && <p>Account created successfully!</p>}
+				<form onSubmit={handleSubmit} id="sign-up-form">
+					<div className="form-floating mb-3">
+					<input
+						onChange={handleFirstNameChange}
+						placeholder="First Name"
+						required
+						type="text"
+						value={firstName}
+						name="firstName"
+						id="firstName"
+						className="form-control"
+					/>
+					<label htmlFor="first_name">First Name</label>
+					</div>
+					<div className="form-floating mb-3">
+					<input
+						onChange={handleLastNameChange}
+						placeholder="Last Name"
+						required
+						value={lastName}
+						type="text"
+						name="lastName"
+						id="lastName"
+						className="form-control"
+					/>
+					<label htmlFor="last_name">Last Name</label>
+					</div>
+					<div className="form-floating mb-3">
+					<input
+						onChange={handleEmailChange}
+						placeholder="Email"
+						required
+						value={email}
+						type="text"
+						name="email"
+						id="email"
+						className="form-control"
+					/>
+					<label htmlFor="email">Email</label>
+					</div>
+					<div className="form-floating mb-3">
+					<input
+						onChange={handlePasswordChange}
+						placeholder="Password"
+						required
+						value={password}
+						type="password"
+						name="password"
+						id="password"
+						className="form-control"
+					/>
+					<label htmlFor="password">Password</label>
+					</div>
+					<div className="form-floating mb-3">
+					<input
+						onChange={handleConfirmPassword}
+						placeholder="Confirm Password"
+						required
+						value={confirmPassword}
+						type="password"
+						name="confirmPassword"
+						id="confirmPassword"
+						className="form-control"
+					/>
+					<label htmlFor="confirmPassword">Confirm Password</label>
+					</div>
+					<button className="btn btn-primary">Create</button>
+				</form>
+>>>>>>> main
 				</div>
+			</div>
 			</div>
 		</div>
 		</div>

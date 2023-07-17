@@ -23,7 +23,8 @@ steps = [
         # "Up" SQL statement
         """
         CREATE TABLE picture_gallery (
-        picture_name VARCHAR(50) NOT NULL,
+        id serial PRIMARY KEY NOT NULL,
+        picture_name VARCHAR(200) NOT NULL,
         picture_data BYTEA NOT NULL,
         account_id INTEGER REFERENCES account(id) ON DELETE CASCADE
         )

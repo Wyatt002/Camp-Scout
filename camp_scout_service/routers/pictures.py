@@ -9,7 +9,9 @@ router = APIRouter()
 
 
 @router.post("/api/pictures")
-def upload_picture(account_id: int, picture: UploadFile, repo: PictureQueries):
+def upload_picture(
+    account_id: int, picture: UploadFile, repo: PictureQueries = Depends()
+):
     return repo.upload(account_id, picture)
 
 

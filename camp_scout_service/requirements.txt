@@ -6,3 +6,5 @@ jwtdown-fastapi>=0.2.0
 python-dotenv
 requests==2.30.0
 httpx
+python-multipart
+asyncpg

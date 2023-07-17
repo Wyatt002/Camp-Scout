@@ -6,15 +6,34 @@ import Navbar from "react-bootstrap/Navbar";
 import logo from "./img/camplogo.png";
 import usericon from "./img/usericon.png"
 import useToken from "@galvanize-inc/jwtdown-for-react";
+import { NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
 
 
 function CampNav() {
     const { logout, token } = useToken();
+    const [loggedIn, setLoggedIn] = useState();
+
+    const checkLoggedIn = async () => {
+    if (token) {
+        setLoggedIn(true);
+    } else {
+        setLoggedIn(false);
+    }
+    };
+    useEffect(() => {
+        checkLoggedIn();
+    });
+
+
 
 
     return (
-        <Navbar expand="lg" className="bg-body-tertiary">
+        <Navbar expand="lg" className="bg-white">
+
             <Container fluid>
+                <Navbar.Brand href="/"className="logo">
                 <img
                 alt=""
                 src={logo}
@@ -22,7 +41,7 @@ function CampNav() {
                 height="50"
                 className="d-inline-block align-top"
                 href="/"
-                />
+                /></Navbar.Brand>
             <Navbar.Brand href="/"className="Title">Camp Scout</Navbar.Brand>
 
             <Navbar.Collapse id="responsive-navbar-nav">
@@ -54,6 +73,7 @@ function CampNav() {
                 />
                 <Button variant="success">Search</Button>
                 </Form>
+                <Navbar.Brand href="/profile"className="profile button">
                 { token && (
                 <img
                 alt=""
@@ -62,7 +82,7 @@ function CampNav() {
                 height="40"
                 className="d-inline-block align-top"
                 />
-                )}
+                )}</Navbar.Brand>
             </Navbar.Collapse>
             </Container>
         </Navbar>

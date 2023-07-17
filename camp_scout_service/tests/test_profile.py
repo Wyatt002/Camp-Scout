@@ -124,12 +124,25 @@ def test_create_profile():
     assert response.json() == expected
 
 
+class UpdateProfileQueriesMock:
+    def update(self, account_id, profile) -> ProfileOut:
+        return ProfileOut(
+            id=1,
+            description="I like to camp a lot",
+            goals="I want to camp even more",
+            status="I am a camper",
+            location="New York City",
+            avatar="https://www.google.com",
+            banner_url="https://www.google.com",
+            account_id=1,
+        )
+
+
 def test_get_profile():
     # Arrange
     app.dependency_overrides[ProfileQueries] = ProfileQueriesMock
-    json = {"account_id": 1}
     # Act
-    response = client.get("/api/profile/{account_id}", json=json)
+    response = client.get("/api/profile/1")
     expected = {
         "id": 1,
         "description": "I like to camp",
@@ -142,6 +155,39 @@ def test_get_profile():
     }
     # Clean up
     app.dependency_overrides = {}
+    # Assert
+    assert response.status_code == 200
+    assert response.json() == expected
+
+
+def test_update_profile():
+    # Arrange
+    app.dependency_overrides[ProfileQueries] = UpdateProfileQueriesMock
+    json = {
+        "description": "I like to camp a lot",
+        "goals": "I want to camp even more",
+        "status": "I am a camper",
+        "location": "New York City",
+        "avatar": "https://www.google.com",
+        "banner_url": "https://www.google.com",
+    }
+    expected = {
+        "id": 1,
+        "description": "I like to camp a lot",
+        "goals": "I want to camp even more",
+        "status": "I am a camper",
+        "location": "New York City",
+        "avatar": "https://www.google.com",
+        "banner_url": "https://www.google.com",
+        "account_id": 1,
+    }
+
+    # Act
+    response = client.put("/api/profile/1", json=json)
+
+    # Clean up
+    app.dependency_overrides = {}
+
     # Assert
     assert response.status_code == 200
     assert response.json() == expected

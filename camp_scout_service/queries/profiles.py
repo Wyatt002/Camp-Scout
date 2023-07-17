@@ -13,6 +13,15 @@ class ProfileIn(BaseModel):
     account_id: int
 
 
+class ProfileInUpdate(BaseModel):
+    description: str
+    goals: str
+    status: str
+    location: str
+    avatar: str
+    banner_url: str
+
+
 class ProfileOut(BaseModel):
     id: int
     description: str
@@ -105,3 +114,31 @@ class ProfileQueries:
                 id = result.fetchone()[0]
                 data = profile.dict()
                 return ProfileOut(id=id, **data)
+
+    def update(self, account_id: int, profile: ProfileInUpdate) -> ProfileOut:
+        with pool.connection() as conn:
+            with conn.cursor() as db:
+                result = db.execute(
+                    """
+                        UPDATE profile
+                        SET description = %s
+                        , goals = %s
+                        , status = %s
+                        , location  = %s
+                        , avatar = %s
+                        , banner_url = %s
+                        WHERE account_id = %s
+                        RETURNING id;
+                    """,
+                    [
+                        profile.description,
+                        profile.goals,
+                        profile.status,
+                        profile.location,
+                        profile.avatar,
+                        profile.banner_url,
+                        account_id,
+                    ],
+                )
+                conn.commit()
+                return self.get_one(account_id)

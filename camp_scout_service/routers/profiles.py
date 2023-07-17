@@ -1,7 +1,12 @@
 import requests
 from fastapi import APIRouter, Depends
 from typing import List, Optional
-from queries.profiles import ProfileIn, ProfileOut, ProfileQueries
+from queries.profiles import (
+    ProfileIn,
+    ProfileInUpdate,
+    ProfileOut,
+    ProfileQueries,
+)
 
 router = APIRouter()
 
@@ -27,3 +32,12 @@ def create_profile(
     repo: ProfileQueries = Depends(),
 ):
     return repo.create(profile)
+
+
+@router.put("/api/profile/{account_id}")
+def update_profile(
+    account_id: int,
+    profile: ProfileInUpdate,
+    repo: ProfileQueries = Depends(),
+):
+    return repo.update(account_id, profile)

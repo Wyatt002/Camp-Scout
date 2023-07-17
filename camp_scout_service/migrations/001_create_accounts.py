@@ -23,8 +23,7 @@ steps = [
             facility_id VARCHAR(100) NOT NULL,
             review TEXT NOT NULL,
             rating INTEGER NOT NULL,
-            account_id INTEGER REFERENCES account(id) ON DELETE CASCADE,
-                UNIQUE (account_id)
+            account_id INTEGER REFERENCES account(id) ON DELETE CASCADE
         );
         """,
         # "Down" SQL statement

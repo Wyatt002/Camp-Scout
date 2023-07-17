@@ -1,16 +1,5 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 
-.campScoutLogo {
-    width: 175px;
-	height: 150px;
-    align-items: left;
-    padding: 12px;
-    border-radius: 15%;
-    background: url("../src/img/Trailer-setup-at-campsite.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
 
 .body {
     margin: 0;
@@ -60,23 +49,6 @@ main {
 }
 
 
-
-.template_of_main {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-}
-.template_of_main > div {
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.picture_box {
-    width: 200px;
-    text-align: left;
-}
-
 .symbol_left {
     width: 175px;
 	height: 150px;
@@ -102,7 +74,7 @@ a {
     left: 0;
     width: 100%;
     background-color: #fff;
-    z-index: 1000;  /* this makes navbar stays above all other elements */
+    z-index: 1000;  /* this makes navbar stays above */
     height: 70px;
     display: flex;
     align-items: center;
@@ -144,17 +116,6 @@ a {
 }
 
 
-.card {
-    border: 1px solid #ccc; /* A light border */
-    border-radius: 10px; /* Slightly rounded corners */
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 540px;
-    margin: auto;
-    text-align: left;
-    font-family: arial;
-    background-color: #F3F2EF; /* Background color */
-}
-
 .mb-3 {
     margin-bottom: 1rem; /* Space between cards */
 }
@@ -171,33 +132,8 @@ a {
     margin-left: 0;
 }
 
-.colMd4 {
-    flex: 0 0 auto;
-    width: 33.33333333%;
-}
-
-.colMd8 {
-    flex: 0 0 auto;
-    width: 66.66666667%;
-}
-
 .cardBody {
     padding: 1.25rem;
-}
-
-.cardTitle {
-    margin-bottom: .75rem;
-    font-size: 1.25rem;
-    color: #333121;
-}
-
-.cardText {
-    margin-bottom: 1.25rem;
-    color: #333121;
-}
-
-.textMuted {
-    color: #6c757d;
 }
 
 
@@ -208,17 +144,9 @@ a {
     gap: 20px;
 }
 
-.imgFluid, .smallCard {
-    width: 100%;
-    length: 100%;
-    object-fit: fill;
-}
 
 .para {
     margin: 1px 0;
 }
 
-.input-group.md-form.form-sm.form-1 input{
-    border: 1px solid #464F2E;
-    margin: 1rem;
-}
+

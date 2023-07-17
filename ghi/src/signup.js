@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-<<<<<<< HEAD
 import styles from './signup.module.css';
-=======
->>>>>>> main
 
 
 function SignupForm() {
@@ -85,7 +82,7 @@ function SignupForm() {
 			<div className="offset-3 col-6">
 				<div className="shadow p-4 mt-4">
 				<h1>Sign Up! </h1>
-				{success && <p>Account created successfully!</p>}
+				{/* {success && <p>Account created successfully!</p>} */}
 				<form onSubmit={handleSubmit} id="sign-up-form">
 					<div className="form-floating mb-3">
 					<input
@@ -157,7 +154,6 @@ function SignupForm() {
 				</div>
 			</div>
 			</div>
-		</div>
 		</div>
     );
 }

@@ -1,0 +1,56 @@
+.cardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    flex-basis: calc(25% - 20px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 20px;
+    width: 200px; /* You can adjust this as needed */
+    height: auto;
+    background-color: #fff;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.loadMore {
+    display: block;
+    padding: 10px 20px;
+    margin: 20px auto;
+    background-color: #ba7000; /* Blue color */
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.loadMore:hover {
+    background-color: white;
+    color: #333121;
+    border: 2px solid #ba3500;
+}
+
+.search {
+    justify-content: center;
+}
+
+.searchContainer {
+    width: 50%;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #f8f8f8;
+    border-radius: 15px;
+    box-shadow: 0px 10px 20px -10px rgba(0, 0, 0, 0.2);
+}

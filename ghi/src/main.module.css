@@ -210,9 +210,8 @@ a {
 
 .imgFluid, .smallCard {
     width: 100%;
-    object-fit: cover;
-    padding: 0;
-    margin: 0;
+    length: 100%;
+    object-fit: fill;
 }
 
 .para {
@@ -220,6 +219,6 @@ a {
 }
 
 .input-group.md-form.form-sm.form-1 input{
-  border: 1px solid #464F2E;
-  margin: 1rem;
+    border: 1px solid #464F2E;
+    margin: 1rem;
 }

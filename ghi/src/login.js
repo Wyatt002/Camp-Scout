@@ -7,30 +7,39 @@ const LoginForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [passwordShown, setPasswordShown] = useState(false);
-    const [Message, setMessage] = useState("");
     const { login, token } = useToken();
     const navigate = useNavigate();
+    const [errorMessage, setErrorMessage] = useState("");
+    const [isError, setIsError] = useState(false);
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await login(email, password);
-        e.target.reset();
-        if (token) {
-            setMessage("");
-        }else {
-            setMessage("Invalid email or password");
-        }
+        await login( email, password );
+        const ourToken = token
+        if (ourToken === null) {
+            setIsError(true);
+            setErrorMessage("Please wait a few minutes or username/password was entered incorrectly");
+            setEmail("");
+            setPassword("");
+            }
     };
+    let errorClass = "alert alert-danger d-none";
+    if (isError) {
+        errorClass = "alert alert-danger";
+    }
+
+
+    useEffect(() => {
+        if (token !== null) {
+            navigate("/");
+        }
+        }, [token, navigate]);
+
 
     const togglePasswordVisiblity = () => {
         setPasswordShown(passwordShown ? false : true);
     };
-    useEffect(() => {
-        if (token) {
-        navigate("/");
-        }
-    }, [token, navigate]);
 
 
     return (
@@ -39,7 +48,9 @@ const LoginForm = () => {
                 <div className="shadow p-4 mt-4">
                     <h1>Login! </h1>
                     <div className="card-body">
-                        {Message && <p className="text-danger">{Message}</p>}
+                            <div className={errorClass}>
+                                {errorMessage}
+                            </div>
                         <form onSubmit={handleSubmit}>
                             <div className="mb-3">
                                 <label className="form-label">Email:</label>

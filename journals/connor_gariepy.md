@@ -1,3 +1,27 @@
+## July 17, 2023
+
+Today we worked on:
+* Finishing our get_one and unit tests for 'api-profile'
+* Implementing 'api-reviews'
+* Implementing 'api-picture-gallery'
+
+Today we worked on a handful of things, we finished up getting our unit testes for the
+'get_one' of 'api-profile' and managed to get it to work passing all successes, after
+that we began work on 'api-reviews' and created an endpoint for the following: a general
+GET to grab all reviews, a POST to create a review, two more GET's, one for getting
+reviews by 'facility_id' and another by 'account_id', and lastly a DELETE to delete a
+review with a matching 'id'.  We're holding off on implementing unit testes for this so
+that Biran R and Jen can try their hand at and fullfil that requirement of the grading
+rubric.
+
+We spent the last couple hours after we finished 'api-reviews' working on the
+'api-picture-gallery' and fiddling around with uploading files directly to the database,
+we plan to filter it to only accept image formats but for the moment wanted to make sure
+we could get it working, after some trial and error by the end of the day we were able
+to verify that files could be uploaded, allowing us to return back the 'id', 'picture_name',
+and 'account_id' associated with it, we're not sure quite yet how we'll be able to display
+the image file but we will figure that out tomorrow.
+
 ## July 14, 2023
 
 Today we worked on:

@@ -7,14 +7,16 @@ volumes:
 services:
   fastapi:
     build:
-      context: ./camp_scout_service
+      context: ./camp_scout
       dockerfile: ./Dockerfile.dev
     ports:
       - 8000:8000
     volumes:
-      - ./camp_scout_service:/app
+      - ./camp_scout:/app
     environment:
       CORS_HOST: http://localhost:3000
+      OPEN_WEATHER_API_KEY: ${OPEN_WEATHER_API_KEY}
+      NPS_API_KEY: ${NPS_API_KEY}
       DATABASE_URL: postgresql://adminuser:passcamp@postgres:5432/campscout_db
       SIGNING_KEY: testing0signkey
       WAIT_HOSTS: postgres:5432

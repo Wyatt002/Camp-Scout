@@ -1,3 +1,29 @@
+## July 18, 2023
+
+Today we worked on:
+* Began implementing CI/CD
+* Implementing unit tests for 'api-reviews'
+* Began working on the ReviewsForm.js
+
+Today we first worked on starting to implement CI/CD as a group, figuring out how it
+works and playing around with it as we tried various things, making sure to add our
+API keys to the gitlab variables in order to make sure when it tries to pass a
+pipeline that it has keys it can use and test to make sure that the unit tests pass
+through the pipeline.
+
+After that we walked Brian R through unit tests and showed him the ones we created on
+'api-profile' as an example to reference, showing him how to make one for a 'get'
+and 'post' request from the '/api/reviews', once he had made two we decided we'll
+leave the rest to him and if he had any questions about them we would be there to
+assist with them.
+
+Then we started to work on our ReviewsForm.js with Brian J driving while I navigated,
+we played around with it for the later part of the afternoon and were able to
+successfully post a review to our database with a placeholder 'facility_id' and
+'account_id', which we plan to replace with the 'account_id' we can snatch from our
+active token and a 'facility_id' which will be passed as a prop when a user navigates
+to the reviews form from a facility detail page, grabbing that ID from the page.
+
 ## July 17, 2023
 
 Today we worked on:

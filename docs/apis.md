@@ -71,7 +71,7 @@
 ## Reviews
 
 * Endpoint path: `GET`,`DELETE`, `POST`,
-* Endpoint method: `/api/reviews`,`/api/reviews/<int:pk>`,
+* Endpoint method: `/api/reviews`, `/api/reviews/<int:pk>`
 
 * Headers:
   * Authorization: Bearer token
@@ -79,12 +79,10 @@
 * Request shape (JSON):
 ```json
 {
-  "account_id": int,
   "facility_id": int,
-  "first_name": string,
-  "last_name": string,
   "review": string,
   "rating": int,
+  "account_id": int,
 }
 ```
 
@@ -92,12 +90,59 @@
 * Response shape (JSON):
 ```json
 {
-  "account_id": int,
+  "id": int,
   "facility_id": int,
-  "first_name": string,
-  "last_name": string,
   "review": string,
   "rating": int,
+  "account_id": int,
+}
+```
+
+## Reviews by Facility
+
+* Endpoint path: `GET`
+* Endpoint method: `/api/facility_reviews`
+
+* Request shape (JSON):
+```json
+{
+  "facility_id": int,
+}
+```
+
+* Response: A specific endpoint for the reviews API that will return a list of facilities with a matching facility_id.
+* Response shape (JSON):
+```json
+{
+  "id": int,
+  "facility_id": int,
+  "review": string,
+  "rating": int,
+  "account_id": int,
+}
+```
+
+## Reviews by Account
+
+* Endpoint path: `GET`
+* Endpoint method: `/api/facility_reviews`
+
+* Request shape (JSON):
+```json
+{
+  "account_id": int,
+}
+```
+
+* Response: A specific endpoint for the reviews API that will return a list of facilities with a matching account_id.
+* Response shape (JSON):
+```json
+{
+  "id": int,
+  "facility_id": int,
+  "review": string,
+  "rating": int,
+  "account_id": int,
 }
 ```
 

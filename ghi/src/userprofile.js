@@ -24,38 +24,41 @@ function UserProfile() {
                                 EDIT PROFILE
                                 </button>
                             </div>
-                            <div className="d-flex flex-column-reverse align-items-center">
-                                <img
-                                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp" alt=""
-                                    className="img-fluid img-thumbnail mt-4 mb-2"
-                                    style={{ width: "150px", }}
-                                />
-                            </div>
-                            < div>
-                                <h3 className="text-center">First LastName</h3>
-                                <p className="text-center"> Location</p>
-                                <div className="text-center">
-                                    <h4 >About Me</h4>
-                                    <p className="fw-light" style={{backgroundcolor: "#f8f9fa;"}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Donec enim diam vulputate ut pharetra sit amet aliquam. Gravida
-                                    arcu ac tortor dignissim convallis aenean et. At ultrices mi tempus imperdiet nullaLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Donec enim diam vulputate ut pharetra sit amet aliquam. Gravida
-                                    arcu ac tortor dignissim convallis aenean et. At ultrices mi tempus imperdiet nulla</p>
-                                </div>
-                                <div className="text-center">
-                                    Goals
-                                    <p className="fw-light"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Donec enim diam vulputate ut pharetra sit amet aliquam. Gravida
-                                    arcu ac tortor dignissim convallis aenean et. At ultrices mi tempus imperdiet nulla.</p>
-                                </div>
-                                <div className="text-center">
-                                    Status
-                                    <p className="fw-light"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Donec enim diam vulputate ut pharetra sit amet aliquam. Gravida
-                                    arcu ac tortor dignissim convallis aenean et. At ultrices mi tempus imperdiet nulla</p>
-                                </div>.
-                            </div>
                         </div>
+                            <div className="card m-3 ">
+                                <div className="d-flex flex-column align-items-center">
+                                    <img
+                                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp" alt=""
+                                        className="img-fluid img-thumbnail mt-4 mb-2"
+                                        style={{ width: "150px", }}
+                                    />
+
+                                    <h3 className="text-center">First LastName</h3>
+                                    <p className="text-center"> Location</p>
+                                    <div className="text-center">
+                                        <h4 >About Me</h4>
+                                        <p className="fw-light" style={{backgroundcolor: "#f8f9fa;"}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                        incididunt ut labore et dolore magna aliqua. Donec enim diam vulputate ut pharetra sit amet aliquam. Gravida
+                                        arcu ac tortor dignissim convallis aenean et. At ultrices mi tempus imperdiet nullaLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                        incididunt ut labore et dolore magna aliqua. Donec enim diam vulputate ut pharetra sit amet aliquam. Gravida
+                                        arcu ac tortor dignissim convallis aenean et. At ultrices mi tempus imperdiet nulla</p>
+                                    </div>
+                                    <div className="text-center">
+                                        Goals
+                                        <p className="fw-light"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                        incididunt ut labore et dolore magna aliqua. Donec enim diam vulputate ut pharetra sit amet aliquam. Gravida
+                                        arcu ac tortor dignissim convallis aenean et. At ultrices mi tempus imperdiet nulla.</p>
+                                    </div>
+                                    <div className="text-center">
+                                        Status
+                                        <p className="fw-light"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                        incididunt ut labore et dolore magna aliqua. Donec enim diam vulputate ut pharetra sit amet aliquam. Gravida
+                                        arcu ac tortor dignissim convallis aenean et. At ultrices mi tempus imperdiet nulla</p>
+                                    </div>
+                                </div>
+                            </div>
+
+
                         <div>
                             <h4 className="m-3">Activity</h4>
                             <div className="card m-3 ">

@@ -7,8 +7,6 @@ function CampNav() {
     const { logout, token } = useToken();
 
 
-
-
     return (
         <Navbar expand="lg" className="bg-white">
             <Container fluid>

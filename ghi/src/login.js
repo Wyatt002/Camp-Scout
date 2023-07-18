@@ -19,7 +19,7 @@ const LoginForm = () => {
         const ourToken = token
         if (ourToken === null) {
             setIsError(true);
-            setErrorMessage("Please wait a few minutes or username/password was entered incorrectly");
+            setErrorMessage("email/password was entered incorrectly");
             setEmail("");
             setPassword("");
             }

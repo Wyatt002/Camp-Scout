@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
+
 function SignupForm() {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');

@@ -8,6 +8,7 @@ import "./App.css";
 import SignupForm from "./signup.js";
 import LoginForm from "./login.js";
 import MainPage from './Main';
+import CampgroundDetail from './CampDetails';
 
 function App() {
   const baseUrl = process.env.REACT_APP_API_HOST
@@ -39,6 +40,7 @@ function App() {
             <Route path="signup" element={<SignupForm />} />
             <Route path="login" element={<LoginForm />} />
           </Route>
+          <Route path="campgrounds/:id" element={<CampgroundDetail />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

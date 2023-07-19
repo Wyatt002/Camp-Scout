@@ -1,7 +1,7 @@
 from main import app
 from pydantic import BaseModel
 from fastapi.testclient import TestClient
-from queries.reviews import ReviewQueries, ReviewIn, ReviewOut
+from queries.reviews import ReviewQueries, ReviewOut
 from typing import List, Optional
 from authenticator import authenticator
 
@@ -109,7 +109,7 @@ def test_delete_review():
 
 
 class FacilityReviewQueriesmock:
-    def get_by_facility(self):
+    def get_by_facility(self, facility_id) -> List[Optional[ReviewOut]]:
         return [
             ReviewOut(
                 id=1,
@@ -120,11 +120,53 @@ class FacilityReviewQueriesmock:
             )
         ]
 
-    def get_facility_review(self, facility_id) -> ReviewOut:
-        return ReviewOut(
-            id=1,
-            facility_id="saij3289",
-            review="Nice place!",
-            rating=4,
-            account_id=2,
-        )
+
+def test_get_facility_review():
+    app.dependency_overrides[ReviewQueries] = FacilityReviewQueriesmock
+    expected = [
+        {
+            "id": 1,
+            "facility_id": "saij3289",
+            "review": "Nice place!",
+            "rating": 4,
+            "account_id": 2,
+        }
+    ]
+    response = client.get(
+        "/api/facility_reviews", params={"facility_id": "saij3289"}
+    )
+
+    app.dependency_overrides = {}
+    assert response.status_code == 200
+    assert response.json() == expected
+
+
+class AccountReviewQueriesmock:
+    def get_by_account(self, account_id) -> List[Optional[ReviewOut]]:
+        return [
+            ReviewOut(
+                id=1,
+                facility_id="saij3289",
+                review="Nice place!",
+                rating=4,
+                account_id=2,
+            )
+        ]
+
+
+def test_get_account_review():
+    app.dependency_overrides[ReviewQueries] = AccountReviewQueriesmock
+    expected = [
+        {
+            "id": 1,
+            "facility_id": "saij3289",
+            "review": "Nice place!",
+            "rating": 4,
+            "account_id": 2,
+        }
+    ]
+    response = client.get("/api/account_reviews", params={"account_id": 2})
+
+    app.dependency_overrides = {}
+    assert response.status_code == 200
+    assert response.json() == expected

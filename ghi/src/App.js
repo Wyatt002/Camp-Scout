@@ -7,6 +7,7 @@ import "./App.css";
 import SignupForm from "./signup.js";
 import LoginForm from "./login.js";
 import CampNav from './Nav';
+import FacilityDetail from './FacilityDetail';
 
 function App() {
   const baseUrl = process.env.REACT_APP_API_HOST
@@ -19,8 +20,8 @@ function App() {
           <Route path="/">
             <Route path="signup" element={<SignupForm />} />
             <Route path="login" element={<LoginForm />} />
+            <Route path="facility" element={<FacilityDetail />} />
           </Route>
-
         </Routes>
       </BrowserRouter>
     </AuthProvider>

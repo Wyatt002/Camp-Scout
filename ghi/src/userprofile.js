@@ -29,10 +29,8 @@ function UserProfile() {
                                 <div className="d-flex flex-column align-items-center">
                                     <img
                                         src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp" alt=""
-                                        className="img-fluid img-thumbnail mt-4 mb-2"
-                                        style={{ width: "150px", }}
-                                    />
-
+                                        className="img-fluid img-thumbnail"
+                                        style={{ width: "150px", padding: "10px"}} />
                                     <h3 className="text-center">First LastName</h3>
                                     <p className="text-center"> Location</p>
                                     <div className="text-center">
@@ -60,37 +58,29 @@ function UserProfile() {
 
 
                         <div>
-                            <h4 className="m-3">Activity</h4>
-                            <div className="card m-3 ">
-                                <div className="card-header d-flex flex-column">
-                                <p className="mb-0">reviews</p>
-                                <div className="card">
-                                    <div className="row d-flex">
-                                        <div className="">
-                                            <img className="profile-pic" src="https://i.imgur.com/V3ICjlm.jpg" alt="" style={{ width: "80px", height: "80", marginright: "10" }}/>
-                                        </div>
-                                        <div className="d-flex flex-column">
-                                            <h3 className="mt-2 mb-0" >Vikram jit Singh</h3>
-                                            <div>
-                                                <p className="text-left"><span className="text-muted">4.0</span>
-                                                <span className="fa fa-star star-active ml-3"></span>
-                                                <span className="fa fa-star star-active"></span>
-                                                <span className="fa fa-star star-active"></span>
-                                                <span className="fa fa-star star-active"></span>
-                                                <span className="fa fa-star star-inactive"></span></p>
-                                            </div>
-                                        </div>
-                                        <div className="ml-auto">
-                                            <p className="text-muted pt-5 pt-sm-3">10 Sept</p>
-                                        </div>
-                                    </div>
-                                    <div className="row text-left">
-                                        <h4 className="blue-text mt-3">"An awesome activity to experience"</h4>
-                                        <p className="content">If you really enjoy spending your vacation 'on water' or would like to try something new and exciting for the first time.</p>
+                            <div className="d-flex justify-content-between align-items-center mb-4">
+                                <h2>Activity</h2>
+                                <p className="mb-0"><a href="#!" className="text-muted">Show all</a></p>
+                            </div>
+
+                        <div className="card">
+                            <div className="row">
+                                <div className="col-2">
+                                    <img
+                                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp" alt=""
+                                        width="100" height="110" className=" rounded-circle"/>
+                                </div>
+                                <div className="col-10">
+                                    <div className="comment mt-4 text-justify float-left">
+                                        <h4>Name</h4>
+                                        <h5> Location </h5>
+                                        <span> date, 2023</span>
+                                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
                                     </div>
                                 </div>
                             </div>
-                            </div>
+                        </div>
+
                             <div className="d-flex justify-content-between align-items-center mb-4">
                                 <p className="lead fw-normal mb-0">Recent photos</p>
                                 <p className="mb-0"><a href="#!" className="text-muted">Show all</a></p>

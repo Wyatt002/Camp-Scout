@@ -1,7 +1,8 @@
-import logo from "./img/camplogo.png";
+
 import {Button, Container, Form, Nav, Navbar } from "react-bootstrap";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import { FaUser } from "react-icons/fa";
+import { PiCampfireBold } from "react-icons/pi";
 
 function CampNav() {
     const { logout, token } = useToken();
@@ -11,14 +12,7 @@ function CampNav() {
         <Navbar expand="lg" className="bg-white">
             <Container fluid>
             <Navbar.Brand href="/" className="logo">
-                <img
-                alt=""
-                src={logo}
-                width="50"
-                height="50"
-                className="d-inline-block align-top"
-                href="/"
-                />
+                <PiCampfireBold style={{color: 'rgb(190, 84, 13)', fontSize: '40px'}}/>
             </Navbar.Brand>
             <Navbar.Brand href="/" className="Title">
                 Camp Scout

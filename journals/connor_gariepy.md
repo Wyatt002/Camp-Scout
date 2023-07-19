@@ -1,3 +1,29 @@
+## July 19, 2023
+
+Today we worked on:
+* Wrapped up 'api-reviews' tests
+* Merge requests for 'api-profile' and 'api-reviews'
+* Worked on ReviewsForm.js
+* Began working on FacilityDetail.js
+
+Today we spent the early part of the morning making a few additions to the
+ReviewsForm.js, managing to get it to automatically reference the account_id using
+the currently active token.  After that we pushed our changes to the branch and
+decided we would revisit it once we had the FacilityDetail page working.
+
+After we finished up the unit tests for 'api-reviews' and made a merge request for
+both 'api-profile' and then for 'api-reviews', merging both to main after they were
+approved.
+
+Then we opened a new development branch for the FacilityDetail.js to begin working
+on that - We were able to successfully fetch from both our facilities and weather
+api and populate the page with data from both, though we encountered an 'undefined
+property' when trying to map this data out after a page refresh, and noticed that
+because of the development mode of React it will make the fetch call twice on page
+load, the first time it would fail to retrieve the data, the second time it did
+not, creating an error on the page load.  To get around this I changed our 'return'
+statement to only return if a value in 'facility' was not null.
+
 ## July 18, 2023
 
 Today we worked on:

@@ -1,13 +1,13 @@
 import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
-import { useState, useRef, } from "react";
-
+import useToken from "@galvanize-inc/jwtdown-for-react";
+import { useState, useEffect } from "react";
 
 const ReviewForm = () => {
-    // const formRef = useRef(null);
+    const [accountData, setAccountData] = useState('');
     const [review, setReview] = useState('');
     const [rating, setRating] = useState('');
     const { token } = useAuthContext();
-    //const [data, setData] = useState({ review: '', rating: '', facility_id: 'Gibberish', account_id: 1 });
+    const { fetchWithCookie } = useToken();
 
     const handleReviewChange = (e) => {
         const value = e.target.value;
@@ -26,8 +26,8 @@ const ReviewForm = () => {
         const data = {
             review: review,
             rating: rating,
-            facility_id: "Gibberish",
-            account_id: 5,
+            facility_id: "Placeholder",
+            account_id: accountData.id,
         }
 
         const fetchConfig = {
@@ -46,16 +46,17 @@ const ReviewForm = () => {
         }
     };
 
-    /*const handleReviewChange = (e) => {
-        const value = e.target.value;
-        const inputName = e.target.name;
+    const getAccountData = async () => {
+        const data = await fetchWithCookie(
+            `${process.env.REACT_APP_API_HOST}/token`
+        );
+        setAccountData(data.account);
+    }
 
-        setData({
-        ...data,
-        [inputName]: value,
-        });
+    useEffect(() => {
+        getAccountData();
+      }, []);
 
-    }*/
     return (
         <div className="row">
         <div className="offset-3 col-6">
@@ -66,25 +67,33 @@ const ReviewForm = () => {
                 <form onSubmit={handleSubmit} id="create-review-form" >
                     <div className="mb-3">
                     <label htmlFor="review">Review:</label>
-                    <input onChange={handleReviewChange}
+                    <textarea onChange={handleReviewChange}
                         id="review"
                         placeholder="Review"
                         name="review"
                         type="text"
                         className="form-control"
                         value={review}
+                        rows={4}
+                        cols={50}
                     />
                     </div>
                     <div className="mb-3">
                     <label htmlFor="rating">Rating</label>
-                    <input onChange={handleRatingChange}
+                    <select onChange={handleRatingChange}
                         id="rating"
                         placeholder="Rating"
                         name="rating"
-                        type="text"
-                        className="form-control"
                         value={rating}
-                    />
+                        type="text"
+                        className="form-control">
+                        <option value={0}>Select Rating</option>
+                        <option value={1}>1 Star</option>
+                        <option value={2}>2 Stars</option>
+                        <option value={3}>3 Stars</option>
+                        <option value={4}>4 Stars</option>
+                        <option value={5}>5 Stars</option>
+                    </select>
                     </div>
                     <div>
                     <input

@@ -14,7 +14,7 @@
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
     margin: 10px;
     padding: 20px;
-    width: 200px; /* You can adjust this as needed */
+    width: 200px;
     height: auto;
     background-color: #fff;
     border-radius: 5px;
@@ -25,7 +25,7 @@
     display: block;
     padding: 10px 20px;
     margin: 20px auto;
-    background-color: #ba7000; /* Blue color */
+    background-color: #ba7000;
     color: white;
     border: none;
     cursor: pointer;

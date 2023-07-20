@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import styles from './facilities.module.css';
+import { Link } from 'react-router-dom';
 
 
 const states = [
@@ -60,6 +61,9 @@ const states = [
 const FacilityInfo = ({ facility }) => (
     <div>
         <h3>{facility.name}</h3>
+        <Link to={`/facility/details/${facility.facility_id}`}>
+        <button>Details</button>
+        </Link>
     </div>
 );
 

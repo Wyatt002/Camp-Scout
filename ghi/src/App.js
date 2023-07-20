@@ -19,11 +19,12 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/facilities" element={<FacilitiesPage />} />
+          <Route path="/facility/details/:facilityId" element={<FacilityDetail />} />
           <Route path="accounts">
             <Route path="signup" element={<SignupForm />} />
             <Route path="login" element={<LoginForm />} />
+            <Route path="facility" element={<FacilityDetail />} />
           </Route>
-
         </Routes>
       </BrowserRouter>
     </AuthProvider>

@@ -5,6 +5,7 @@ import SignupForm from "./signup.js";
 import LoginForm from "./login.js";
 import CampNav from './Nav';
 import UserProfile from "./userprofile";
+import EditForm from "./editform";
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
             <Route path="login" element={<LoginForm />} />
             <Route path="profile" element={<UserProfile />} />
             <Route path="main" element={<UserProfile />} />
+            <Route path="profile/edit" element={<EditForm />} />
           </Route>
         </Routes>
       </BrowserRouter>

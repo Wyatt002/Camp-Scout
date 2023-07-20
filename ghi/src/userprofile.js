@@ -8,7 +8,7 @@ function UserProfile() {
         return (
             <div className="container">
 
-                <div id="profile-body" className="row mt-5 me-3">
+                <div id="profile-body" className="row mtb-5 me-4">
                     <div className="card mb-5">
                         <div className="card inner-card m-3">
                             <div
@@ -33,53 +33,58 @@ function UserProfile() {
                                         style={{ width: "150px", padding: "10px"}} />
                                     <h3 className="text-center">First LastName</h3>
                                     <p className="text-center"> Location</p>
-                                    <div className="text-center">
-                                        <h4 >About Me</h4>
-                                        <p className="fw-light" style={{backgroundcolor: "#f8f9fa;"}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua. Donec enim diam vulputate ut pharetra sit amet aliquam. Gravida
-                                        arcu ac tortor dignissim convallis aenean et. At ultrices mi tempus imperdiet nullaLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua. Donec enim diam vulputate ut pharetra sit amet aliquam. Gravida
-                                        arcu ac tortor dignissim convallis aenean et. At ultrices mi tempus imperdiet nulla</p>
+                                    <div className="card m-3 ">
+                                        <div className="text-center">
+                                            <h4 >About Me</h4>
+                                            <p className="fw-light" style={{backgroundcolor: "#f8f9fa;"}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                            incididunt ut labore et dolore magna aliqua. Donec enim diam vulputate ut pharetra sit amet aliquam. Gravida
+                                            arcu ac tortor dignissim convallis aenean et. At ultrices mi tempus imperdiet nullaLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                            incididunt ut labore et dolore magna aliqua. Donec enim diam vulputate ut pharetra sit amet aliquam. Gravida
+                                            arcu ac tortor dignissim convallis aenean et. At ultrices mi tempus imperdiet nulla</p>
+                                        </div>
                                     </div>
-                                    <div className="text-center">
-                                        Goals
-                                        <p className="fw-light"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua. Donec enim diam vulputate ut pharetra sit amet aliquam. Gravida
-                                        arcu ac tortor dignissim convallis aenean et. At ultrices mi tempus imperdiet nulla.</p>
+                                    <div className="card m-3 ">
+                                        <div className="text-center">
+                                            <h3>Goals</h3>
+                                            <p className="fw-light"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                            incididunt ut labore et dolore magna aliqua. Donec enim diam vulputate ut pharetra sit amet aliquam. Gravida
+                                            arcu ac tortor dignissim convallis aenean et. At ultrices mi tempus imperdiet nulla.</p>
+                                        </div>
                                     </div>
-                                    <div className="text-center">
-                                        Status
-                                        <p className="fw-light"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua. Donec enim diam vulputate ut pharetra sit amet aliquam. Gravida
-                                        arcu ac tortor dignissim convallis aenean et. At ultrices mi tempus imperdiet nulla</p>
+                                    <div className="card m-3 ">
+                                        <div className="text-center">
+                                            <h3>Status</h3>
+                                            <p className="fw-light"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                            incididunt ut labore et dolore magna aliqua. Donec enim diam vulputate ut pharetra sit amet aliquam. Gravida
+                                            arcu ac tortor dignissim convallis aenean et. At ultrices mi tempus imperdiet nulla</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
 
                         <div>
                             <div className="d-flex justify-content-between align-items-center mb-4">
                                 <h2>Activity</h2>
                                 <p className="mb-0"><a href="#!" className="text-muted">Show all</a></p>
                             </div>
-
-                        <div className="card">
-                            <div className="row">
-                                <div className="col-2">
-                                    <img
-                                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp" alt=""
-                                        width="100" height="110" className=" rounded-circle"/>
-                                </div>
-                                <div className="col-10">
-                                    <div className="comment mt-4 text-justify float-left">
-                                        <h4>Name</h4>
-                                        <h5> Location </h5>
-                                        <span> date, 2023</span>
-                                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
+                            <div className="card">
+                                <div className="row">
+                                    <div className="col-2">
+                                        <img
+                                            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp" alt=""
+                                            width="100" height="110" className=" rounded-circle"/>
+                                    </div>
+                                    <div className="col-10">
+                                        <div className="comment mt-4 text-justify float-left">
+                                            <h4>Name</h4>
+                                            <h5> CAMP LOCATION </h5>
+                                            <div> RATING ++++</div>
+                                            <span> date</span>
+                                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
                             <div className="d-flex justify-content-between align-items-center mb-4">
                                 <p className="lead fw-normal mb-0">Recent photos</p>

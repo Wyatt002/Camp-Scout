@@ -9,6 +9,7 @@ import LoginForm from "./login.js";
 import Main from './MainPage';
 import FacilitiesPage from './Facilities'
 import FacilityDetail from './FacilityDetail';
+import CampNav from './Nav';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
   return (
     <AuthProvider baseUrl={baseUrl}>
       <BrowserRouter>
+      <CampNav />
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/facilities" element={<FacilitiesPage />} />

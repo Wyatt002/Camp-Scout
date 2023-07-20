@@ -4,6 +4,7 @@ import styles from './facilities.module.css';
 import { Link } from 'react-router-dom';
 
 
+
 const states = [
     { value: 'AL', label: 'Alabama' },
     { value: 'AK', label: 'Alaska' },
@@ -62,7 +63,7 @@ const FacilityInfo = ({ facility }) => (
     <div>
         <h3>{facility.name}</h3>
         <Link to={`/facility/details/${facility.facility_id}`}>
-        <button>Details</button>
+        <button className={styles.detailsButton}>Details</button>
         </Link>
     </div>
 );
@@ -91,6 +92,7 @@ const FacilitiesPage = () => {
                 className={styles.search}
                 options={states}
                 onChange={setSelectedState}
+                placeholder="Select a state.."
             />
             </div>
             <div className={styles.cardContainer}>

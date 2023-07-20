@@ -10,7 +10,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import FacilitiesPage from './Facilities.js';
 
 import defaultImg from '../src/img/Trailer-setup-at-campsite.jpg';
-import { MDBCardOverlay, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText } from 'mdb-react-ui-kit';
+import { MDBCardOverlay, MDBCard, MDBCardImage, MDBCardTitle } from 'mdb-react-ui-kit';
 
 const Main = () => {
 
@@ -25,32 +25,34 @@ const topParks = [
 
     return (
     <div>
-        <header className={styles.header}>
-            <a href="/home" className={styles.homeText}>Home</a>
-            <div className={styles.navBar} >
-                <a href="/profile" className={styles.navText}>Profile</a>
-                <a href="/login" className={styles.navText}>Login</a>
-                <button className={styles.signupButton}>Signup</button>
+        <main>
+            <div className={styles.parent}>
+                <div className={styles.hero}></div>
+                <div className={styles.helloContainer }>
+                    <h1 className={styles.adventurousText} style= {{color: '#333121'}}>Camp Scout</h1>
+                    <p className={styles.para} style= {{color: '#333121'}}>Welcome to Camp Scout, your guide to exploring national parks in your area.</p>
+                    <p className={styles.para} style= {{color: '#333121'}}>Begin your search and start your adventure!</p>
+                    <div>
+                <FacilitiesPage />
             </div>
-        </header>
-        <div>
-            <div className={styles.container}>
+                </div>
+            </div>
+                <div>
+            {/* <div className={styles.container}>
                 <h1 style= {{color: '#333121'}}>Camp Scout</h1>
                 <p className={styles.para} style= {{color: '#333121'}}>Welcome to Camp Scout, your guide to exploring national parks in your area.</p>
                 <p className={styles.para} style= {{color: '#333121'}}>Begin your search and start your adventure!</p>
-            </div>
+            </div> */}
         </div>
-        <main>
-            <div className={styles.hero}></div>
-            <div>
+            {/* <div>
                 <FacilitiesPage />
-            </div>
-            <div>
+            </div> */}
+            <div className={styles.topLocationsContainer}>
                 <h2 className={styles.containerTitle}>Top Locations of 2023</h2>
                 <div className={styles.gridContainer}>
                     {topParks.map((park, index) => (
                     <MDBCard className={`${styles.smallCard} text-white`} key={index}>
-                        <MDBCardImage overlay src={park.img} alt={park.name} />
+                        <MDBCardImage overlay src={park.img} alt={park.name} className={styles.imgFit} />
                         <MDBCardOverlay>
                         <MDBCardTitle>{park.name}</MDBCardTitle>
                         </MDBCardOverlay>

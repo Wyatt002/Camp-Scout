@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from "react";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import styles from "./FacilityDetail.module.css";
 
-function FacilityDetail() {
-    const [facility, setFacility] = useState('');
+function Weather(facility) {
+    const [active, setActive] = useState(false);
     const [weather, setWeather] = useState('');
+    const prop = facility.facility;
 
     const getWeather = async () => {
-        const url = `${process.env.REACT_APP_API_HOST}/api/weather?lat=${facility.lat}&lon=${facility.lon}`;
+        const url = `${process.env.REACT_APP_API_HOST}/api/weather?lat=${prop.lat}&lon=${prop.lon}`;
         const response = await fetch(url);
         if (response.ok) {
             const data = await response.json();
             setWeather(data);
+            setActive(true);
             console.log(weather["1"]);
             console.log(weather["2"]);
             console.log(weather["3"]);
@@ -18,8 +23,82 @@ function FacilityDetail() {
         }
     }
 
+    if (active === false) {
+        return (
+            <div className="card-body">
+                <h3>Weather Overview:</h3>
+                <p>{ prop.weather_overview }</p>
+                <button onClick={getWeather}>Get the weather!</button>
+            </div>
+        );
+    } else if (active === true) {
+        return (
+            <div className="card-body">
+                <p>{ weather["1"].date }</p>
+                <p>{ weather["2"].date }</p>
+                <p>{ weather["3"].date }</p>
+                <p>{ weather["4"].date }</p>
+                <p>{ weather["5"].date }</p>
+            </div>
+        );
+    }
+}
+
+function ExceptionHours(facility) {
+    const prop = facility.facility;
+    if (prop["facility_id"] != null) {
+        if (prop.operating_hours["0"].exceptions.length > 0) {
+            const exception = prop.operating_hours["0"].exceptions["0"];
+            return (
+                <>
+                    <p>Exceptions ({ exception.name }):</p>
+                    <p>Starts - { exception.startDate }</p>
+                    <p>Ends - { exception.endDate }</p>
+                    <ul key="exceptions">
+                        <li key="eSunday">Sunday - { exception.exceptionHours.sunday }</li>
+                        <li key="eMonday">Monday - { exception.exceptionHours.monday }</li>
+                        <li key="eTuesday">Tuesday - { exception.exceptionHours.tuesday }</li>
+                        <li key="eWednesday">Wednesday - { exception.exceptionHours.wednesday }</li>
+                        <li key="eThursday">Thursday - { exception.exceptionHours.thursday }</li>
+                        <li key="eFriday">Friday - { exception.exceptionHours.friday }</li>
+                        <li key="eSaturday">Saturday - { exception.exceptionHours.saturday }</li>
+                    </ul>
+                </>
+            );
+        } else {
+            return (
+                <>
+                <h3>Exceptions:</h3>
+                <p>None</p>
+                </>
+            );
+        }
+    }
+}
+
+function FacilityDetail() {
+    const [facility, setFacility] = useState('');
+    const responsive = {
+    superLargeDesktop: {
+        breakpoint: { max: 4000, min: 3000 },
+        items: 1,
+    },
+    desktop: {
+        breakpoint: { max: 3000, min: 1024 },
+        items: 1,
+    },
+    tablet: {
+        breakpoint: { max: 1024, min: 464 },
+        items: 1,
+    },
+    mobile: {
+        breakpoint: { max: 464, min: 0 },
+        items: 1,
+    },
+    };
+
     const fetchFacility  = async () => {
-        const url = `${process.env.REACT_APP_API_HOST}/api/facility_details?facility_id=1241C56B-7003-4FDF-A449-29DA8BCB0A41`;
+        const url = `${process.env.REACT_APP_API_HOST}/api/facility_details?facility_id=9D607267-5063-463F-8487-DF928F788339`;
         const response = await fetch(url);
         if (response.ok) {
             const data = await response.json();
@@ -42,29 +121,90 @@ function FacilityDetail() {
                                 <h1>{facility.name}</h1>
                                 <p>{facility.description}</p>
                             </div>
+                            <div className={styles.container}>
+                            <Carousel
+                                responsive={responsive}
+                                infinite={true}
+                                autoPlay={true}
+                                autoPlaySpeed={4000}
+                            >
+                                {facility.images.map((image) => {
+                                    return (
+                                        <div><img key={Math.random()} src={image.url} /></div>
+                                    )
+                                })}
+                            </Carousel>
+                            </div>
                             <div className="card-body">
                                 <h3>Campsites:</h3>
-                                <p>Total Campsites: { facility.campsites.totalSites }</p>
-                                <p>Electrical Hookups: { facility.campsites.electricalHookups }</p>
-                                <p>Group: { facility.campsites.group }</p>
-                                <p>Horse: { facility.campsites.horse }</p>
-                                <p>Other: { facility.campsites.other }</p>
-                                <p>RV Only: { facility.campsites.rvOnly }</p>
-                                <p>Tent Only: { facility.campsites.tentOnly }</p>
-                                <p>Walk Boat To: { facility.campsites.walkBoatTo }</p>
+                                <p>Total Campsites - { facility.campsites.totalSites }</p>
+                                <p>Electrical Hookups - { facility.campsites.electricalHookups }</p>
+                                <p>Group - { facility.campsites.group }</p>
+                                <p>Horse - { facility.campsites.horse }</p>
+                                <p>Other - { facility.campsites.other }</p>
+                                <p>RV Only - { facility.campsites.rvOnly }</p>
+                                <p>Tent Only - { facility.campsites.tentOnly }</p>
+                                <p>Walk Boat To - { facility.campsites.walkBoatTo }</p>
+                            </div>
+                            <div className="card-body">
+                                <h3>Amenities:</h3>
+                                <p>Amphitheater - { facility.amenities.amphitheater }</p>
+                                <p>Camp Store - { facility.amenities.campStore }</p>
+                                <p>Cell Reception - { facility.amenities.cellPhoneReception }</p>
+                                <p>Dump Station - { facility.amenities.dumpStation }</p>
+                                <p>Firewood - { facility.amenities.firewoodForSale }</p>
+                                <p>Food Storage - { facility.amenities.foodStorageLockers }</p>
+                                <p>Ice - { facility.amenities.iceAvailableForSale }</p>
+                                <p>Internet - { facility.amenities.internetConnectivity }</p>
+                                <p>Laundry - { facility.amenities.laundry }</p>
+                                <p>Potable Water - { facility.amenities.potableWater["0"] }</p>
+                                <p>Showers - { facility.amenities.showers["0"] }</p>
+                                <p>Staff on Site - { facility.amenities.staffOrVolunteerHostOnsite }</p>
+                                <p>Toilets - { facility.amenities.toilets["0"] }</p>
+                                <p>Trash Collection Point - { facility.amenities.trashRecyclingCollection }</p>
+                            </div>
+                            <div className="card-body">
+                                <h3>Accessibility:</h3>
+                                {facility.accessibility.accessRoads.map(road => {
+                                    return (
+                                        <p>
+                                            { road }
+                                        </p>
+                                    )
+                                })}
+                                <p>{ facility.accessibility.adaInfo }</p>
+                                <p>Cell Phone Info - { facility.accessibility.cellPhoneInfo }</p>
+                                {facility.accessibility.classifications.map((classification) => (
+                                <p key={Math.random()}>Classifcation - {classification}</p>
+                                ))}
+                                <p>Fire Stove Policy - { facility.accessibility.fireStovePolicy }</p>
+                                <p>Internet Info - { facility.accessibility.internetInfo }</p>
+                                <p>
+                                    RV Info - { facility.accessibility.rvInfo }
+                                    , Allowed - { facility.accessibility.rvAllowed }
+                                    , Max Length - { facility.accessibility.rvMaxLength }
+                                </p>
+                                <p>
+                                    Trailer Info - { facility.accessibility.trailerInfo }
+                                    , Max Length - { facility.accessibility.trailerMaxLength }
+                                </p>
+                                <p>Wheelchair Access - { facility.accessibility.wheelchairAccess }</p>
+                                <p>Additional Info - { facility.accessibility.additionalInfo }</p>
                             </div>
                             <div className="card-body">
                                 <h3>Operating Hours:</h3>
                                 <p>{ facility.operating_hours["0"].description }</p>
-                                <ul>
-                                    <li>Sunday: </li>
-                                    <li>Monday: </li>
-                                    <li>Tuesday: </li>
-                                    <li>Wednesday: </li>
-                                    <li>Thursday: </li>
-                                    <li>Friday: </li>
-                                    <li>Saturday: </li>
+                                <p>Standard: </p>
+                                <ul key="operatingHours">
+                                    <li key="sunday">Sunday - { facility.operating_hours["0"].standardHours.sunday }</li>
+                                    <li key="monday">Monday - { facility.operating_hours["0"].standardHours.monday }</li>
+                                    <li key="tuesday">Tuesday - { facility.operating_hours["0"].standardHours.tuesday }</li>
+                                    <li key="wednesday">Wednesday - { facility.operating_hours["0"].standardHours.wednesday }</li>
+                                    <li key="thursday">Thursday - { facility.operating_hours["0"].standardHours.thursday }</li>
+                                    <li key="friday">Friday - { facility.operating_hours["0"].standardHours.friday }</li>
+                                    <li key="saturday">Saturday - { facility.operating_hours["0"].standardHours.saturday }</li>
                                 </ul>
+                                <ExceptionHours facility={facility} />
                             </div>
                             <div className="card-body">
                                 <h3>Addresses: </h3>
@@ -97,11 +237,7 @@ function FacilityDetail() {
                                     )
                                 })}
                             </div>
-                            <div className="card-body">
-                                <h3>Weather Overview:</h3>
-                                <p>{ facility.weather_overview }</p>
-                                <button onClick={getWeather}>Get the weather!</button>
-                            </div>
+                            <Weather facility={facility} />
                         </div>
                     </div>
                 </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 function FacilityDetail() {
-    const [facility, setFacility] = useState({});
+    const [facility, setFacility] = useState('');
     const [weather, setWeather] = useState('');
 
     const getWeather = async () => {
@@ -41,6 +41,30 @@ function FacilityDetail() {
                             <div className="card-body">
                                 <h1>{facility.name}</h1>
                                 <p>{facility.description}</p>
+                            </div>
+                            <div className="card-body">
+                                <h3>Campsites:</h3>
+                                <p>Total Campsites: { facility.campsites.totalSites }</p>
+                                <p>Electrical Hookups: { facility.campsites.electricalHookups }</p>
+                                <p>Group: { facility.campsites.group }</p>
+                                <p>Horse: { facility.campsites.horse }</p>
+                                <p>Other: { facility.campsites.other }</p>
+                                <p>RV Only: { facility.campsites.rvOnly }</p>
+                                <p>Tent Only: { facility.campsites.tentOnly }</p>
+                                <p>Walk Boat To: { facility.campsites.walkBoatTo }</p>
+                            </div>
+                            <div className="card-body">
+                                <h3>Operating Hours:</h3>
+                                <p>{ facility.operating_hours["0"].description }</p>
+                                <ul>
+                                    <li>Sunday: </li>
+                                    <li>Monday: </li>
+                                    <li>Tuesday: </li>
+                                    <li>Wednesday: </li>
+                                    <li>Thursday: </li>
+                                    <li>Friday: </li>
+                                    <li>Saturday: </li>
+                                </ul>
                             </div>
                             <div className="card-body">
                                 <h3>Addresses: </h3>

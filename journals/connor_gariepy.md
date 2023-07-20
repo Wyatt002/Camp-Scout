@@ -1,3 +1,19 @@
+## July 20, 2023
+
+Today we worked on:
+* FacilityDetail.js
+
+Today Brian J and I continued to work on our FacilityDetail.js, managing to make a
+decent dent in our progress of it, with all the 'api-facility' details filling the
+page out and the weather able to properly populate a 'weather' variable waiting for
+it, on Monday we plan to get our Weather component within this page working so that
+when the button is pressed to 'Get weather' it will replace the button with a the
+five day forecast and display the appropriate data for it, including the wind,
+temperature, the character icon that displays the type of weather, etc.
+
+Once that works we will create some mock reviews in our database and then get the
+reviews component working on this page.
+
 ## July 19, 2023
 
 Today we worked on:

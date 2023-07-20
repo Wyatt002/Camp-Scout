@@ -74,8 +74,8 @@
 
 ## Reviews
 
-- Endpoint path: `GET`,`DELETE`, `POST`,
-- Endpoint method: `/api/reviews`,`/api/reviews/<int:pk>`,
+* Endpoint path: `GET`,`DELETE`, `POST`,
+* Endpoint method: `/api/reviews`, `/api/reviews/<int:pk>`
 
 - Headers:
 
@@ -85,12 +85,10 @@
 
 ```json
 {
-  "account_id": int,
   "facility_id": int,
-  "first_name": string,
-  "last_name": string,
   "review": string,
   "rating": int,
+  "account_id": int,
 }
 ```
 
@@ -99,12 +97,59 @@
 
 ```json
 {
-  "account_id": int,
+  "id": int,
   "facility_id": int,
-  "first_name": string,
-  "last_name": string,
   "review": string,
   "rating": int,
+  "account_id": int,
+}
+```
+
+## Reviews by Facility
+
+* Endpoint path: `GET`
+* Endpoint method: `/api/facility_reviews`
+
+* Request shape (JSON):
+```json
+{
+  "facility_id": int,
+}
+```
+
+* Response: A specific endpoint for the reviews API that will return a list of facilities with a matching facility_id.
+* Response shape (JSON):
+```json
+{
+  "id": int,
+  "facility_id": int,
+  "review": string,
+  "rating": int,
+  "account_id": int,
+}
+```
+
+## Reviews by Account
+
+* Endpoint path: `GET`
+* Endpoint method: `/api/facility_reviews`
+
+* Request shape (JSON):
+```json
+{
+  "account_id": int,
+}
+```
+
+* Response: A specific endpoint for the reviews API that will return a list of facilities with a matching account_id.
+* Response shape (JSON):
+```json
+{
+  "id": int,
+  "facility_id": int,
+  "review": string,
+  "rating": int,
+  "account_id": int,
 }
 ```
 
@@ -234,35 +279,57 @@
 
 ## Profile
 
-- Endpoint path: `GET`, `PUT`,
-- Endpoint method: `/api/profile`, `/api/profile/<int:pk>`,
-- Query parameters:
+* Endpoint path: `GET`, `POST`, `PUT`,
+* Endpoint method: `/api/profile`, `/api/profile/<int:pk>`,
+* Query parameters:
+  * q: acccount_id
 
   - q: acccount_id
 
-- Headers:
-
-  - Authorization: Bearer token
-
-- Request shape (JSON):
-  `json
+* Request shape GET (JSON):
+```json
 {
   "account_id": int,
 }
-    `
+```
 
-- Response: Detal page for account user.
-- Response shape (JSON):
-  `json
+* Response: Profile page for account user.
+* Response shape (JSON):
+```json
 {
-   "account_id": (first, last, email),
-   "description": string,
-   "goals": string,
-   "status": string,
-   "pictures": [],
-   "wishlist": (...),
-   "location": string,
-   "avatar": url,
-   "banner": url,
+  "id": (first, last, email),
+  "description": string,
+  "goals": string,
+  "status": string,
+  "location": string,
+  "avatar": url,
+  "banner_url": url,
+  "account_id": int,
 }
-    `
+```
+
+* Request shape POST/PUT (JSON):
+```json
+{
+  "description": string,
+  "goals": string,
+  "status": string,
+  "location": string,
+  "avatar": url,
+  "banner_url": url,
+}
+```
+* Response: Profile page for account user.
+* Response shape (JSON):
+```json
+{
+  "id": (first, last, email),
+  "description": string,
+  "goals": string,
+  "status": string,
+  "location": string,
+  "avatar": url,
+  "banner_url": url,
+  "account_id": int,
+}
+```

@@ -22,11 +22,12 @@ const ReviewForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const url = `${process.env.REACT_APP_API_HOST}/api/reviews`;
-
         const data = {
             review: review,
             rating: rating,
-            facility_id: "Placeholder",
+            facility_id: "C32CB41B-1C35-454B-B9FD-AE3F71EEBDC8",
+            first_name: accountData.first_name,
+            last_name: accountData.last_name,
             account_id: accountData.id,
         }
 

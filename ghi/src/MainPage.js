@@ -8,6 +8,7 @@ import arcadiaImg from '../src/img/arcadia.jpg'
 import yellowStoneImg from '../src/img/yellow-stone.jpg';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import FacilitiesPage from './Facilities.js';
+import Description from './DescriptionPage';
 
 import defaultImg from '../src/img/Trailer-setup-at-campsite.jpg';
 import { MDBCardOverlay, MDBCard, MDBCardImage, MDBCardTitle } from 'mdb-react-ui-kit';
@@ -27,9 +28,11 @@ const topParks = [
     <div>
         <main>
             <div className={styles.parent}>
-                <div className={styles.hero}></div>
+                <div className={styles.hero}>
+                    <h1 className={styles.adventurousText} style= {{color: 'white'}}>Camp Scout</h1>
+                </div>
                 <div className={styles.helloContainer }>
-                    <h1 className={styles.adventurousText} style= {{color: '#333121'}}>Camp Scout</h1>
+                    <h1 className={styles.helloText} style= {{color: '#333121'}}>Hello!</h1>
                     <p className={styles.para} style= {{color: '#333121'}}>Welcome to Camp Scout, your guide to exploring national parks in your area.</p>
                     <p className={styles.para} style= {{color: '#333121'}}>Begin your search and start your adventure!</p>
                     <div>
@@ -37,16 +40,10 @@ const topParks = [
             </div>
                 </div>
             </div>
-                <div>
-            {/* <div className={styles.container}>
-                <h1 style= {{color: '#333121'}}>Camp Scout</h1>
-                <p className={styles.para} style= {{color: '#333121'}}>Welcome to Camp Scout, your guide to exploring national parks in your area.</p>
-                <p className={styles.para} style= {{color: '#333121'}}>Begin your search and start your adventure!</p>
-            </div> */}
-        </div>
-            {/* <div>
-                <FacilitiesPage />
-            </div> */}
+            <div>
+                <Description />
+            </div>
+            <hr />
             <div className={styles.topLocationsContainer}>
                 <h2 className={styles.containerTitle}>Top Locations of 2023</h2>
                 <div className={styles.gridContainer}>

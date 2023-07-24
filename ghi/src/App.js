@@ -10,6 +10,7 @@ import Main from './MainPage';
 import FacilitiesPage from './Facilities'
 import FacilityDetail from './FacilityDetail';
 import CampNav from './Nav';
+import Description from './DescriptionPage';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
       <CampNav />
         <Routes>
           <Route path="/" element={<Main />} />
+          <Route path="/description" element={<Description />} />
           <Route path="/facilities" element={<FacilitiesPage />} />
           <Route path="/facility/details/:facilityId" element={<FacilityDetail />} />
           <Route path="accounts">

@@ -10,6 +10,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color: #242424;
     border: 1px solid #ddd;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
     margin: 10px;
@@ -18,8 +19,18 @@
     height: auto;
     background-color: #fff;
     border-radius: 5px;
-    text-align: center;
+    background-image: url('../src/img/signup.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-weight: bold;
+    text-shadow: 2px 2px 1px #ddd;
 }
+
+
+
+
 
 .loadMore {
     display: block;
@@ -62,4 +73,8 @@
     border: none;
     padding: 5px 10px;
     cursor: pointer;
+}
+
+.detailsButton:hover {
+    background-color: #555f39;
 }

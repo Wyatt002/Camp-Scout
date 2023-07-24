@@ -55,3 +55,7 @@ a {
 a:hover {
   color: #c39a5f;
 }
+
+.no-shadow {
+  box-shadow: none;
+}

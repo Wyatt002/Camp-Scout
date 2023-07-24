@@ -32,10 +32,10 @@ function Weather(facility) {
         const prop = day.day;
         const forecastDate = new Date(prop.date);
         return (
-            <div className="col">
+            <div className="col" key={prop.date}>
                 <div className="card">
-                    <div className="card-body weather-align">
-                        <p className="card-text">Date - { dayArray[forecastDate.getDay()] }</p>
+                    <div className="card-body">
+                        <p className="card-text">{ dayArray[forecastDate.getDay()] }</p>
                         <img src={`https://openweathermap.org/img/w/${prop.weather_icon}.png`} />
                         <p className="card-text">Weather - { prop.weather } ({ prop.weather_description })</p>
                         <p className="card-text">Wind - { prop.wind }MPH</p>
@@ -73,6 +73,24 @@ function Weather(facility) {
 function Reviews(facility) {
     const [reviews, setReviews] = useState([]);
     const prop = facility.facility;
+    const responsive = {
+    superLargeDesktop: {
+        breakpoint: { max: 4000, min: 3000 },
+        items: 1,
+    },
+    desktop: {
+        breakpoint: { max: 3000, min: 1024 },
+        items: 1,
+    },
+    tablet: {
+        breakpoint: { max: 1024, min: 464 },
+        items: 1,
+    },
+    mobile: {
+        breakpoint: { max: 464, min: 0 },
+        items: 1,
+    },
+    };
 
     function rating(rating) {
         if (rating >= 0 && rating <= 5) {
@@ -104,18 +122,25 @@ function Reviews(facility) {
     return (
         <div className="card-body">
             <h3>Reviews:</h3>
+            <Carousel
+                responsive={responsive}
+                infinite={true}
+                autoPlay={true}
+                autoPlaySpeed={4000}
+                centerMode={true}
+            >
             {reviews.map((review) => {
-                const stars = rating(review.rating);
                 return (
-                    <div className="card">
+                    <div className="card" key={review.id}>
                         <div className="card-body">
                             <p>{ review.first_name } { review.last_name }</p>
-                            <p>Rating - { stars }</p>
+                            <p>Rating - { rating(review.rating) }</p>
                             <p>{ review.review }</p>
                         </div>
                     </div>
                 )
             })}
+            </Carousel>
             <button value={prop.facility_id}>Leave a review!</button>
         </div>
     );
@@ -204,6 +229,7 @@ function FacilityDetail() {
                                 infinite={true}
                                 autoPlay={true}
                                 autoPlaySpeed={4000}
+
                             >
                                 {facility.images.map((image) => {
                                     return (

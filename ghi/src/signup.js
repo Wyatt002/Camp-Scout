@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import useToken from "@galvanize-inc/jwtdown-for-react";
 
 function SignupForm() {
     const [firstName, setFirstName] = useState('');
@@ -11,6 +11,8 @@ function SignupForm() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [success, setSuccess] = useState(false);
 	const [passwordShown, setPasswordShown] = useState(false);
+	const { login } = useToken();
+	const navigate = useNavigate();
 
 
     const handleFirstNameChange = (event) => {
@@ -65,6 +67,9 @@ function SignupForm() {
 				setEmail('');
 				setPassword('');
 				setConfirmPassword('');
+				await login(email, password);
+				navigate("/profile/edit")
+
 
 				setSuccess(true);
 			} else {

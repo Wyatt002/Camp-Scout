@@ -11,6 +11,7 @@ import EditForm from "./editform";
 function App() {
   const baseUrl = process.env.REACT_APP_API_HOST
 
+
   return (
     <AuthProvider baseUrl={baseUrl}>
       <BrowserRouter>
@@ -20,8 +21,8 @@ function App() {
             <Route path="signup" element={<SignupForm />} />
             <Route path="login" element={<LoginForm />} />
             <Route path="profile" element={<UserProfile />} />
-            <Route path="main" element={<UserProfile />} />
-            <Route path="profile/edit" element={<EditForm />} />
+            <Route path="profile/:account_id" element={<UserProfile />} />
+            <Route path="profile/:account_id/edit" element={<EditForm />} />
           </Route>
         </Routes>
       </BrowserRouter>

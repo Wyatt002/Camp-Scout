@@ -4,9 +4,9 @@ steps = [
         """
         CREATE TABLE profile (
             id serial PRIMARY KEY NOT NULL,
-            description VARCHAR(100) NOT NULL,
-            goals VARCHAR(100) NOT NULL,
-            status VARCHAR(50) NOT NULL,
+            description VARCHAR(250) NOT NULL,
+            goals VARCHAR(200) NOT NULL,
+            status VARCHAR(200) NOT NULL,
             location VARCHAR(50) NOT NULL,
             avatar VARCHAR NOT NULL,
             banner_url VARCHAR(200) NOT NULL,

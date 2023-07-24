@@ -1,116 +1,110 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import Dropdown from "../dropdown.jsx";
-import useToken from "@galvanize-inc/jwtdown-for-react";
-import "../index.css";
-import { SignupButton, LoginButton, LogoutButton } from "../button.jsx";
-import logo from "../content/camplogo.png";
+import { useParams } from "react-router-dom";
 
-function Navbar(closet_id) {
-    const [click, setClick] = useState(false);
-    const { logout, token } = useToken();
-    const [dropdown, setDropdown] = useState(false);
-    const [delayHandler, setDelayHandler] = useState(null);
+function FacilityDetail() {
+  const [facility, setFacility] = useState("");
+  const [weather, setWeather] = useState("");
+  const { facilityId } = useParams();
 
-    const handleClick = () => setClick(!click);
-    const closeMobileMenu = () => setClick(false);
+  const getWeather = async () => {
+    const url = `${process.env.REACT_APP_API_HOST}/api/weather?lat=${facility.lat}&lon=${facility.lon}`;
+    const response = await fetch(url);
+    if (response.ok) {
+      const data = await response.json();
+      setWeather(data);
+      console.log(weather["1"]);
+      console.log(weather["2"]);
+      console.log(weather["3"]);
+      console.log(weather["4"]);
+      console.log(weather["5"]);
+    }
+  };
 
-    const onMouseEnter = () => {
-        if (window.innerWidth >= 960) {
-        clearTimeout(delayHandler);
-        setDropdown(true);
-        }
-    };
+  const fetchFacility = async () => {
+    const url = `${process.env.REACT_APP_API_HOST}/api/facility_details?facility_id=${facilityId}`;
+    const response = await fetch(url);
+    if (response.ok) {
+      const data = await response.json();
+      setFacility(data);
+      console.log(data);
+    }
+  };
 
-    const onMouseLeave = () => {
-        if (window.innerWidth >= 960) {
-        const handler = setTimeout(() => {
-            setDropdown(false);
-        }, 200);
-        setDelayHandler(handler);
-        }
-    };
+  useEffect(() => {
+    fetchFacility();
 
-    useEffect(() => {
-        return () => {
-        clearTimeout(delayHandler);
-        };
-    }, [delayHandler]);
+  }, []);
 
+  if (facility["facility_id"] != null) {
     return (
-        <>
-        <nav className="navbar">
-            <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-            <img
-                src={logo}
-                alt="Logo"
-                style={{ width: "250px", height: "50px" }}
-            />
-            </Link>
-            <div className="menu-icon" onClick={handleClick}>
-            <i className={click ? "fas fa-times" : "fas fa-bars"} />
+      <div className="row">
+        <div className="offset-3 col-6">
+          <div className="shadow p-1 mt-1">
+            <div className="card">
+              <div className="card-body">
+                <h1>{facility.name}</h1>
+                <p>{facility.description}</p>
+              </div>
+              <div className="card-body">
+                <h3>Campsites:</h3>
+                <p>Total Campsites: {facility.campsites.totalSites}</p>
+                <p>
+                  Electrical Hookups: {facility.campsites.electricalHookups}
+                </p>
+                <p>Group: {facility.campsites.group}</p>
+                <p>Horse: {facility.campsites.horse}</p>
+                <p>Other: {facility.campsites.other}</p>
+                <p>RV Only: {facility.campsites.rvOnly}</p>
+                <p>Tent Only: {facility.campsites.tentOnly}</p>
+                <p>Walk Boat To: {facility.campsites.walkBoatTo}</p>
+              </div>
+              <div className="card-body">
+                <h3>Operating Hours:</h3>
+                <p>{facility.operating_hours["0"].description}</p>
+                <ul>
+                  <li>Sunday: </li>
+                  <li>Monday: </li>
+                  <li>Tuesday: </li>
+                  <li>Wednesday: </li>
+                  <li>Thursday: </li>
+                  <li>Friday: </li>
+                  <li>Saturday: </li>
+                </ul>
+              </div>
+              <div className="card-body">
+                <h3>Addresses: </h3>
+                {facility.addresses.map((address) => {
+                  return (
+                    <p key={address.line1}>
+                      {address.city}, {address.stateCode}, {address.postalCode}{" "}
+                      - {address.line1}
+                    </p>
+                  );
+                })}
+              </div>
+              <div className="card-body">
+                <h3>Contacts:</h3>
+                <p> Emails:</p>
+                {facility.contacts.emailAddresses.map((email) => {
+                  return <p key={email.emailAddress}>{email.emailAddress}</p>;
+                })}
+              </div>
+              <div className="card-body">
+                <p>Phone Numbers:</p>
+                {facility.contacts.phoneNumbers.map((phone) => {
+                  return <p key={phone.phoneNumber}>{phone.phoneNumber}</p>;
+                })}
+              </div>
+              <div className="card-body">
+                <h3>Weather Overview:</h3>
+                <p>{facility.weather_overview}</p>
+                <button onClick={getWeather}>Get the weather!</button>
+              </div>
             </div>
-            <ul className={click ? "nav-menu active" : "nav-menu"}>
-            {token && (
-                <li
-                className="nav-item"
-                onMouseEnter={onMouseEnter}
-                onMouseLeave={onMouseLeave}
-                >
-                <Link
-                    to="/closet"
-                    className="nav-links"
-                    onClick={closeMobileMenu}
-                >
-                    MyCloset <i className="fas fa-caret-down" />
-                </Link>
-                {dropdown && <Dropdown />}
-                </li>
-            )}
-            {token && (
-                <li className="nav-item">
-                <Link
-                    to="/planner"
-                    className="nav-links"
-                    onClick={closeMobileMenu}
-                >
-                    Planner
-                </Link>
-                </li>
-            )}
-            {!token && (
-                <li>
-                <Link
-                    to="/signup"
-                    className="nav-links-mobile"
-                    onClick={closeMobileMenu}
-                >
-                    <SignupButton />
-                </Link>
-                </li>
-            )}
-            {!token && (
-                <li>
-                <Link
-                    to="/"
-                    className="nav-links-mobile"
-                    onClick={closeMobileMenu}
-                >
-                    <LoginButton />
-                </Link>
-                </li>
-            )}
-            {token && (
-                <li>
-                <Link to="/" className="nav-links-mobile" onClick={logout}>
-                    <LogoutButton />
-                </Link>
-                </li>
-            )}
-            </ul>
-        </nav>
-        </>
+          </div>
+        </div>
+      </div>
     );
+  }
 }
-
-export default Navbar;
+export default FacilityDetail;

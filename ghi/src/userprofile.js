@@ -1,10 +1,35 @@
-import React from "react";
-import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import useToken from "@galvanize-inc/jwtdown-for-react";
 
 function UserProfile() {
-    const { token } = useAuthContext();
+    const [profileData, setProfileData] = useState(null);
+    const { token } = useToken();
+    const { account_id } = useParams();
 
-    if (token) {
+    const fetchProfileData = async () => {
+        const URL = `http://localhost:8000/api/profile/${account_id}`;
+        const fetchConfig = {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                }}
+        const response = await fetch(URL, fetchConfig)
+        if (response.ok) {
+            const profileData = await response.json();
+            setProfileData(profileData)
+            console.log(profileData)
+            };
+        }
+
+    useEffect(() => {
+        fetchProfileData();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+
+    if (profileData && profileData["account_id"] != null) {
         return (
             <div className="container">
 
@@ -14,13 +39,13 @@ function UserProfile() {
                             <div
                                 className="card-header  d-flex  justify-content-between  align-items-center"
                                 style={{
-                                backgroundImage: "url(https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp)",
+                                backgroundImage: `url(${profileData.banner_url})`,
                                 backgroundSize: "cover",
                                 backgroundPosition: "center center",
                                 height: 300,
                                 }}
                             >
-                                <button className="btn btn-success align-self-end">
+                                <button className="btn btn-success align-self-end" >
                                 EDIT PROFILE
                                 </button>
                             </div>
@@ -28,35 +53,27 @@ function UserProfile() {
                             <div className="card m-3 ">
                                 <div className="d-flex flex-column align-items-center">
                                     <img
-                                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp" alt=""
+                                        src={profileData.avatar} alt=""
                                         className="img-fluid img-thumbnail"
                                         style={{ width: "150px", padding: "10px"}} />
                                     <h3 className="text-center">First LastName</h3>
-                                    <p className="text-center"> Location</p>
+                                    <p className="text-center"> </p>
                                     <div className="card m-3 ">
                                         <div className="text-center">
                                             <h4 >About Me</h4>
-                                            <p className="fw-light" style={{backgroundcolor: "#f8f9fa;"}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                            incididunt ut labore et dolore magna aliqua. Donec enim diam vulputate ut pharetra sit amet aliquam. Gravida
-                                            arcu ac tortor dignissim convallis aenean et. At ultrices mi tempus imperdiet nullaLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                            incididunt ut labore et dolore magna aliqua. Donec enim diam vulputate ut pharetra sit amet aliquam. Gravida
-                                            arcu ac tortor dignissim convallis aenean et. At ultrices mi tempus imperdiet nulla</p>
+                                            <p className="fw-light" style={{backgroundcolor: "#f8f9fa"}}> {profileData.description} </p>
                                         </div>
                                     </div>
                                     <div className="card m-3 ">
                                         <div className="text-center">
                                             <h3>Goals</h3>
-                                            <p className="fw-light"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                            incididunt ut labore et dolore magna aliqua. Donec enim diam vulputate ut pharetra sit amet aliquam. Gravida
-                                            arcu ac tortor dignissim convallis aenean et. At ultrices mi tempus imperdiet nulla.</p>
+                                            <p className="fw-light"> {profileData.goals}</p>
                                         </div>
                                     </div>
                                     <div className="card m-3 ">
                                         <div className="text-center">
                                             <h3>Status</h3>
-                                            <p className="fw-light"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                            incididunt ut labore et dolore magna aliqua. Donec enim diam vulputate ut pharetra sit amet aliquam. Gravida
-                                            arcu ac tortor dignissim convallis aenean et. At ultrices mi tempus imperdiet nulla</p>
+                                            <p className="fw-light"> {profileData.status} </p>
                                         </div>
                                     </div>
                                 </div>
@@ -71,7 +88,7 @@ function UserProfile() {
                                 <div className="row">
                                     <div className="col-2">
                                         <img
-                                            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp" alt=""
+                                            src={profileData.avatar} alt=""
                                             width="100" height="110" className=" rounded-circle"/>
                                     </div>
                                     <div className="col-10">
@@ -114,19 +131,8 @@ function UserProfile() {
                     </div>
                 </div>
             </div>
-        );} else {
-        return (
-            <div className="d-center">
-                <h4
-                    className="alert alert-danger m-5 position-absolute top-50 start-50 translate-middle"
-                    style={{ width: "600px" }}>
-                    please log in and try again
-                </h4>
-            </div>
-        );
-
-        }
+        )
     }
-
+}
 
 export default UserProfile;

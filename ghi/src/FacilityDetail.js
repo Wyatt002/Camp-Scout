@@ -15,12 +15,36 @@ function Weather(facility) {
             const data = await response.json();
             setWeather(data);
             setActive(true);
-            console.log(weather["1"]);
-            console.log(weather["2"]);
-            console.log(weather["3"]);
-            console.log(weather["4"]);
-            console.log(weather["5"]);
         }
+    }
+
+    const dayArray = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+    ];
+
+    function DisplayWeather(day) {
+        const prop = day.day;
+        const forecastDate = new Date(prop.date);
+        return (
+            <div className="col">
+                <div className="card">
+                    <div className="card-body weather-align">
+                        <p className="card-text">Date - { dayArray[forecastDate.getDay()] }</p>
+                        <img src={`https://openweathermap.org/img/w/${prop.weather_icon}.png`} />
+                        <p className="card-text">Weather - { prop.weather } ({ prop.weather_description })</p>
+                        <p className="card-text">Wind - { prop.wind }MPH</p>
+                        <p className="card-text">Temperature - { prop.temp}°F</p>
+                        <p className="card-text">Humidity - { prop.humidity }%</p>
+                    </div>
+                </div>
+            </div>
+        )
     }
 
     if (active === false) {
@@ -33,15 +57,68 @@ function Weather(facility) {
         );
     } else if (active === true) {
         return (
-            <div className="card-body">
-                <p>{ weather["1"].date }</p>
-                <p>{ weather["2"].date }</p>
-                <p>{ weather["3"].date }</p>
-                <p>{ weather["4"].date }</p>
-                <p>{ weather["5"].date }</p>
+            <div className="container">
+                <div className="row text-center">
+                    <DisplayWeather day={weather["1"]} />
+                    <DisplayWeather day={weather["2"]} />
+                    <DisplayWeather day={weather["3"]} />
+                    <DisplayWeather day={weather["4"]} />
+                    <DisplayWeather day={weather["5"]} />
+                </div>
             </div>
         );
     }
+}
+
+function Reviews(facility) {
+    const [reviews, setReviews] = useState([]);
+    const prop = facility.facility;
+
+    function rating(rating) {
+        if (rating >= 0 && rating <= 5) {
+            var stars = "";
+            for (let num = 0; num < 5; num++) {
+                if (num < rating) {
+                    stars += "★";
+                } else {
+                    stars += "☆";
+                }
+            }
+            return stars;
+        }
+    }
+
+    const fetchReviews = async () => {
+        const url = `${process.env.REACT_APP_API_HOST}/api/facility_reviews?facility_id=${prop.facility_id}`;
+        const response = await fetch(url);
+        if (response.ok) {
+            const data = await response.json();
+            setReviews(data);
+        }
+    }
+
+    useEffect(() => {
+        fetchReviews();
+        }, []);
+
+    return (
+        <div className="card-body">
+            <h3>Reviews:</h3>
+            {reviews.map((review) => {
+                const stars = rating(review.rating);
+                return (
+                    <div className="card">
+                        <div className="card-body">
+                            <p>{ review.first_name } { review.last_name }</p>
+                            <p>Rating - { stars }</p>
+                            <p>{ review.review }</p>
+                        </div>
+                    </div>
+                )
+            })}
+            <button value={prop.facility_id}>Leave a review!</button>
+        </div>
+    );
 }
 
 function ExceptionHours(facility) {
@@ -96,14 +173,14 @@ function FacilityDetail() {
         items: 1,
     },
     };
+    const id = "9D607267-5063-463F-8487-DF928F788339";
 
     const fetchFacility  = async () => {
-        const url = `${process.env.REACT_APP_API_HOST}/api/facility_details?facility_id=9D607267-5063-463F-8487-DF928F788339`;
+        const url = `${process.env.REACT_APP_API_HOST}/api/facility_details?facility_id=${id}`;
         const response = await fetch(url);
         if (response.ok) {
             const data = await response.json();
             setFacility(data);
-            console.log(data);
         }
     }
 
@@ -165,6 +242,7 @@ function FacilityDetail() {
                             </div>
                             <div className="card-body">
                                 <h3>Accessibility:</h3>
+                                <div className={styles.individual}>
                                 {facility.accessibility.accessRoads.map(road => {
                                     return (
                                         <p>
@@ -172,24 +250,41 @@ function FacilityDetail() {
                                         </p>
                                     )
                                 })}
+                                </div>
+                                <div className={styles.individual}>
                                 <p>{ facility.accessibility.adaInfo }</p>
+                                </div>
+                                <div className={styles.individual}>
                                 <p>Cell Phone Info - { facility.accessibility.cellPhoneInfo }</p>
                                 {facility.accessibility.classifications.map((classification) => (
                                 <p key={Math.random()}>Classifcation - {classification}</p>
                                 ))}
+                                </div>
+                                <div className={styles.individual}>
                                 <p>Fire Stove Policy - { facility.accessibility.fireStovePolicy }</p>
+                                </div>
+                                <div className={styles.individual}>
                                 <p>Internet Info - { facility.accessibility.internetInfo }</p>
+                                </div>
+                                <div className={styles.individual}>
                                 <p>
                                     RV Info - { facility.accessibility.rvInfo }
                                     , Allowed - { facility.accessibility.rvAllowed }
                                     , Max Length - { facility.accessibility.rvMaxLength }
                                 </p>
+                                </div>
+                                <div className={styles.individual}>
                                 <p>
                                     Trailer Info - { facility.accessibility.trailerInfo }
                                     , Max Length - { facility.accessibility.trailerMaxLength }
                                 </p>
+                                </div>
+                                <div className={styles.individual}>
                                 <p>Wheelchair Access - { facility.accessibility.wheelchairAccess }</p>
+                                </div>
+                                <div className={styles.individual}>
                                 <p>Additional Info - { facility.accessibility.additionalInfo }</p>
+                                </div>
                             </div>
                             <div className="card-body">
                                 <h3>Operating Hours:</h3>
@@ -237,6 +332,7 @@ function FacilityDetail() {
                                     )
                                 })}
                             </div>
+                            <Reviews facility={facility} />
                             <Weather facility={facility} />
                         </div>
                     </div>

@@ -16,6 +16,8 @@ class ReviewQueriesMock:
                 facility_id="saij3289",
                 review="Nice place!",
                 rating=4,
+                first_name="terry",
+                last_name="jones",
                 account_id=2,
             )
         ]
@@ -30,6 +32,8 @@ def test_get_all_reviews():
             "facility_id": "saij3289",
             "review": "Nice place!",
             "rating": 4,
+            "first_name": "terry",
+            "last_name": "jones",
             "account_id": 2,
         }
     ]
@@ -74,6 +78,8 @@ def test_create_review():
         "facility_id": "saij3289",
         "review": "Nice place!",
         "rating": 4,
+        "first_name": "terry",
+        "last_name": "jones",
         "account_id": 2,
     }
     expected = {
@@ -81,6 +87,8 @@ def test_create_review():
         "facility_id": "saij3289",
         "review": "Nice place!",
         "rating": 4,
+        "first_name": "terry",
+        "last_name": "jones",
         "account_id": 2,
     }
 
@@ -116,6 +124,8 @@ class FacilityReviewQueriesmock:
                 facility_id="saij3289",
                 review="Nice place!",
                 rating=4,
+                first_name="terry",
+                last_name="jones",
                 account_id=2,
             )
         ]
@@ -129,6 +139,8 @@ def test_get_facility_review():
             "facility_id": "saij3289",
             "review": "Nice place!",
             "rating": 4,
+            "first_name": "terry",
+            "last_name": "jones",
             "account_id": 2,
         }
     ]
@@ -149,6 +161,8 @@ class AccountReviewQueriesmock:
                 facility_id="saij3289",
                 review="Nice place!",
                 rating=4,
+                first_name="terry",
+                last_name="jones",
                 account_id=2,
             )
         ]
@@ -162,6 +176,8 @@ def test_get_account_review():
             "facility_id": "saij3289",
             "review": "Nice place!",
             "rating": 4,
+            "first_name": "terry",
+            "last_name": "jones",
             "account_id": 2,
         }
     ]

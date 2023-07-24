@@ -4,6 +4,7 @@ import "./App.css";
 import SignupForm from "./signup.js";
 import LoginForm from "./login.js";
 import CampNav from './Nav';
+import FacilityDetail from './FacilityDetail';
 import UserProfile from "./userprofile";
 import EditForm from "./editform";
 
@@ -20,9 +21,6 @@ function App() {
           <Route path="/">
             <Route path="signup" element={<SignupForm />} />
             <Route path="login" element={<LoginForm />} />
-            <Route path="profile" element={<UserProfile />} />
-            <Route path="profile/:account_id" element={<UserProfile />} />
-            <Route path="profile/:account_id/edit" element={<EditForm />} />
           </Route>
         </Routes>
       </BrowserRouter>

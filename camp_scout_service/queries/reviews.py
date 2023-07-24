@@ -7,6 +7,8 @@ class ReviewIn(BaseModel):
     facility_id: str
     review: str
     rating: int
+    first_name: str
+    last_name: str
     account_id: int
 
 
@@ -15,6 +17,8 @@ class ReviewOut(BaseModel):
     facility_id: str
     review: str
     rating: int
+    first_name: str
+    last_name: str
     account_id: int
 
 
@@ -27,7 +31,9 @@ class ReviewQueries:
                 facility_id=record[1],
                 review=record[2],
                 rating=record[3],
-                account_id=record[4],
+                first_name=record[4],
+                last_name=record[5],
+                account_id=record[6],
             )
             data.append(review)
         return data
@@ -37,7 +43,7 @@ class ReviewQueries:
             with conn.cursor() as db:
                 data = db.execute(
                     """
-                    SELECT id, facility_id, review, rating, account_id
+                    SELECT id, facility_id, review, rating, first_name, last_name, account_id
                     FROM review ORDER BY id;
                     """,
                 )
@@ -49,7 +55,7 @@ class ReviewQueries:
             with conn.cursor() as db:
                 data = db.execute(
                     """
-                    SELECT id, facility_id, review, rating, account_id
+                    SELECT id, facility_id, review, rating, first_name, last_name, account_id
                     FROM review WHERE facility_id = %s ORDER BY id;
                     """,
                     [facility_id],
@@ -62,7 +68,7 @@ class ReviewQueries:
             with conn.cursor() as db:
                 data = db.execute(
                     """
-                    SELECT id, facility_id, review, rating, account_id
+                    SELECT id, facility_id, review, rating, first_name, last_name, account_id
                     FROM review WHERE account_id = %s ORDER BY id;
                     """,
                     [account_id],
@@ -79,16 +85,20 @@ class ReviewQueries:
                         facility_id,
                         review,
                         rating,
+                        first_name,
+                        last_name,
                         account_id
 
                     )
-                    VALUES (%s, %s, %s, %s)
+                    VALUES (%s, %s, %s, %s, %s, %s)
                     RETURNING id;
                     """,
                     [
                         review.facility_id,
                         review.review,
                         review.rating,
+                        review.first_name,
+                        review.last_name,
                         review.account_id,
                     ],
                 )

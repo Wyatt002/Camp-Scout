@@ -1,3 +1,22 @@
+## July 24, 2023
+
+Today we worked on:
+* FacilityDetail.js
+* ReviewForm.js
+* tests_reviews.py
+
+Today after our assessment Brian J and I continued to work on our FacilityDetail.js
+and managed to get both the Weather and Reviews to populate it, making sure only
+reviews with a matching facility_id would display and getting our weather to
+correctly show the information we wanted in a nice concise format.
+
+Along the way we needed to update our Reviews table to include a first_name and
+last_name which would get taken from the accountData on the ReviewForm so that
+we could show a user's first and last name on their review when they make one, so
+we updated our migrations and the ReviewForm itself to grab this new data, then
+we updated our unit tests for the reviews and made sure they all came back with a
+passing success on each test, updating each with a first and last name.
+
 ## July 20, 2023
 
 Today we worked on:

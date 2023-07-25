@@ -10,11 +10,12 @@ import CampNav from './Nav';
 
 function App() {
   const domain = /https:\/\/[^/]+/;
-  const baseUrl = process.env.PUBLIC_URL.replace(domain, '');
+  const basename = process.env.PUBLIC_URL.replace(domain, "");
+  const baseUrl = process.env.REACT_APP_API_HOST
 
   return (
     <AuthProvider baseUrl={baseUrl}>
-      <BrowserRouter>
+      <BrowserRouter basename={basename}>
         <CampNav />
         <Routes>
           <Route path="/">

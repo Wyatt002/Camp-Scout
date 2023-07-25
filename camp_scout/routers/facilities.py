@@ -5,7 +5,7 @@ import os
 
 
 load_dotenv()
-api_key = os.getenv("NPS_API_KEY")
+api_key = os.environ["NPS_API_KEY"]
 
 router = APIRouter()
 

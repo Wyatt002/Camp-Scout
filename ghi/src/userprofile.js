@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import useToken from "@galvanize-inc/jwtdown-for-react";
+import rating from "./FacilityDetail";
+
 
 function UserProfile() {
     const [profileData, setProfileData] = useState(null);
@@ -32,20 +34,6 @@ function UserProfile() {
         fetchReviewData();
     }, []);
 
-    function rating(rating) {
-        if (rating >= 0 && rating <= 5) {
-        var stars = "";
-        for (let num = 0; num < 5; num++) {
-            if (num < rating) {
-            stars += "★";
-            } else {
-            stars += "☆";
-            }
-        }
-        return stars;
-        }
-    }
-
     if (profileData && profileData["account_id"] != null) {
         return (
         <div className="container">
@@ -59,8 +47,7 @@ function UserProfile() {
                     backgroundSize: "cover",
                     backgroundPosition: "center center",
                     height: 300,
-                    }}
-                >
+                    }}>
                     <button className="btn btn-success align-self-end">
                     EDIT PROFILE
                     </button>
@@ -71,8 +58,8 @@ function UserProfile() {
                     <img
                     src={profileData.avatar}
                     alt=""
-                    className="img-fluid img-thumbnail"
-                    style={{ width: "150px", padding: "10px" }}
+                    className=" rounded-circle"
+                    style={{ height: "200px", padding: "10px" }}
                     />
                     <h3 className="text-center">First LastName</h3>
                     <p className="text-center"> </p>
@@ -83,7 +70,6 @@ function UserProfile() {
                         className="fw-light"
                         style={{ backgroundcolor: "#f8f9fa" }}
                         >
-                        {" "}
                         {profileData.description}{" "}
                         </p>
                     </div>
@@ -124,34 +110,19 @@ function UserProfile() {
                         />
                     </div>
                     <div className="col-10">
-                        <div className="comment mt-4 text-justify float-left">
-                        <h3>Reviews:</h3>
-                        {reviewData.map((review) => {
-                            const stars = rating(review.rating);
-                            return (
-                            <div className="card" key={review.id}>
-                                <div className="card-body">
-                                <p>
-                                    {review.first_name} {review.last_name}
-                                </p>
-                                <p>Rating - {stars}</p>
-                                <p>{review.review}</p>
-                                </div>
+                        <div className="comment mt-4 text-justify float-left" >
+                            <h3>Reviews:</h3>
+                            {reviewData.map((review) => {
+                                return(
+                            <div key={review.id}>
+                            <h4> {review.first_name} {review.last_name}</h4>
+                            <h5> CAMP LOCATION </h5>
+                            <div> {review.rating} </div>
+                            <div> {review.review}</div>
+                            <p> </p></div>
+                            )})}
                             </div>
-                            );
-                        })}
-
-                        <h4>Name</h4>
-                        <h5> CAMP LOCATION </h5>
-                        <div> RATING ++++</div>
-                        <span> date</span>
-                        <p>
-                            Lorem ipsum dolor sit, amet consectetur adipisicing
-                            elit. Accusamus numquam assumenda hic aliquam vero sequi
-                            velit molestias doloremque molestiae dicta?
-                        </p>
                         </div>
-                    </div>
                     </div>
                 </div>
 

@@ -96,7 +96,6 @@ class ProfileQueries:
                         avatar,
                         banner_url,
                         account_id
-
                     )
                     VALUES (%s, %s, %s, %s, %s, %s, %s)
                     RETURNING id;

@@ -5,26 +5,59 @@ import useToken from "@galvanize-inc/jwtdown-for-react";
 function EditForm() {
   const [profileData, setProfileData] = useState(null);
   const { token } = useToken();
-  const { account_id } = useParams();
+  const[accountData, setAccountData] = useState("");
+  const { fetchWithCookie } = useToken();
   const [avatar, setAvatar] = useState("");
-  const [bannerImage, setBannerImage] = useState("");
+  const [banner_url, setBannerImage] = useState("");
   const [description, setDescription] = useState("");
   const [goals, setGoals] = useState("");
   const [status, setStatus] = useState("");
   const [location, setLocation] = useState("");
 
+  const getAccountData = async () => {
+    const data = await fetchWithCookie(
+      `${process.env.REACT_APP_API_HOST}/token`);
+    setAccountData(data.account);
+    }
+
+  useEffect(() => {
+    getAccountData();
+    }, []);
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = {};
-    data.description = description;
-    data.goals = goals;
-    data.status = status;
-    data.location = location;
-    data.avatar = avatar;
-    data.bannerImage = bannerImage;
-    data.account_id = account_id;
-
+    const profileData = {
+      description: description,
+      goals: goals,
+      status: status,
+      location: location,
+      avatar: avatar,
+      banner_url: banner_url,
+      account_id: accountData.id,
     };
+
+    const CreateProfileURL = "http://localhost:8000/api/profile";
+    const fetchConfig = {
+      method: "POST",
+      body: JSON.stringify(profileData),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+      const response = await fetch(CreateProfileURL, fetchConfig);
+      console.log(response)
+      if (response.ok) {
+        console.log("Profile created successfully!");
+        setAvatar("");
+        setBannerImage("");
+        setDescription("");
+        setGoals("");
+        setStatus("");
+        setLocation("");
+      }
+    }
 
 
   return (
@@ -53,10 +86,10 @@ function EditForm() {
 
             <label className="form-label">Banner Image:</label>
             <input
-              value={bannerImage}
+              value={banner_url}
               type="text"
               className="form-control input-field"
-              placeholder={`${bannerImage}`}
+              placeholder={`${banner_url}`}
               onChange={(e) => setBannerImage(e.target.value)}
             />
 

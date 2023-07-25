@@ -1,3 +1,19 @@
+## July 25, 2023
+
+Today we worked on:
+* CI/CD
+* Facility-Detial
+
+Today we spent the majority of the day working on our CI/CD pipeline and got a few
+things working for it but hit a few roadblocks we want to clear, though we are not
+worrying about it too much as it's not a priority and we plan tomorrow to work on
+our React pages more and make a merge request for our main page tomorrow which
+would let us begin to wrap up the work on each page that relies on it, and then
+that relies on that page, allowing us to wrap up our frontend.
+
+As a small aside I made an edit to our routers for weather and facilities to make
+their api key reference the environ instead of the dotenv now.
+
 ## July 24, 2023
 
 Today we worked on:

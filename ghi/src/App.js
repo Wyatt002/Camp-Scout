@@ -9,7 +9,8 @@ import LoginForm from "./login.js";
 import CampNav from './Nav';
 
 function App() {
-  const baseUrl = process.env.REACT_APP_API_HOST
+  const domain = /https:\/\/[^/]+/;
+  const baseUrl = process.env.PUBLIC_URL.replace(domain, '');
 
   return (
     <AuthProvider baseUrl={baseUrl}>

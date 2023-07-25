@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import useToken from "@galvanize-inc/jwtdown-for-react";
+import { useNavigate } from "react-router-dom";
 
 function EditForm() {
   const [profileData, setProfileData] = useState(null);
@@ -13,12 +13,23 @@ function EditForm() {
   const [goals, setGoals] = useState("");
   const [status, setStatus] = useState("");
   const [location, setLocation] = useState("");
+	const navigate = useNavigate();
+
 
   const getAccountData = async () => {
     const data = await fetchWithCookie(
       `${process.env.REACT_APP_API_HOST}/token`);
     setAccountData(data.account);
+    if (data.account) {
+      setAvatar(data.account.avatar || "");
+      setBannerImage(data.account.banner_url || "");
+      setDescription(data.account.description || "");
+      setGoals(data.account.goals || "");
+      setStatus(data.account.status || "");
+      setLocation(data.account.location || "");
     }
+  }
+
 
   useEffect(() => {
     getAccountData();
@@ -34,8 +45,10 @@ function EditForm() {
       location: location,
       avatar: avatar,
       banner_url: banner_url,
-      account_id: accountData.id,
+      account_id: accountData?.id,
     };
+    console.log(profileData)
+
 
     const CreateProfileURL = "http://localhost:8000/api/profile";
     const fetchConfig = {
@@ -56,6 +69,7 @@ function EditForm() {
         setGoals("");
         setStatus("");
         setLocation("");
+        navigate("/");
       }
     }
 

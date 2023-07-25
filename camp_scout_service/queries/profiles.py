@@ -4,6 +4,8 @@ from typing import List, Optional
 
 
 class ProfileIn(BaseModel):
+    first_name: str
+    last_name: str
     description: str
     goals: str
     status: str
@@ -14,6 +16,8 @@ class ProfileIn(BaseModel):
 
 
 class ProfileInUpdate(BaseModel):
+    first_name: str
+    last_name: str
     description: str
     goals: str
     status: str
@@ -24,6 +28,8 @@ class ProfileInUpdate(BaseModel):
 
 class ProfileOut(BaseModel):
     id: int
+    first_name: str
+    last_name: str
     description: str
     goals: str
     status: str
@@ -39,7 +45,7 @@ class ProfileQueries:
             with conn.cursor() as db:
                 data = db.execute(
                     """
-                    SELECT id, description, goals, status, location, avatar,
+                    SELECT id, first_name, last_name, description, goals, status, location, avatar,
                     banner_url, account_id FROM profile ORDER BY id;
                     """,
                 )
@@ -47,13 +53,15 @@ class ProfileQueries:
                 for record in db:
                     profile = ProfileOut(
                         id=record[0],
-                        description=record[1],
-                        goals=record[2],
-                        status=record[3],
-                        location=record[4],
-                        avatar=record[5],
-                        banner_url=record[6],
-                        account_id=record[7],
+                        first_name=record[1],
+                        last_name=record[2],
+                        description=record[3],
+                        goals=record[4],
+                        status=record[5],
+                        location=record[6],
+                        avatar=record[7],
+                        banner_url=record[8],
+                        account_id=record[9],
                     )
                     data.append(profile)
                 return data
@@ -73,13 +81,15 @@ class ProfileQueries:
                     return None
                 profile = ProfileOut(
                     id=data[0],
-                    description=data[1],
-                    goals=data[2],
-                    status=data[3],
-                    location=data[4],
-                    avatar=data[5],
-                    banner_url=data[6],
-                    account_id=data[7],
+                    first_name=data[1],
+                    last_name=data[2],
+                    description=data[3],
+                    goals=data[4],
+                    status=data[5],
+                    location=data[6],
+                    avatar=data[7],
+                    banner_url=data[8],
+                    account_id=data[9],
                 )
                 return profile
 
@@ -89,6 +99,8 @@ class ProfileQueries:
                 result = db.execute(
                     """
                     INSERT INTO profile (
+                        first_name,
+                        last_name,
                         description,
                         goals,
                         status,
@@ -97,10 +109,12 @@ class ProfileQueries:
                         banner_url,
                         account_id
                     )
-                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    VALUES (%s, %s,%s, %s, %s, %s, %s, %s, %s)
                     RETURNING id;
                     """,
                     [
+                        profile.first_name,
+                        profile.last_name,
                         profile.description,
                         profile.goals,
                         profile.status,
@@ -120,7 +134,9 @@ class ProfileQueries:
                 result = db.execute(
                     """
                         UPDATE profile
-                        SET description = %s
+                        SET first_name = %s
+                        , last_name = %s
+                        , description = %s
                         , goals = %s
                         , status = %s
                         , location  = %s
@@ -130,6 +146,8 @@ class ProfileQueries:
                         RETURNING id;
                     """,
                     [
+                        profile.first_name,
+                        profile.last_name,
                         profile.description,
                         profile.goals,
                         profile.status,

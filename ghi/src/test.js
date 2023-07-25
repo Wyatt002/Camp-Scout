@@ -1,110 +1,118 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
+import useToken from "@galvanize-inc/jwtdown-for-react";
+import { useState, useEffect } from "react";
 
-function FacilityDetail() {
-  const [facility, setFacility] = useState("");
-  const [weather, setWeather] = useState("");
-  const { facilityId } = useParams();
+const ReviewForm = () => {
+    const [accountData, setAccountData] = useState("");
+    const [review, setReview] = useState("");
+    const [rating, setRating] = useState("");
+    const { token } = useAuthContext();
+    const { fetchWithCookie } = useToken();
 
-  const getWeather = async () => {
-    const url = `${process.env.REACT_APP_API_HOST}/api/weather?lat=${facility.lat}&lon=${facility.lon}`;
-    const response = await fetch(url);
-    if (response.ok) {
-      const data = await response.json();
-      setWeather(data);
-      console.log(weather["1"]);
-      console.log(weather["2"]);
-      console.log(weather["3"]);
-      console.log(weather["4"]);
-      console.log(weather["5"]);
-    }
-  };
+    const handleReviewChange = (e) => {
+        const value = e.target.value;
+        setReview(value);
+    };
 
-  const fetchFacility = async () => {
-    const url = `${process.env.REACT_APP_API_HOST}/api/facility_details?facility_id=${facilityId}`;
-    const response = await fetch(url);
-    if (response.ok) {
-      const data = await response.json();
-      setFacility(data);
-      console.log(data);
-    }
-  };
+    const handleRatingChange = (e) => {
+        const value = e.target.value;
+        setRating(value);
+    };
 
-  useEffect(() => {
-    fetchFacility();
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const url = `${process.env.REACT_APP_API_HOST}/api/reviews`;
+        const data = {
+        review: review,
+        rating: rating,
+        facility_id: "C32CB41B-1C35-454B-B9FD-AE3F71EEBDC8",
+        first_name: accountData.first_name,
+        last_name: accountData.last_name,
+        account_id: accountData.id,
+        };
 
-  }, []);
+        const fetchConfig = {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        },
+        };
+        const response = await fetch(url, fetchConfig);
+        if (response.ok) {
+        console.log(response);
+        setReview("");
+        setRating("");
+        }
+    };
 
-  if (facility["facility_id"] != null) {
+    const getAccountData = async () => {
+        const data = await fetchWithCookie(
+        `${process.env.REACT_APP_API_HOST}/token`
+        );
+        setAccountData(data.account);
+    };
+
+    useEffect(() => {
+        getAccountData();
+    }, []);
+
     return (
-      <div className="row">
+        <div className="row">
         <div className="offset-3 col-6">
-          <div className="shadow p-1 mt-1">
-            <div className="card">
-              <div className="card-body">
-                <h1>{facility.name}</h1>
-                <p>{facility.description}</p>
-              </div>
-              <div className="card-body">
-                <h3>Campsites:</h3>
-                <p>Total Campsites: {facility.campsites.totalSites}</p>
-                <p>
-                  Electrical Hookups: {facility.campsites.electricalHookups}
-                </p>
-                <p>Group: {facility.campsites.group}</p>
-                <p>Horse: {facility.campsites.horse}</p>
-                <p>Other: {facility.campsites.other}</p>
-                <p>RV Only: {facility.campsites.rvOnly}</p>
-                <p>Tent Only: {facility.campsites.tentOnly}</p>
-                <p>Walk Boat To: {facility.campsites.walkBoatTo}</p>
-              </div>
-              <div className="card-body">
-                <h3>Operating Hours:</h3>
-                <p>{facility.operating_hours["0"].description}</p>
-                <ul>
-                  <li>Sunday: </li>
-                  <li>Monday: </li>
-                  <li>Tuesday: </li>
-                  <li>Wednesday: </li>
-                  <li>Thursday: </li>
-                  <li>Friday: </li>
-                  <li>Saturday: </li>
-                </ul>
-              </div>
-              <div className="card-body">
-                <h3>Addresses: </h3>
-                {facility.addresses.map((address) => {
-                  return (
-                    <p key={address.line1}>
-                      {address.city}, {address.stateCode}, {address.postalCode}{" "}
-                      - {address.line1}
-                    </p>
-                  );
-                })}
-              </div>
-              <div className="card-body">
-                <h3>Contacts:</h3>
-                <p> Emails:</p>
-                {facility.contacts.emailAddresses.map((email) => {
-                  return <p key={email.emailAddress}>{email.emailAddress}</p>;
-                })}
-              </div>
-              <div className="card-body">
-                <p>Phone Numbers:</p>
-                {facility.contacts.phoneNumbers.map((phone) => {
-                  return <p key={phone.phoneNumber}>{phone.phoneNumber}</p>;
-                })}
-              </div>
-              <div className="card-body">
-                <h3>Weather Overview:</h3>
-                <p>{facility.weather_overview}</p>
-                <button onClick={getWeather}>Get the weather!</button>
-              </div>
+            <div className="shadow p-4 mt-4">
+            <div className="card text-bg-light mb-3">
+                <h5 className="card-header">Enter Your Review</h5>
+                <div className="card-body">
+                <form onSubmit={handleSubmit} id="create-review-form">
+                    <div className="mb-3">
+                    <label htmlFor="review">Review:</label>
+                    <textarea
+                        onChange={handleReviewChange}
+                        id="review"
+                        placeholder="Review"
+                        name="review"
+                        type="text"
+                        className="form-control"
+                        value={review}
+                        rows={4}
+                        cols={50}
+                    />
+                    </div>
+                    <div className="mb-3">
+                    <label htmlFor="rating">Rating</label>
+                    <select
+                        onChange={handleRatingChange}
+                        id="rating"
+                        placeholder="Rating"
+                        name="rating"
+                        value={rating}
+                        type="text"
+                        className="form-control"
+                    >
+                        <option value={0}>Select Rating</option>
+                        <option value={1}>1 Star</option>
+                        <option value={2}>2 Stars</option>
+                        <option value={3}>3 Stars</option>
+                        <option value={4}>4 Stars</option>
+                        <option value={5}>5 Stars</option>
+                    </select>
+                    </div>
+                    <div>
+                    <input
+                        className="btn btn-primary"
+                        type="submit"
+                        value="Submit Review"
+                    />
+                    </div>
+                </form>
+                </div>
             </div>
-          </div>
+            </div>
         </div>
-      </div>
+        </div>
     );
-  }
-}
-export default FacilityDetail;
+};
+
+export default ReviewForm;

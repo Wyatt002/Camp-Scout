@@ -1,12 +1,29 @@
 
-import {Button, Container, Form, Nav, Navbar } from "react-bootstrap";
+import { Button, Container, Form, Nav, Navbar, NavLink } from "react-bootstrap";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import { FaUser } from "react-icons/fa";
 import { PiCampfireBold } from "react-icons/pi";
+import React, { useState, useEffect } from "react";
 
 function CampNav() {
     const { logout, token } = useToken();
+    const { fetchWithCookie } = useToken();
+    const [accountData, setAccountData] = useState("");
+    const [account_id, setAccountId] = useState(null);
 
+    const getAccountData = async () => {
+        const data = await fetchWithCookie(`${process.env.REACT_APP_API_HOST}/token`);
+        setAccountData(data.account);
+        setAccountId(data.account.id);
+    };
+
+    useEffect(() => {
+        if (token) {
+        getAccountData();
+        }
+    }, [token]);
+
+    const profileURL = `http://localhost:3000/profile/${account_id}`;
 
     return (
         <Navbar expand="lg" className="bg-white">
@@ -49,9 +66,9 @@ function CampNav() {
                 />
                 <Button variant="success">Search</Button>
                 </Form>
-                <Navbar.Brand href="/profile" className="profile button">
+                <NavLink href={profileURL} className="profile button">
                 {token && <FaUser style={{color: 'rgb(190, 84, 13)', fontSize: '30px', margin: '10px'}}/>}
-                </Navbar.Brand>
+                </NavLink>
             </Navbar.Collapse>
             </Container>
         </Navbar>

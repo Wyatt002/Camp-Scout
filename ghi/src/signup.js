@@ -68,7 +68,7 @@ function SignupForm() {
 				setPassword('');
 				setConfirmPassword('');
 				await login(email, password);
-				navigate("/profile/edit")
+				navigate("/profile")
 
 
 				setSuccess(true);

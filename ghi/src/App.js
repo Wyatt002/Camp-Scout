@@ -23,7 +23,7 @@ function App() {
             <Route path="login" element={<LoginForm />} />
             <Route path="profile/:account_id" element={<UserProfile />} />
             <Route path="main" element={<UserProfile />} />
-            <Route path="profile/edit" element={<EditForm />} />
+            <Route path="profile/" element={<EditForm />} />
             <Route path="facility" element={<FacilityDetail />} />
           </Route>
         </Routes>

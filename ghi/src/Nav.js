@@ -19,13 +19,13 @@ function CampNav() {
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="justify-content-end flex-grow-1 pe-3">
                 <Nav.Link href="/login">
-                    <Button variant="success">LogIn </Button>
+                    <Button style={{ backgroundColor: "#464F2E", color: "white" }}>LogIn</Button>
                 </Nav.Link>
                 <Nav.Link href="/logout">
                     <Button variant="outline-success">LogOut </Button>
                 </Nav.Link>
                 <Nav.Link href="/signup">
-                    <Button variant="success">SignUp </Button>
+                    <Button style={{ backgroundColor: "#464F2E", color: "white" }}>SignUp </Button>
                 </Nav.Link>
                 </Nav>
 

@@ -1,11 +1,13 @@
 import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
+import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 const ReviewForm = () => {
     const [accountData, setAccountData] = useState('');
     const [review, setReview] = useState('');
     const [rating, setRating] = useState('');
+    const { facilityId } = useParams();
     const { token } = useAuthContext();
     const { fetchWithCookie } = useToken();
 
@@ -25,7 +27,7 @@ const ReviewForm = () => {
         const data = {
             review: review,
             rating: rating,
-            facility_id: "C32CB41B-1C35-454B-B9FD-AE3F71EEBDC8",
+            facility_id: facilityId,
             first_name: accountData.first_name,
             last_name: accountData.last_name,
             account_id: accountData.id,

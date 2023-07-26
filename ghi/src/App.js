@@ -21,7 +21,7 @@ function App() {
             <Route path="signup" element={<SignupForm />} />
             <Route path="login" element={<LoginForm />} />
           </Route>
-          <Route path="reviews" element={<ReviewForm />} />
+          <Route path="reviews/:facilityId" element={<ReviewForm />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

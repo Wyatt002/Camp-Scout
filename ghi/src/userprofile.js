@@ -236,22 +236,6 @@ function UserProfile() {
                         />
                         </div>
                     </div>
-                    <div className="row g-2">
-                        <div className="col">
-                        <img
-                            src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(108).webp"
-                            alt=""
-                            className="w-100 rounded-3"
-                        />
-                        </div>
-                        <div className="col">
-                        <img
-                            src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(114).webp"
-                            alt=""
-                            className="w-100 rounded-3"
-                        />
-                        </div>
-                    </div>
                     </div>
                 </div>
                 </div>

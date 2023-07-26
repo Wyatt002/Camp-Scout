@@ -9,8 +9,6 @@ import yellowStoneImg from '../src/img/yellow-stone.jpg';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import FacilitiesPage from './Facilities.js';
 import Description from './DescriptionPage';
-
-import defaultImg from '../src/img/Trailer-setup-at-campsite.jpg';
 import { MDBCardOverlay, MDBCard, MDBCardImage, MDBCardTitle } from 'mdb-react-ui-kit';
 
 const Main = () => {

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import useToken from "@galvanize-inc/jwtdown-for-react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import styles from "./FacilityDetail.module.css";
@@ -72,6 +73,7 @@ function Weather(facility) {
 
 function Reviews(facility) {
     const [reviews, setReviews] = useState([]);
+    const { token } = useToken()
     const prop = facility.facility;
     const responsive = {
     superLargeDesktop: {
@@ -141,7 +143,9 @@ function Reviews(facility) {
                 )
             })}
             </Carousel>
-            <button value={prop.facility_id}>Leave a review!</button>
+            {token && (
+                <button value={prop.facility_id}>Leave a review!</button>
+            )}
         </div>
     );
 }
@@ -271,7 +275,7 @@ function FacilityDetail() {
                                 <div className={styles.individual}>
                                 {facility.accessibility.accessRoads.map(road => {
                                     return (
-                                        <p>
+                                        <p key={Math.random}>
                                             { road }
                                         </p>
                                     )

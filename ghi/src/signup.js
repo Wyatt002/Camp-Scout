@@ -11,6 +11,7 @@ function SignupForm() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [success, setSuccess] = useState(false);
 	const [passwordShown, setPasswordShown] = useState(false);
+	const [showProfileButton, setShowProfileButton] = useState(false);
 	const { login } = useToken();
 	const navigate = useNavigate();
 
@@ -62,16 +63,15 @@ function SignupForm() {
 			if(response.ok) {
 				const newAccount = await response.json();
 				console.log(newAccount);
+				await login(email, password);
 				setFirstName('');
 				setLastName('');
 				setEmail('');
 				setPassword('');
 				setConfirmPassword('');
-				await login(email, password);
-				navigate("/profile")
-
 
 				setSuccess(true);
+				setShowProfileButton(true);
 			} else {
 				setSuccess(false);
 			}
@@ -85,10 +85,16 @@ function SignupForm() {
 		<div className="Signup-Container">
 			<div className="row">
 				<div className="offset-3 col-6">
-					<div className="shadow p-4 mt-4">
+					<div className="shadow p-4 mt-4"style={{ background: "#ffffff" }}>
 						<h1>Sign Up! </h1>
-						{success && <p className="text-success">Account created successfully!</p>}
-
+						<div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+							{showProfileButton && (
+								<button className="btn btn-primary mt-3" onClick={() => navigate("/profile")}>
+									Go to Profile
+								</button>
+							)}
+							{success && <p className="text-success">Account created successfully!</p>}
+						</div>
 						<form onSubmit={handleSubmit} id="sign-up-form">
 							<div className="form-floating mb-3">
 								<input

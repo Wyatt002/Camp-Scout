@@ -6,6 +6,7 @@ import LoginForm from "./login.js";
 import CampNav from './Nav';
 import FacilityDetail from './FacilityDetail';
 import UserProfile from "./userprofile";
+import CreateForm from "./createform";
 import EditForm from "./editform";
 
 
@@ -23,7 +24,8 @@ function App() {
             <Route path="login" element={<LoginForm />} />
             <Route path="profile/:account_id" element={<UserProfile />} />
             <Route path="main" element={<UserProfile />} />
-            <Route path="profile/" element={<EditForm />} />
+            <Route path="profile/" element={<CreateForm />} />
+            <Route path="profile/edit" element={<EditForm />} />
             <Route path="facility" element={<FacilityDetail />} />
           </Route>
         </Routes>

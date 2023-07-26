@@ -146,6 +146,7 @@ function Reviews(facility) {
     );
 }
 
+
 function ExceptionHours(facility) {
     const prop = facility.facility;
     if (prop["facility_id"] != null) {

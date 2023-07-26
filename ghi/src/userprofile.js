@@ -33,14 +33,16 @@ function UserProfile() {
         setAccountData(data.account);
     };
 
+
     useEffect(() => {
         fetchProfileData();
         fetchReviewData();
         fetchAccountData();
     }, []);
-    const isProfileOwner = accountData &&profileData && accountData.id === account_id;
 
-        function rating(rating) {
+
+
+    function rating(rating) {
         if (rating >= 0 && rating <= 5) {
             var stars = "";
             for (let num = 0; num < 5; num++) {
@@ -54,6 +56,10 @@ function UserProfile() {
         }
     }
 
+
+
+
+    const isProfileOwner = accountData &&profileData && accountData.id === account_id;
     if (profileData && profileData["account_id"] != null) {
         return (
         <div className="container">
@@ -85,10 +91,9 @@ function UserProfile() {
                         style={{ height: "200px", padding: "10px" }}
                         />
                         <h3 className="text-center" id="title-name">
-                            {accountData && `${accountData.first_name} ${accountData.last_name}`}
-                            {!accountData && "Not Available"}
+                            {`${profileData.first_name} ${profileData.last_name}`}
                         </h3>
-                        <p className="text-center"> </p>
+                        <p className="text-center">   {`${profileData.location} `} </p>
                         <div className="card m-3 ">
                             <div className="text-center">
                                 <h4>About Me</h4>
@@ -120,7 +125,7 @@ function UserProfile() {
                     <h2>Activity</h2>
                     <p className="mb-0">
                     <a href="#!" className="text-muted">
-                        Show all
+                        Show more activity
                     </a>
                     </p>
                 </div>
@@ -142,11 +147,11 @@ function UserProfile() {
                                 {reviewData.map((review) => {
                                     return(
                                 <div key={review.id}>
-                                <h4> {review.first_name} {review.last_name}</h4>
-                                <h5> CAMP LOCATION </h5>
-                                <div> { rating(review.rating) }</div>
-                                <div> {review.review}</div>
-                                <p> </p></div>
+                                    <h4> {review.first_name} {review.last_name}</h4>
+                                    <h5> LOCATION </h5>
+                                    <div> { rating(review.rating) }</div>
+                                    <div> {review.review}</div>
+                                </div>
                                 )})}
                             </div>
                         </div>
@@ -160,11 +165,6 @@ function UserProfile() {
 
                 <div className="d-flex justify-content-between align-items-center mb-4">
                     <p className="lead fw-normal mb-0">Recent photos</p>
-                    <p className="mb-0">
-                    <a href="#!" className="text-muted">
-                        Show all
-                    </a>
-                    </p>
                 </div>
                 <div className="row g-2">
                     <div className="col mb-2">

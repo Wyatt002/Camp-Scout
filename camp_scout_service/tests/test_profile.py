@@ -13,6 +13,8 @@ class ProfileQueriesMock:
         return [
             ProfileOut(
                 id=1,
+                first_name="Happy",
+                last_name="Camper",
                 description="I like to camp",
                 goals="I want to camp more",
                 status="I am a camper",
@@ -23,6 +25,8 @@ class ProfileQueriesMock:
             ),
             ProfileOut(
                 id=2,
+                first_name="Happy2",
+                last_name="Camper2",
                 description="I like to camp",
                 goals="I want to camp more",
                 status="I am a camper",
@@ -36,6 +40,8 @@ class ProfileQueriesMock:
     def get_one(self, account_id) -> ProfileOut:
         return ProfileOut(
             id=1,
+            first_name="Happy",
+            last_name="Camper",
             description="I like to camp",
             goals="I want to camp more",
             status="I am a camper",
@@ -54,6 +60,8 @@ def test_get_all_profile():
     expected = [
         {
             "id": 1,
+            "first_name": "Happy",
+            "last_name": "Camper",
             "description": "I like to camp",
             "goals": "I want to camp more",
             "status": "I am a camper",
@@ -64,6 +72,8 @@ def test_get_all_profile():
         },
         {
             "id": 2,
+            "first_name": "Happy2",
+            "last_name": "Camper2",
             "description": "I like to camp",
             "goals": "I want to camp more",
             "status": "I am a camper",
@@ -96,6 +106,8 @@ def test_create_profile():
     app.dependency_overrides[ProfileQueries] = CreateProfileQueriesMock
     # Act
     json = {
+        "first_name": "Happy",
+        "last_name": "Camper",
         "description": "I like to camp",
         "goals": "I want to camp more",
         "status": "I am a camper",
@@ -106,6 +118,8 @@ def test_create_profile():
     }
     expected = {
         "id": 1,
+        "first_name": "Happy",
+        "last_name":"Camper",
         "description": "I like to camp",
         "goals": "I want to camp more",
         "status": "I am a camper",
@@ -133,6 +147,8 @@ def test_get_profile():
     response = client.get("/api/profile/1")
     expected = {
         "id": 1,
+        "first_name": "Happy",
+        "last_name": "Camper",
         "description": "I like to camp",
         "goals": "I want to camp more",
         "status": "I am a camper",
@@ -152,6 +168,8 @@ class UpdateProfileQueriesMock:
     def update(self, account_id, profile) -> ProfileOut:
         return ProfileOut(
             id=1,
+            first_name="Happyer",
+            last_name="Camperer",
             description="I like to camp a lot",
             goals="I want to camp even more",
             status="I am a camper",
@@ -181,6 +199,8 @@ def test_update_profile():
     ] = fake_get_current_account_data
     app.dependency_overrides[ProfileQueries] = UpdateProfileQueriesMock
     json = {
+        "first_name": "Happyer",
+        "last_name": "Camperer",
         "description": "I like to camp a lot",
         "goals": "I want to camp even more",
         "status": "I am a camper",
@@ -190,6 +210,8 @@ def test_update_profile():
     }
     expected = {
         "id": 1,
+        "first_name": "Happyer",
+        "last_name": "Camperer",
         "description": "I like to camp a lot",
         "goals": "I want to camp even more",
         "status": "I am a camper",

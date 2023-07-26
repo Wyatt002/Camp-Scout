@@ -5,8 +5,10 @@ import { useNavigate } from "react-router-dom";
 function EditForm() {
   const [profileData, setProfileData] = useState(null);
   const { token } = useToken();
-  const[accountData, setAccountData] = useState("");
+  const[accountData, setAccountData] = useState(null);
   const { fetchWithCookie } = useToken();
+  const [first_name, setFirstName] = useState("");
+  const [last_name, setLastName] = useState("");
   const [avatar, setAvatar] = useState("");
   const [banner_url, setBannerImage] = useState("");
   const [description, setDescription] = useState("");
@@ -17,10 +19,11 @@ function EditForm() {
 
 
   const getAccountData = async () => {
-    const data = await fetchWithCookie(
-      `${process.env.REACT_APP_API_HOST}/token`);
-    setAccountData(data.account);
-    if (data.account) {
+    const data = await fetchWithCookie(`${process.env.REACT_APP_API_HOST}/token`);
+    if (data && data.account) {
+      setAccountData(data.account);
+      setFirstName(data.account.first_name || "");
+      setLastName(data.account.last_name || "");
       setAvatar(data.account.avatar || "");
       setBannerImage(data.account.banner_url || "");
       setDescription(data.account.description || "");
@@ -31,55 +34,75 @@ function EditForm() {
   }
 
 
-  useEffect(() => {
-    getAccountData();
-    }, []);
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const profileData = {
+      first_name: first_name,
+      last_name: last_name,
       description: description,
       goals: goals,
       status: status,
       location: location,
       avatar: avatar,
       banner_url: banner_url,
-      account_id: accountData?.id,
+      account_id: accountData.id,
     };
     console.log(profileData)
 
-
-    const CreateProfileURL = "http://localhost:8000/api/profile";
-    const fetchConfig = {
-      method: "POST",
-      body: JSON.stringify(profileData),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    };
-      const response = await fetch(CreateProfileURL, fetchConfig);
-      console.log(response)
+    if (accountData) {
+      const updateProfileURL = `http://localhost:8000/api/profile/${accountData.id}`;
+      const fetchConfig = {
+        method: "PUT",
+        body: JSON.stringify(profileData),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      const response = await fetch(updateProfileURL, fetchConfig);
+      console.log(response);
       if (response.ok) {
-        console.log("Profile created successfully!");
-        setAvatar("");
-        setBannerImage("");
-        setDescription("");
-        setGoals("");
-        setStatus("");
-        setLocation("");
+        console.log("Profile updated successfully!");
+        console.log(profileData);
+        console.log(response);
         navigate("/");
       }
+    } else {
+      const CreateProfileURL = "http://localhost:8000/api/profile";
+      const fetchConfig = {
+        method: "POST",
+        body: JSON.stringify(profileData),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      };
+        const response = await fetch(CreateProfileURL, fetchConfig);
+        console.log(response)
+        if (response.ok) {
+          console.log("Profile created successfully!");
+          setAvatar("");
+          setBannerImage("");
+          setDescription("");
+          setGoals("");
+          setStatus("");
+          setLocation("");
+          navigate("/");
+        }
+      }
     }
-
+    useEffect(() => {
+      getAccountData();
+      }, []);
 
   return (
     <div className="row">
       <form onSubmit={handleSubmit} className="row g-3">
         <div className="offset-3 col-6">
           <div className="shadow p-4 mt-4">
-            <h1>Your Profile</h1>
+            <h1>{`${first_name}`} {`${last_name}`}'s Profile</h1>
+
 
             <label className="form-label">Location:</label>
             <input

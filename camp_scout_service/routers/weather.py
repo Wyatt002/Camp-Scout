@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-api_key = os.getenv("OPEN_WEATHER_API_KEY")
+api_key = os.environ["OPEN_WEATHER_API_KEY"]
 
 router = APIRouter()
 

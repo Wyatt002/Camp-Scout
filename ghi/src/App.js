@@ -21,14 +21,15 @@ function App() {
       <BrowserRouter>
       <CampNav />
         <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/description" element={<Description />} />
-          <Route path="/facilities" element={<FacilitiesPage />} />
-          <Route path="/facility/details/:facilityId" element={<FacilityDetail />} />
+          <Route path="/">
+            <Route path="" element={<Main />} />
+            <Route path="description" element={<Description />} />
+            <Route path="facilities" element={<FacilitiesPage />} />
+            <Route path="facility/:parkCode/:facilityId" element={<FacilityDetail />} />
+          </Route>
           <Route path="accounts">
             <Route path="signup" element={<SignupForm />} />
             <Route path="login" element={<LoginForm />} />
-            <Route path="facility" element={<FacilityDetail />} />
           </Route>
           <Route path="reviews/:parkCode/:facilityId" element={<ReviewForm />} />
         </Routes>

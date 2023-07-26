@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import { useNavigate } from "react-router-dom";
+import "./index.css";
 
 function EditForm() {
     const { token } = useToken();

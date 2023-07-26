@@ -1,8 +1,29 @@
+## July 26, 2023
+
+Today we worked on:
+* Merging our Facilities, FacilityDetail, and ReviewForm
+* Small integrations between the above
+* CI/CD
+
+Today we spent the majority of the day going over our web pages and getting them
+ready to be merged before making a request for each, after each one we would merge
+it to each development branch as needed and integrate them together to make sure
+that they properly communicated and sent parameters to one another, as well as
+being able to move back and forth between one another fluidly.  We managed to get
+the majority of it all merged to main and the last pages we need now are the profile
+related ones.
+
+After that we continued to work on CI/CD and managed to get our database deployed
+and our webpage but had some issues with the later, where it would show a default
+nginx splash screen, Dalonte helped us with this and we worked around it for awhile
+but decided we would come back to it tomorrow and give it another go, but we made
+progress on figuring it out none the less.
+
 ## July 25, 2023
 
 Today we worked on:
 * CI/CD
-* Facility-Detial
+* Facility-Detail
 
 Today we spent the majority of the day working on our CI/CD pipeline and got a few
 things working for it but hit a few roadblocks we want to clear, though we are not

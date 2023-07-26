@@ -30,7 +30,7 @@ function App() {
             <Route path="login" element={<LoginForm />} />
             <Route path="facility" element={<FacilityDetail />} />
           </Route>
-          <Route path="reviews/:facilityId" element={<ReviewForm />} />
+          <Route path="reviews/:parkCode/:facilityId" element={<ReviewForm />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

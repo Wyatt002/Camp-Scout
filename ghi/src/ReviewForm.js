@@ -1,14 +1,15 @@
 import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
-import styles from "./ReviewForm.module.css";
+import styles from "./ReviewForm.css";
 import useToken from "@galvanize-inc/jwtdown-for-react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 const ReviewForm = () => {
+    const navigate = useNavigate();
     const [accountData, setAccountData] = useState('');
     const [review, setReview] = useState('');
     const [rating, setRating] = useState('');
-    const { facilityId } = useParams();
+    const { parkCode, facilityId } = useParams();
     const { token } = useAuthContext();
     const { fetchWithCookie } = useToken();
 
@@ -47,6 +48,7 @@ const ReviewForm = () => {
             console.log(response);
             setReview('');
             setRating('');
+            navigate(`/facility/${parkCode}/${facilityId}`);
         }
     };
 

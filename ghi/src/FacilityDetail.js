@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -73,8 +73,9 @@ function Weather(facility) {
 }
 
 function Reviews() {
+    const navigate = useNavigate();
     const [reviews, setReviews] = useState([]);
-    const { facilityId } = useParams();
+    const { parkCode, facilityId } = useParams();
     const { token } = useToken()
     const responsive = {
     superLargeDesktop: {
@@ -94,6 +95,11 @@ function Reviews() {
         items: 1,
     },
     };
+
+    const SubmitReview = (e) => {
+        e.preventDefault();
+        navigate(`/reviews/${parkCode}/${facilityId}`);
+    }
 
     function rating(rating) {
         if (rating >= 0 && rating <= 5) {
@@ -145,7 +151,7 @@ function Reviews() {
             })}
             </Carousel>
             {token && (
-                <button value={facilityId}>Leave a review!</button>
+                <button onClick={SubmitReview}>Leave a review!</button>
             )}
         </div>
     );

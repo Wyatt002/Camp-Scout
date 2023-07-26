@@ -62,7 +62,7 @@ const states = [
 const FacilityInfo = ({ facility }) => (
     <div>
         <h3>{facility.name}</h3>
-        <Link to={`/facility/details/${facility.facility_id}`}>
+        <Link to={`/facility/${facility.park_code}/${facility.facility_id}`}>
         <button className={styles.detailsButton}>Details</button>
         </Link>
     </div>

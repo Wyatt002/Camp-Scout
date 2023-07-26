@@ -6,6 +6,7 @@ import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
 import "./App.css";
 import SignupForm from "./signup.js";
 import LoginForm from "./login.js";
+import ReviewForm from './ReviewForm';
 import Main from './MainPage';
 import FacilitiesPage from './Facilities'
 import FacilityDetail from './FacilityDetail';
@@ -20,15 +21,17 @@ function App() {
       <BrowserRouter>
       <CampNav />
         <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/description" element={<Description />} />
-          <Route path="/facilities" element={<FacilitiesPage />} />
-          <Route path="/facility/details/:facilityId" element={<FacilityDetail />} />
+          <Route path="/">
+            <Route path="" element={<Main />} />
+            <Route path="description" element={<Description />} />
+            <Route path="facilities" element={<FacilitiesPage />} />
+            <Route path="facility/:parkCode/:facilityId" element={<FacilityDetail />} />
+          </Route>
           <Route path="accounts">
             <Route path="signup" element={<SignupForm />} />
             <Route path="login" element={<LoginForm />} />
-            <Route path="facility" element={<FacilityDetail />} />
           </Route>
+          <Route path="reviews/:parkCode/:facilityId" element={<ReviewForm />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

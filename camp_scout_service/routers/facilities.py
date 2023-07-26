@@ -5,7 +5,7 @@ import os
 
 
 load_dotenv()
-api_key = os.getenv("NPS_API_KEY")
+api_key = os.environ["NPS_API_KEY"]
 
 router = APIRouter()
 
@@ -85,6 +85,7 @@ async def get_camp_list(state_code: str):
         for camp in range(0, len(content["data"])):
             info = {
                 "facility_id": content["data"][camp]["id"],
+                "park_code": content["data"][camp]["parkCode"],
                 "name": content["data"][camp]["name"],
                 "description": content["data"][camp]["description"],
             }
@@ -105,9 +106,10 @@ async def get_camp_list(state_code: str):
 
 
 @router.get("/api/facility_details")
-async def get_camp_details(facility_id: str):
+async def get_camp_details(park_code: str, facility_id: str):
     nps_url = "https://developer.nps.gov/api/v1/campgrounds"
     nps_params = {
+        "parkCode": park_code,
         "q": facility_id,
         "api_key": api_key,
     }

@@ -3,7 +3,6 @@ import useToken from "@galvanize-inc/jwtdown-for-react";
 import { useNavigate } from "react-router-dom";
 
 function EditForm() {
-  const [profileData, setProfileData] = useState(null);
   const { token } = useToken();
   const[accountData, setAccountData] = useState(null);
   const { fetchWithCookie } = useToken();
@@ -19,25 +18,27 @@ function EditForm() {
 
 
   const getAccountData = async () => {
-    const data = await fetchWithCookie(`${process.env.REACT_APP_API_HOST}/token`);
-    if (data && data.account) {
-      setAccountData(data.account);
-      setFirstName(data.account.first_name || "");
-      setLastName(data.account.last_name || "");
-      setAvatar(data.account.avatar || "");
-      setBannerImage(data.account.banner_url || "");
-      setDescription(data.account.description || "");
-      setGoals(data.account.goals || "");
-      setStatus(data.account.status || "");
-      setLocation(data.account.location || "");
+    try {
+      const data = await fetchWithCookie(`${process.env.REACT_APP_API_HOST}/token`);
+      if (data && data.account) {
+        setAccountData(data.account);
+        setFirstName(data.account.first_name || "");
+        setLastName(data.account.last_name || "");
+        setAvatar(data.account.avatar || "");
+        setBannerImage(data.account.banner_url || "");
+        setDescription(data.account.description || "");
+        setGoals(data.account.goals || "");
+        setStatus(data.account.status || "");
+        setLocation(data.account.location || "");
     }
+  } catch (error) {
+    console.error("Error fetching account data:", error);}
   }
-
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const profileData = {
+    const data = {
       first_name: first_name,
       last_name: last_name,
       description: description,
@@ -48,13 +49,13 @@ function EditForm() {
       banner_url: banner_url,
       account_id: accountData.id,
     };
-    console.log(profileData)
+    console.log(data)
 
-    if (accountData) {
+    if (accountData != null ) {
       const updateProfileURL = `http://localhost:8000/api/profile/${accountData.id}`;
       const fetchConfig = {
         method: "PUT",
-        body: JSON.stringify(profileData),
+        body: JSON.stringify(data),
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -64,15 +65,14 @@ function EditForm() {
       console.log(response);
       if (response.ok) {
         console.log("Profile updated successfully!");
-        console.log(profileData);
+        console.log(data);
         console.log(response);
-        navigate("/");
       }
     } else {
       const CreateProfileURL = "http://localhost:8000/api/profile";
       const fetchConfig = {
         method: "POST",
-        body: JSON.stringify(profileData),
+        body: JSON.stringify(data),
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -101,14 +101,15 @@ function EditForm() {
       <form onSubmit={handleSubmit} className="row g-3">
         <div className="offset-3 col-6">
           <div className="shadow p-4 mt-4">
-            <h1>{`${first_name}`} {`${last_name}`}'s Profile</h1>
-
+            <h1>
+              {`${first_name}`} {`${last_name}`}'s Profile
+            </h1>
 
             <label className="form-label">Location:</label>
             <input
+              value={location}
               type="text"
               className="form-control input-field"
-              placeholder={`${location}`}
               onChange={(e) => setLocation(e.target.value)}
             />
 
@@ -117,7 +118,6 @@ function EditForm() {
               value={avatar}
               type="text"
               className="form-control input-field"
-              placeholder={`${avatar}`}
               onChange={(e) => setAvatar(e.target.value)}
             />
 
@@ -126,7 +126,6 @@ function EditForm() {
               value={banner_url}
               type="text"
               className="form-control input-field"
-              placeholder={`${banner_url}`}
               onChange={(e) => setBannerImage(e.target.value)}
             />
 
@@ -135,23 +134,21 @@ function EditForm() {
               value={description}
               type="text-box"
               className="form-control input-field"
-              placeholder={`${description}`}
               onChange={(e) => setDescription(e.target.value)}
             />
 
             <label className="form-label">Goals:</label>
             <input
+              value={goals}
               type="text"
               className="form-control input-field"
-              placeholder={`${goals}`}
               onChange={(e) => setGoals(e.target.value)}
             />
-
             <label className="form-label">Status:</label>
             <input
+              value={status}
               type="text"
               className="form-control input-field"
-              placeholder={`${status}`}
               onChange={(e) => setStatus(e.target.value)}
             />
 

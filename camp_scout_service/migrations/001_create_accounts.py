@@ -23,6 +23,8 @@ steps = [
             facility_id VARCHAR(100) NOT NULL,
             review TEXT NOT NULL,
             rating INTEGER NOT NULL,
+            first_name VARCHAR(50) NOT NULL,
+            last_name VARCHAR(50) NOT NULL,
             account_id INTEGER REFERENCES account(id) ON DELETE CASCADE
         );
         """,

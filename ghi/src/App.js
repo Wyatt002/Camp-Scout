@@ -24,7 +24,7 @@ function App() {
             <Route path="" element={<Main />} />
             <Route path="description" element={<Description />} />
             <Route path="facilities" element={<FacilitiesPage />} />
-            <Route path="facility/:facilityId" element={<FacilityDetail />} />
+            <Route path="facility/:parkCode/:facilityId" element={<FacilityDetail />} />
           </Route>
           <Route path="accounts">
             <Route path="signup" element={<SignupForm />} />

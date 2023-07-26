@@ -26,7 +26,10 @@ def test_get_facility_details():
     data = response.json()
     response = client.get(
         "/api/facility_details",
-        params={"facility_id": data["1"]["facility_id"]},
+        params={
+            "park_code": data["1"]["park_code"],
+            "facility_id": data["1"]["facility_id"],
+        },
     )
     assert response.status_code == 200
     assert data is not None

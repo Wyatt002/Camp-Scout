@@ -205,20 +205,9 @@ function OperatingHours(facility) {
     }
 }
 
-function Description(facility) {
-    const prop = facility.facility;
-    if (prop["description" != null]) {
-        return (
-            <>
-                <p>{facility.description}</p>
-            </>
-        );
-    }
-}
-
 function FacilityDetail() {
     const [facility, setFacility] = useState('');
-    const { facilityId } = useParams();
+    const { parkCode, facilityId } = useParams();
     const responsive = {
     superLargeDesktop: {
         breakpoint: { max: 4000, min: 3000 },
@@ -239,7 +228,7 @@ function FacilityDetail() {
     };
 
     const fetchFacility  = async () => {
-        const url = `${process.env.REACT_APP_API_HOST}/api/facility_details?facility_id=${facilityId}`;
+        const url = `${process.env.REACT_APP_API_HOST}/api/facility_details?park_code=${parkCode}&facility_id=${facilityId}`;
         const response = await fetch(url);
         if (response.ok) {
             const data = await response.json();
@@ -259,7 +248,7 @@ function FacilityDetail() {
                         <div className="card">
                             <div className="card-body">
                                 <h1>{facility.name}</h1>
-                                <Description facility={facility} />
+                                <p>{facility.description}</p>
                             </div>
                             <div className={styles.container}>
                             <Carousel

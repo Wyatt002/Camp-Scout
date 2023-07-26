@@ -6,6 +6,7 @@ import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
 import "./App.css";
 import SignupForm from "./signup.js";
 import LoginForm from "./login.js";
+import ReviewForm from './ReviewForm';
 import Main from './MainPage';
 import FacilitiesPage from './Facilities'
 import FacilityDetail from './FacilityDetail';
@@ -30,6 +31,7 @@ function App() {
             <Route path="signup" element={<SignupForm />} />
             <Route path="login" element={<LoginForm />} />
           </Route>
+          <Route path="reviews/:parkCode/:facilityId" element={<ReviewForm />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

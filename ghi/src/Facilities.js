@@ -75,7 +75,7 @@ const FacilitiesPage = () => {
 
     useEffect(() => {
         if (selectedState) {
-            fetch(`http://localhost:8000/api/facilities?state_code=${selectedState.value}`)
+            fetch(`${process.env.REACT_APP_API_HOST}/api/facilities?state_code=${selectedState.value}`)
                 .then(response => response.json())
                 .then(data => setFacilities(Object.values(data)))
         }

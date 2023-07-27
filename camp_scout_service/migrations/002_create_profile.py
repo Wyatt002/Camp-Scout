@@ -10,7 +10,7 @@ steps = [
             goals VARCHAR(200) NOT NULL,
             status VARCHAR(200) NOT NULL,
             location VARCHAR(50) NOT NULL,
-            avatar VARCHAR NOT NULL,
+            avatar VARCHAR(200) NOT NULL,
             banner_url VARCHAR(200) NOT NULL,
             account_id INTEGER REFERENCES account(id) ON DELETE CASCADE,
                 UNIQUE (account_id)

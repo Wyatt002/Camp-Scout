@@ -4,6 +4,7 @@ import useToken from "@galvanize-inc/jwtdown-for-react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import styles from "./FacilityDetail.module.css";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 import AnchorLink from "react-anchor-link-smooth-scroll";
@@ -145,7 +146,9 @@ function Reviews() {
                 return (
                     <div className="card" key={review.id}>
                         <div className="card-body">
-                            <p>{ review.first_name } { review.last_name }</p>
+                            <Link to={`/profile/${review.account_id}/`}>
+                                <p>{ review.first_name } { review.last_name }</p>
+                            </Link>
                             <p>Rating - { rating(review.rating) }</p>
                             <p>{ review.review }</p>
                         </div>

@@ -1,6 +1,6 @@
-.container {
+.container card{
     width: 100%;
-    margin: 1rem 0;
+    margin: 50px;
 }
 
 .container img {
@@ -10,4 +10,7 @@
     margin-right: auto;
     border-radius: 2px;
     box-shadow: 0 3px 8px rgba(1, 94, 16, 0.5);
+}
+.review-slide {
+    text-align: center;
 }

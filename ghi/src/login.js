@@ -20,7 +20,6 @@ const LoginForm = () => {
         if (ourToken === null) {
             setIsError(true);
             setErrorMessage("email/password was entered incorrectly");
-            setEmail("");
             setPassword("");
             }
     };
@@ -40,7 +39,7 @@ const LoginForm = () => {
     return (
         <div className="row">
             <div className="offset-3 col-6">
-                <div className="shadow p-4 mt-4" style={{ background: "#ffffff" }}>
+                <div className="shadow p-4 mt-4">
                     <h1>Login! </h1>
                     <div className="card-body">
                         <form onSubmit={handleSubmit}>
@@ -71,6 +70,7 @@ const LoginForm = () => {
                                     className="btn btn-primary"
                                     required type="submit"
                                     value="Login"
+                                    style={{backgroundColor: "#464F2E"}}
                                 />
                             </div>
                         </form>

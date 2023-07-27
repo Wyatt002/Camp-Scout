@@ -52,7 +52,7 @@ function SignupForm() {
 				password: password,
 			}
 
-			const accountsURL = 'http://localhost:8000/api/accounts/';
+			const accountsURL = `${process.env.REACT_APP_API_HOST}/api/accounts/`;
 			const fetchConfig = {
 				method: "post",
 				body: JSON.stringify(data),
@@ -140,6 +140,7 @@ function SignupForm() {
 							<div className="form-floating mb-3">
 								<input
 									name="password"
+									placeholder="Password"
 									type={passwordShown ? "text" : "password"}
 									required value={password}
 									className="form-control input-field"
@@ -162,14 +163,13 @@ function SignupForm() {
 								</i>
 								<label htmlFor="confirmPassword">Confirm Password</label>
 							</div>
-							<button className="btn btn-primary">Create</button>
+							<button style={{ backgroundColor: "#464F2E" }} className="btn btn-primary">Create</button>
 						</form>
 						<p className="text-center mt-3">
-                        Already have an Account?
+                        Already have an Account?</p>
                         <Link to="/login" className="join-now-link">
-                        Login!
+                            <p className="text-center mt-3">Login!</p>
                         </Link>
-                    </p>
 					</div>
 				</div>
 			</div>

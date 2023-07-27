@@ -25,42 +25,58 @@ function CampNav() {
     const profileURL = `http://localhost:3000/profile/${account_id}`;
 
     return (
-        <Navbar expand="lg" className="bg-white">
-            <Container fluid>
-            <Navbar.Brand href="/" className="logo">
-                <img src="..src/img/campLogo.jpg" alt="Logo" />
-            </Navbar.Brand>
-            <Navbar.Brand href="/" className="Title">
-                Camp Scout
-            </Navbar.Brand>
+      <Navbar bg="white" data-bs-theme="dark" sticky="top">
+        <Container fluid>
+          <Navbar.Brand href="/" className="logo">
+          </Navbar.Brand>
+          <Navbar.Brand href="/" className="Title">
+            Camp Scout
+          </Navbar.Brand>
 
-            <Navbar.Collapse id="responsive-navbar-nav">
-                <Nav className="justify-content-end flex-grow-1 pe-3">
-                {!token && (
-                    <Nav.Link href="/login">
-                    <Button style={{ backgroundColor: "#464F2E", color: "white" }}>LogIn</Button>
-                    </Nav.Link>
-                )}
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="justify-content-end flex-grow-1 pe-3">
+              {!token && (
+                <Nav.Link href="/login">
+                  <Button
+                    style={{ backgroundColor: "#464F2E", color: "white" }}
+                  >
+                    LogIn
+                  </Button>
+                </Nav.Link>
+              )}
 
-                {token && (
-                    <Nav.Link href="/">
-                    <Button variant="success" onClick={logout}>
-                        LogOut{" "}
-                    </Button>
-                    </Nav.Link>
-                )}
-                {!token && (
-                    <Nav.Link href="/signup">
-                    <Button style={{ backgroundColor: "#464F2E", color: "white" }}>SignUp </Button>
-                    </Nav.Link>
-                )}
-                </Nav>
-                <NavLink href={profileURL} className="profile button">
-                {token && <FaUser style={{color: 'rgb(190, 84, 13)', fontSize: '30px', margin: '10px'}}/>}
-                </NavLink>
-            </Navbar.Collapse>
-            </Container>
-        </Navbar>
+              {token && (
+                <Nav.Link href="/">
+                  <Button
+                    style={{ backgroundColor: "#464F2E", color: "white" }}
+                    variant="success"
+                    onClick={logout}
+                  >
+                    LogOut
+                  </Button>
+                </Nav.Link>
+              )}
+              {!token && (
+                <Nav.Link href="/signup">
+                  <Button
+                    style={{ backgroundColor: "#464F2E", color: "white" }}
+                  >
+                    SignUp
+                  </Button>
+                </Nav.Link>
+              )}
+            </Nav>
+
+            <NavLink href={profileURL} className="profile button">
+              {token && (
+                <FaUser
+                  style={{ color: "#464F2E", fontSize: "30px", margi: "15px" }}
+                />
+              )}
+            </NavLink>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
     );
 }
 

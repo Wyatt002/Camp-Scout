@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useParams, useNavigate } from "react-router-dom";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import styles from "./UserProfile.module.css";
+import { MdLocationPin } from "react-icons/md";
 
 
 function UserProfile() {
@@ -15,7 +17,7 @@ function UserProfile() {
     const navigate = useNavigate();
 
     const fetchProfileData = async () => {
-        const URL = `http://localhost:8000/api/profile/${account_id}`;
+        const URL = `${process.env.REACT_APP_API_HOST}/api/profile/${account_id}`;
         const response = await fetch(URL);
         if (response.ok) {
             const profileData = await response.json();
@@ -24,14 +26,14 @@ function UserProfile() {
         };
         const fetchReviewData = async () => {
         try {
-            const URL = `http://localhost:8000/api/account_reviews?account_id=${account_id}`;
+            const URL = `${process.env.REACT_APP_API_HOST}/api/account_reviews?account_id=${account_id}`;
             const response = await fetch(URL);
             if (response.ok) {
             const reviewData = await response.json();
             const reviewsWithFacilityData = await Promise.all(
                 reviewData.map(async (review) => {
                 const facilityResponse = await fetch(
-                    `http://localhost:8000/api/facility_details?park_code=${review.park_code}&facility_id=${review.facility_id}`
+                    `${process.env.REACT_APP_API_HOST}/api/facility_details?park_code=${review.park_code}&facility_id=${review.facility_id}`
                 );
                 if (facilityResponse.ok) {
                     const facilityData = await facilityResponse.json();
@@ -87,156 +89,172 @@ function UserProfile() {
 
     if (profileData && profileData["account_id"] != null) {
         return (
-            <div className="container">
-                <div id="profile-body" className="row mtb-5 me-4">
-                    <div className="card mb-5">
-                        <div className="card inner-card m-3">
-                            <div className="card-header  d-flex  justify-content-between  align-items-center"
-                                style={{
-                                backgroundImage: `url(${profileData.banner_url})`,
-                                backgroundSize: "cover",
-                                backgroundPosition: "center center",
-                                height: 300,
-                                }}>
-                                {isProfileOwner && (
-                                <button
-                                    className="btn btn-success align-self-end"
-                                    onClick={() => navigate("/profile/edit")}>
-                                    EDIT PROFILE
-                                </button>
-                                )}
-                            </div>
-                        </div>
+          <div className="container">
+            <div id="profile-body" className="row mtb-5 me-4">
+              <div className="card mb-5">
+                <div className="card inner-card m-3">
+                  <div
+                    className="card-header  d-flex  justify-content-between  align-items-center"
+                    style={{
+                      backgroundImage: `url(${profileData.banner_url})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center center",
+                      height: 300,
+                    }}
+                  >
+                    {isProfileOwner && (
+                      <button
+                        className="btn btn-success align-self-end"
+                        style={{ backgroundColor: "#464F2E" }}
+                        onClick={() => navigate("/profile/edit")}
+                      >
+                        EDIT PROFILE
+                      </button>
+                    )}
+                  </div>
+                </div>
 
-                        <div className="card m-3 ">
-                            <div className="d-flex flex-column align-items-center">
-                                <img
-                                src={profileData.avatar}
-                                alt=""
-                                className=" rounded-circle"
-                                style={{ height: "200px", padding: "10px" }} />
-                            <h3 className="text-center" id="title-name">
-                                {`${profileData.first_name} ${profileData.last_name}`}
-                            </h3>
-                            <h5 className="text-center">
-                                {`${profileData.location} `}
-                            </h5>
-                            <div className="card m-3 ">
-                                <div className="text-center">
-                                    <h4>About Me</h4>
-                                    <p className="fw-light"
-                                    style={{ backgroundcolor: "#f8f9fa" }} >
-                                    {profileData.description}
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="card m-3 ">
-                                <div className="text-center">
-                                    <h3>Goals</h3>
-                                    <p className="fw-light"> {profileData.goals}</p>
-                                </div>
-                            </div>
-                            <div className="card m-3 ">
-                                <div className="text-center">
-                                    <h3>Status</h3>
-                                    <p className="fw-light"> {profileData.status} </p>
-                                </div>
-                            </div>
-                        </div>
+                <div className="card m-3 ">
+                  <div className="d-flex flex-column align-items-center">
+                    <img
+                      src={profileData.avatar}
+                      alt=""
+                      className=" rounded-circle"
+                      style={{ height: "200px", padding: "10px" }}
+                    />
+                    <h3 className="text-center" id="title-name">
+                      {`${profileData.first_name} ${profileData.last_name}`}
+                    </h3>
+                    <h5 className="text-center">
+                      {`${profileData.location} `}
+                      <MdLocationPin />
+                    </h5>
+                    <div className="card m-3 ">
+                      <div className="text-center">
+                        <h4>About Me</h4>
+                        <hr />
+                        <p
+                          className="fw-light"
+                          style={{ backgroundcolor: "#f8f9fa" }}
+                        >
+                          {profileData.description}
+                        </p>
+                      </div>
                     </div>
+                    <div className="card m-3 ">
+                      <div className="text-center">
+                        <h3>Goals</h3>
+                        <hr />
+                        <p className="fw-light"> {profileData.goals}</p>
+                      </div>
+                    </div>
+                    <div className="card m-3 ">
+                      <div className="text-center">
+                        <h3>Status</h3>
+                        <hr />
+                        <p className="fw-light"> {profileData.status} </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-                    <div>
-                    <div className="d-flex justify-content-between align-items-center mb-4">
-                        <h2>Activity</h2>
-                    </div>
+                <div>
+                  <div className="d-flex justify-content-between align-items-center mb-4">
+                    <h2>Activity</h2>
+                  </div>
+                  <div className={styles.container}>
                     <div className="card" id="review-activity">
-                        <div className={styles.container}>
-                            {reviewData.length > 0 ? (
-                            <Carousel
-                                responsive={{
-                                superLargeDesktop: {
-                                    breakpoint: { max: 4000, min: 3000 },
-                                    items: 5,
-                                },
-                                desktop: {
-                                    breakpoint: { max: 3000, min: 1024 },
-                                    items: 3,
-                                },
-                                tablet: {
-                                    breakpoint: { max: 1024, min: 464 },
-                                    items: 2,
-                                },
-                                mobile: {
-                                    breakpoint: { max: 464, min: 0 },
-                                    items: 1,
-                                },
-                                }}
-
-                                infinite={true}
-                                autoPlay={true}
-                                autoPlaySpeed={4000}>
-                                {reviewData.map((review) => {
-                                return (
-                                    <div key={review.id} className="review-slide">
-
-
-                                            <div className="card row">
-                                            <div className="card-body text-justify float-left">
-                                                <img
-                                                src={profileData.avatar}
-                                                alt=""
-                                                width="100"
-                                                height="110"
-                                                className="rounded-circle"
-                                                />
-                                            </div>
-                                            <div className="col-10" id="review-post">
-                                                <div className="comment mt-4 text-align-center">
-                                                <h4>
-                                                    {review.first_name}{" "}
-                                                    {review.last_name}
-                                                </h4>
-                                                <h5>{review.facility}</h5>
-                                                <div>{rating(review.rating)}</div>
-                                                <div>{review.review}</div>
-                                                </div>
-                                            </div>
-                                            </div>
-                                        </div>
-                                );
-                            })}
+                      {reviewData.length > 0 ? (
+                        <Carousel
+                          responsive={{
+                            superLargeDesktop: {
+                              breakpoint: { max: 4000, min: 3000 },
+                              items: 5,
+                            },
+                            desktop: {
+                              breakpoint: { max: 3000, min: 1024 },
+                              items: 3,
+                            },
+                            tablet: {
+                              breakpoint: { max: 1024, min: 464 },
+                              items: 2,
+                            },
+                            mobile: {
+                              breakpoint: { max: 464, min: 0 },
+                              items: 1,
+                            },
+                          }}
+                          infinite={true}
+                          autoPlay={true}
+                          autoPlaySpeed={4000}
+                        >
+                          {reviewData.map((review) => {
+                            return (
+                              <div key={review.id} className="review-slide">
+                                <div className="card">
+                                  <div className="card-body">
+                                    <img
+                                      src={profileData.avatar}
+                                      alt=""
+                                      width="100"
+                                      height="110"
+                                      className="rounded-circle"
+                                    />
+                                  </div>
+                                  <div
+                                    className="text-center mt-3"
+                                    id="review-post"
+                                  >
+                                    <div className="card-body">
+                                      <h4>
+                                        {review.first_name}
+                                        {review.last_name}
+                                      </h4>
+                                      <Link
+                                        to={`/facility/${review.park_code}/${review.facility_id}`}
+                                      >
+                                        <h5>{review.facility}</h5>
+                                      </Link>
+                                      <div>{rating(review.rating)}</div>
+                                      <div>{review.review}</div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            );
+                          })}
                         </Carousel>
-                        ) : (
+                      ) : (
                         <div className="text-center mt-4">
-                            <p>No Activity</p>
+                          <p>No Activity</p>
                         </div>
-                        )}
-                        </div>
+                      )}
                     </div>
+                  </div>
 
-                    <div className="d-flex justify-content-between align-items-center mb-4">
-                        <p className="lead fw-normal mb-0">Recent photos</p>
+                  <div className="d-flex justify-content-between align-items-center mb-4">
+                    <p className="lead fw-normal  mt-4">Popular photos</p>
+                  </div>
+                  <div className="row g-2">
+                    <div className="col mb-2">
+                      <img
+                        src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(112).webp"
+                        alt=""
+                        className="w-100 rounded-3"
+                      />
                     </div>
-                    <div className="row g-2">
-                        <div className="col mb-2">
-                        <img
-                            src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(112).webp"
-                            alt=""
-                            className="w-100 rounded-3"
-                        />
-                        </div>
-                        <div className="col mb-2">
-                        <img
-                            src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(107).webp"
-                            alt=""
-                            className="w-100 rounded-3"
-                        />
-                        </div>
+                    <div className="col mb-2">
+                      <img
+                        src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(107).webp"
+                        alt=""
+                        className="w-100 rounded-3"
+                      />
                     </div>
-                    </div>
+                  </div>
                 </div>
-                </div>
+              </div>
             </div>
+          </div>
         );
     }
 }

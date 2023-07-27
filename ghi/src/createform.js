@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import { useNavigate } from "react-router-dom";
+import styles from './createForm.module.css'
 
 function CreateForm() {
   const { token } = useToken();
@@ -87,6 +88,7 @@ function CreateForm() {
   }, []);
 
   return (
+    <div className={styles.backgroundImage}>
     <div className="row">
       <form onSubmit={handleSubmit} className="row g-3">
         <div className="offset-3 col-6">
@@ -153,6 +155,7 @@ function CreateForm() {
           </div>
         </div>
       </form>
+    </div>
     </div>
   );
 }

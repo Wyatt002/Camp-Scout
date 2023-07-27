@@ -30,13 +30,13 @@ const topParks = [
                     <h1 className={styles.adventurousText} style= {{color: 'white'}}>Camp Scout</h1>
                 </div>
                 <div className={styles.helloContainer }>
-                    <h1 className={styles.helloText} style= {{color: '#333121'}}>Hello!</h1>
+                    <h1 style= {{color: '#333121'}}>Hello!</h1>
                     <p className={styles.para} style= {{color: '#333121'}}>Welcome to Camp Scout, your guide to exploring national parks in your area.</p>
                     <p className={styles.para} style= {{color: '#333121'}}>Begin your search and start your adventure!</p>
-                    <div>
-                <FacilitiesPage />
-            </div>
                 </div>
+            </div>
+            <div className={styles.searchContainer}>
+                <FacilitiesPage />
             </div>
             <div>
                 <Description />

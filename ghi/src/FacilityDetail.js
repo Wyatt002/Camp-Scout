@@ -4,6 +4,9 @@ import useToken from "@galvanize-inc/jwtdown-for-react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import styles from "./FacilityDetail.module.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
+import AnchorLink from "react-anchor-link-smooth-scroll";
 
 function Weather(facility) {
     const [active, setActive] = useState(false);
@@ -35,9 +38,9 @@ function Weather(facility) {
         const forecastDate = new Date(prop.date);
         return (
             <div className="col" key={prop.date}>
-                <div className="card">
+                <div className={styles.weatherCard}>
                     <div className="card-body">
-                        <p className="card-text">{ dayArray[forecastDate.getDay()] }</p>
+                        <p className="card-text"><strong>{ dayArray[forecastDate.getDay()] }</strong></p>
                         <img src={`https://openweathermap.org/img/w/${prop.weather_icon}.png`} />
                         <p className="card-text">Weather - { prop.weather } ({ prop.weather_description })</p>
                         <p className="card-text">Wind - { prop.wind }MPH</p>
@@ -52,9 +55,9 @@ function Weather(facility) {
     if (active === false) {
         return (
             <div className="card-body">
-                <h3>Weather Overview:</h3>
+                <h3>Weather Overview</h3>
                 <p>{ prop.weather_overview }</p>
-                <button onClick={getWeather}>Get the weather!</button>
+                <button className={styles.getWeather} onClick={getWeather}>Get the weather!</button>
             </div>
         );
     } else if (active === true) {
@@ -129,7 +132,7 @@ function Reviews() {
         }, []);
 
     return (
-        <div className="card-body">
+        <div className="card-body" id='Reviews'>
             <h3>Reviews:</h3>
             <Carousel
                 responsive={responsive}
@@ -151,7 +154,7 @@ function Reviews() {
             })}
             </Carousel>
             {token && (
-                <button onClick={SubmitReview}>Leave a review!</button>
+                <button onClick={SubmitReview} className={styles.leaveReview}>Leave a review!</button>
             )}
         </div>
     );
@@ -216,15 +219,15 @@ function FacilityDetail() {
     const { parkCode, facilityId } = useParams();
     const responsive = {
     superLargeDesktop: {
-        breakpoint: { max: 4000, min: 3000 },
-        items: 1,
+        breakpoint: { max: 4000, min: 1200 },
+        items: 3,
     },
     desktop: {
-        breakpoint: { max: 3000, min: 1024 },
+        breakpoint: { max: 1200, min: 768 },
         items: 1,
     },
     tablet: {
-        breakpoint: { max: 1024, min: 464 },
+        breakpoint: { max: 770, min: 464 },
         items: 1,
     },
     mobile: {
@@ -242,27 +245,54 @@ function FacilityDetail() {
         }
     }
 
+
+
     useEffect(() => {
         fetchFacility();
         }, []);
 
     if (facility["facility_id"] != null) {
         return (
-            <div className="row">
-                <div className="offset-3 col-6">
-                    <div className="shadow p-1 mt-1">
-                        <div className="card">
-                            <div className="card-body">
+            <div>
+                <div>
+                    <div>
+                        <div>
+                            <div>
+                                <div className={styles.facilityDetailContainer}>
                                 <h1>{facility.name}</h1>
-                                <p>{facility.description}</p>
+                                </div>
+                                <div className={styles.address}>
+                                <p style={{ fontWeight: 'bold' }} >Address</p>
+                                {facility.addresses.map(address => {
+                                    return (
+                                        <p key={address.line1}>
+                                            { address.city }, { address.stateCode }, { address.postalCode } - { address.line1 }
+                                        </p>
+                                    )
+                                })}
                             </div>
-                            <div className={styles.container}>
+                            <div className={styles.contactInfo}>
+                                <p style={{ fontWeight: 'bold' }} >Contact Info</p>
+                                {facility.contacts.emailAddresses.map(email =>
+                                    <p key={email.emailAddress}>
+                                        <FontAwesomeIcon icon={faEnvelope} color="#ba7000"/> {email.emailAddress} </p>
+                                )}
+                                {facility.contacts.phoneNumbers.map(phone =>
+                                    <p key={phone.phoneNumber}>
+                                        <FontAwesomeIcon icon={faPhone} color="#ba7000"/> {phone.phoneNumber} </p>
+                                )}
+                            </div>
+                            </div>
+                            </div>
+                            <div className={styles.reviewsScroll}>
+                                    <AnchorLink href='#Reviews'><a><strong>CampSites Reviews</strong></a></AnchorLink>
+                                    </div>
+                                <div className={styles.container}>
                             <Carousel
                                 responsive={responsive}
                                 infinite={true}
                                 autoPlay={true}
-                                autoPlaySpeed={4000}
-
+                                autoPlaySpeed={6000}
                             >
                                 {facility.images.map((image) => {
                                     return (
@@ -271,36 +301,52 @@ function FacilityDetail() {
                                 })}
                             </Carousel>
                             </div>
-                            <div className="card-body">
-                                <h3>Campsites:</h3>
-                                <p>Total Campsites - { facility.campsites.totalSites }</p>
-                                <p>Electrical Hookups - { facility.campsites.electricalHookups }</p>
-                                <p>Group - { facility.campsites.group }</p>
-                                <p>Horse - { facility.campsites.horse }</p>
-                                <p>Other - { facility.campsites.other }</p>
-                                <p>RV Only - { facility.campsites.rvOnly }</p>
-                                <p>Tent Only - { facility.campsites.tentOnly }</p>
-                                <p>Walk Boat To - { facility.campsites.walkBoatTo }</p>
+                            <hr />
+                            <div className={styles.mainDetailContainer}>
+                                <div className={styles.about}>
+                            <h3>About</h3>
+                                <p>{facility.description}</p>
+                                </div>
+                            <div className={styles.detailContainer}>
+                            <div className={styles.section}>
+                                <h3>Campsites</h3>
+                                <p><strong>Total Campsites</strong> - { facility.campsites.totalSites }</p>
+                                <p><strong>Electrical Hookups</strong> - { facility.campsites.electricalHookups }</p>
+                                <p><strong>Group</strong> - { facility.campsites.group }</p>
+                                <p><strong>Horse</strong> - { facility.campsites.horse }</p>
+                                <p><strong>Other</strong> - { facility.campsites.other }</p>
+                                <p><strong>RV Only</strong> - { facility.campsites.rvOnly }</p>
+                                <p><strong>Tent Only</strong> - { facility.campsites.tentOnly }</p>
+                                <p><strong>Walk Boat To</strong> - { facility.campsites.walkBoatTo }</p>
                             </div>
-                            <div className="card-body">
-                                <h3>Amenities:</h3>
-                                <p>Amphitheater - { facility.amenities.amphitheater }</p>
-                                <p>Camp Store - { facility.amenities.campStore }</p>
-                                <p>Cell Reception - { facility.amenities.cellPhoneReception }</p>
-                                <p>Dump Station - { facility.amenities.dumpStation }</p>
-                                <p>Firewood - { facility.amenities.firewoodForSale }</p>
-                                <p>Food Storage - { facility.amenities.foodStorageLockers }</p>
-                                <p>Ice - { facility.amenities.iceAvailableForSale }</p>
-                                <p>Internet - { facility.amenities.internetConnectivity }</p>
-                                <p>Laundry - { facility.amenities.laundry }</p>
-                                <p>Potable Water - { facility.amenities.potableWater["0"] }</p>
-                                <p>Showers - { facility.amenities.showers["0"] }</p>
-                                <p>Staff on Site - { facility.amenities.staffOrVolunteerHostOnsite }</p>
-                                <p>Toilets - { facility.amenities.toilets["0"] }</p>
-                                <p>Trash Collection Point - { facility.amenities.trashRecyclingCollection }</p>
+                            <div className={styles.section}>
+                                <h3>Amenities</h3>
+                                <p><strong>Amphitheater</strong> - { facility.amenities.amphitheater }</p>
+                                <p><strong>Camp Store</strong> - { facility.amenities.campStore }</p>
+                                <p><strong>Cell Reception</strong> - { facility.amenities.cellPhoneReception }</p>
+                                <p><strong>Dump Station</strong> - { facility.amenities.dumpStation }</p>
+                                <p><strong>Firewood</strong> - { facility.amenities.firewoodForSale }</p>
+                                <p><strong>Food Storage</strong> - { facility.amenities.foodStorageLockers }</p>
+                                <p><strong>Ice</strong> - { facility.amenities.iceAvailableForSale }</p>
+                                <p><strong>Internet</strong> - { facility.amenities.internetConnectivity }</p>
+                                <p><strong>Laundry</strong> - { facility.amenities.laundry }</p>
+                                <p><strong>Potable Water</strong> - { facility.amenities.potableWater["0"] }</p>
+                                <p><strong>Showers</strong> - { facility.amenities.showers["0"] }</p>
+                                <p><strong>Staff on Site</strong> - { facility.amenities.staffOrVolunteerHostOnsite }</p>
+                                <p><strong>Toilets</strong> - { facility.amenities.toilets["0"] }</p>
+                                <p><strong>Trash Collection Point</strong> - { facility.amenities.trashRecyclingCollection }</p>
                             </div>
-                            <div className="card-body">
-                                <h3>Accessibility:</h3>
+                            </div>
+                            </div>
+                            <hr />
+                            <div className={styles.weatherOverview}>
+                            <Weather facility={facility} />
+                            </div>
+                            <hr />
+                            <div className={styles.accesibility}>
+                                <h3>Accessibility</h3>
+                                </div>
+                            <div className={styles.accesibility}>
                                 <div className={styles.individual}>
                                 {facility.accessibility.accessRoads.map(road => {
                                     return (
@@ -314,72 +360,41 @@ function FacilityDetail() {
                                 <p>{ facility.accessibility.adaInfo }</p>
                                 </div>
                                 <div className={styles.individual}>
-                                <p>Cell Phone Info - { facility.accessibility.cellPhoneInfo }</p>
+                                <p><strong>Cell Phone Info</strong> - { facility.accessibility.cellPhoneInfo }</p>
                                 {facility.accessibility.classifications.map((classification) => (
-                                <p key={Math.random()}>Classifcation - {classification}</p>
+                                <p key={Math.random()}><strong>Classifcation</strong> - {classification}</p>
                                 ))}
                                 </div>
                                 <div className={styles.individual}>
-                                <p>Fire Stove Policy - { facility.accessibility.fireStovePolicy }</p>
+                                <p><strong>Fire Stove Policy</strong> - { facility.accessibility.fireStovePolicy }</p>
                                 </div>
                                 <div className={styles.individual}>
-                                <p>Internet Info - { facility.accessibility.internetInfo }</p>
+                                <p><strong>Internet Info</strong> - { facility.accessibility.internetInfo }</p>
                                 </div>
                                 <div className={styles.individual}>
                                 <p>
-                                    RV Info - { facility.accessibility.rvInfo }
-                                    , Allowed - { facility.accessibility.rvAllowed }
-                                    , Max Length - { facility.accessibility.rvMaxLength }
+                                    <strong>RV Info</strong> - { facility.accessibility.rvInfo }
+                                    , <strong>Allowed</strong> - { facility.accessibility.rvAllowed }
+                                    , <strong>Max Length</strong> - { facility.accessibility.rvMaxLength }
                                 </p>
                                 </div>
                                 <div className={styles.individual}>
                                 <p>
-                                    Trailer Info - { facility.accessibility.trailerInfo }
-                                    , Max Length - { facility.accessibility.trailerMaxLength }
+                                    <strong>Trailer Info</strong> - { facility.accessibility.trailerInfo }
+                                    , <strong>Max Length</strong> - { facility.accessibility.trailerMaxLength }
                                 </p>
                                 </div>
                                 <div className={styles.individual}>
-                                <p>Wheelchair Access - { facility.accessibility.wheelchairAccess }</p>
+                                <p><strong>Wheelchair Access</strong> - { facility.accessibility.wheelchairAccess }</p>
                                 </div>
                                 <div className={styles.individual}>
-                                <p>Additional Info - { facility.accessibility.additionalInfo }</p>
+                                <p><strong>Additional Info</strong> - { facility.accessibility.additionalInfo }</p>
                                 </div>
                             </div>
                             <OperatingHours facility={facility} />
-                            <div className="card-body">
-                                <h3>Addresses: </h3>
-                                {facility.addresses.map(address => {
-                                    return (
-                                        <p key={address.line1}>
-                                            { address.city }, { address.stateCode }, { address.postalCode } - { address.line1 }
-                                        </p>
-                                    )
-                                })}
-                            </div>
-                            <div className="card-body">
-                                <h3>Contacts:</h3>
-                                <p> Emails:</p>
-                                {facility.contacts.emailAddresses.map(email => {
-                                    return (
-                                        <p key={email.emailAddress}>
-                                            { email.emailAddress }
-                                        </p>
-                                    )
-                                })}
-                            </div>
-                            <div className="card-body">
-                                <p>Phone Numbers:</p>
-                                {facility.contacts.phoneNumbers.map(phone => {
-                                    return (
-                                        <p key={phone.phoneNumber}>
-                                            { phone.phoneNumber }
-                                        </p>
-                                    )
-                                })}
-                            </div>
+                            <div className={styles.reviews}>
                             <Reviews/>
-                            <Weather facility={facility} />
-                        </div>
+                            </div>
                     </div>
                 </div>
             </div>

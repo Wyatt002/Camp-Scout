@@ -28,6 +28,7 @@
     border-radius: 20px;
     position: relative;
     top: -150px;
+    padding-bottom: 80px;
 }
 
 .boldText {
@@ -49,20 +50,6 @@ a {
     text-decoration: none;
     color: white;
 }
-
-/* .signupButton {
-    margin-left: 20px;
-    background-color: #464F2E;
-    border-radius: 20px;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
-.signupButton:hover {
-    background-color: #555f39;
-} */
 
 .smallCard {
     max-width: 400px;
@@ -98,9 +85,19 @@ a {
 
 hr {
     width: 75%;
-    border: 1px solid #000;
+    border: 1px solid #252525;
     margin-top: 20px;
     margin-bottom: 20px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.searchContainer {
+    width: 50%;
+    padding: 20px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    top: -260px;
+    z-index: 1;
 }

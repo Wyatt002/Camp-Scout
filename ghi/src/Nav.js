@@ -1,9 +1,8 @@
-
 import { Button, Container, Form, Nav, Navbar, NavLink } from "react-bootstrap";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import { FaUser } from "react-icons/fa";
-import { PiCampfireBold } from "react-icons/pi";
 import React, { useState, useEffect } from "react";
+import campLogo from '../src/img/campLogo.jpg';
 
 function CampNav() {
     const { logout, token } = useToken();
@@ -29,7 +28,7 @@ function CampNav() {
         <Navbar expand="lg" className="bg-white">
             <Container fluid>
             <Navbar.Brand href="/" className="logo">
-                <PiCampfireBold style={{color: 'rgb(190, 84, 13)', fontSize: '40px'}}/>
+                <img src="..src/img/campLogo.jpg" alt="Logo" />
             </Navbar.Brand>
             <Navbar.Brand href="/" className="Title">
                 Camp Scout
@@ -56,16 +55,6 @@ function CampNav() {
                     </Nav.Link>
                 )}
                 </Nav>
-
-                <Form className="d-flex">
-                <Form.Control
-                    type="search"
-                    placeholder="Search"
-                    className="me-2"
-                    aria-label="Search"
-                />
-                <Button variant="success">Search</Button>
-                </Form>
                 <NavLink href={profileURL} className="profile button">
                 {token && <FaUser style={{color: 'rgb(190, 84, 13)', fontSize: '30px', margin: '10px'}}/>}
                 </NavLink>

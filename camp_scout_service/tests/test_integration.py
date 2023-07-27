@@ -10,7 +10,10 @@ def test_get_weather_from_facilities():
     data = response.json()
     response = client.get(
         "/api/facility_details",
-        params={"facility_id": data["1"]["facility_id"]},
+        params={
+            "park_code": data["1"]["park_code"],
+            "facility_id": data["1"]["facility_id"],
+        },
     )
     assert response.status_code == 200
     data = response.json()

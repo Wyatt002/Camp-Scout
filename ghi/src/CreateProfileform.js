@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import { useNavigate } from "react-router-dom";
 
-function EditForm() {
+function CreateProfileForm() {
   const { token } = useToken();
   const [accountData, setAccountData] = useState(null);
   const { fetchWithCookie } = useToken();
@@ -53,8 +53,8 @@ function EditForm() {
     console.log(data);
 
     try {
-      if (!accountData) {
-        const CreateProfileURL = "http://localhost:8000/api/profile";
+      if (accountData) {
+        const CreateProfileURL = `${process.env.REACT_APP_API_HOST}/api/profile`;
         const fetchConfig = {
           method: "POST",
           body: JSON.stringify(data),
@@ -77,28 +77,9 @@ function EditForm() {
         } else {
           console.error("Failed to create profile:", response.statusText);
         }
-      } else {
-        const updateProfileURL = `http://localhost:8000/api/profile/${accountData.id}`;
-        const fetchConfig = {
-          method: "PUT",
-          body: JSON.stringify(data),
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        };
-        const response = await fetch(updateProfileURL, fetchConfig);
-        console.log(response);
-        if (response.ok) {
-          console.log("Profile updated successfully!");
-          console.log(data);
-          console.log(response);
-        } else {
-          console.error("Failed to update profile:", response.statusText);
-        }
       }
     } catch (error) {
-      console.error("Error updating/creating profile:", error);
+      console.error("Error creating profile:", error);
     }
   };
   useEffect(() => {
@@ -109,10 +90,8 @@ function EditForm() {
     <div className="row">
       <form onSubmit={handleSubmit} className="row g-3">
         <div className="offset-3 col-6">
-          <div className="shadow p-4 mt-4">
-            <h1>
-              {`${first_name}`} {`${last_name}`}'s Profile
-            </h1>
+          <div className="shadow p-4 mt-4" style={{ background: "#ffffff" }}>
+            <h1>Your Profile</h1>
 
             <label className="form-label">Location:</label>
             <input
@@ -138,7 +117,7 @@ function EditForm() {
               onChange={(e) => setBannerImage(e.target.value)}
             />
 
-            <label className="form-label">description:</label>
+            <label className="form-label">Description:</label>
             <textarea
               value={description}
               type="text-box"
@@ -160,15 +139,14 @@ function EditForm() {
               className="form-control input-field"
               onChange={(e) => setStatus(e.target.value)}
             />
-
-            <div>
-              <input
-                className="btn btn-primary"
+            <input
+                className="btn btn-primary mb-3"
+                style={{ backgroundColor: "#464F2E" }}
                 required
                 type="submit"
                 value="Finish"
-              />
-            </div>
+            />
+
           </div>
         </div>
       </form>
@@ -176,24 +154,4 @@ function EditForm() {
   );
 }
 
-export default EditForm;
-else {
-        const updateProfileURL = `http://localhost:8000/api/profile/${accountData.id}`;
-        const fetchConfig = {
-          method: "PUT",
-          body: JSON.stringify(data),
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        };
-        const response = await fetch(updateProfileURL, fetchConfig);
-        console.log(response);
-        if (response.ok) {
-          console.log("Profile updated successfully!");
-          console.log(data);
-          console.log(response);
-        } else {
-          console.error("Failed to update profile:", response.statusText);
-        }
-      }
+export default CreateProfileForm;

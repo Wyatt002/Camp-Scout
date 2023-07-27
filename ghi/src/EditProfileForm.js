@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import { useNavigate } from "react-router-dom";
 
-function CreateForm() {
+function EditProfileForm() {
   const { token } = useToken();
   const [accountData, setAccountData] = useState(null);
   const { fetchWithCookie } = useToken();
@@ -21,16 +21,10 @@ function CreateForm() {
       const data = await fetchWithCookie(
         `${process.env.REACT_APP_API_HOST}/token`
       );
-      if (data && data.account) {
+      if (data) {
         setAccountData(data.account);
         setFirstName(data.account.first_name || "");
         setLastName(data.account.last_name || "");
-        setAvatar(data.account.avatar || "");
-        setBannerImage(data.account.banner_url || "");
-        setDescription(data.account.description || "");
-        setGoals(data.account.goals || "");
-        setStatus(data.account.status || "");
-        setLocation(data.account.location || "");
       }
     } catch (error) {
       console.error("Error fetching account data:", error);
@@ -40,46 +34,41 @@ function CreateForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
-      first_name: first_name,
-      last_name: last_name,
       description: description,
       goals: goals,
       status: status,
       location: location,
       avatar: avatar,
       banner_url: banner_url,
-      account_id: accountData ? accountData.id : null,
     };
     console.log(data);
 
     try {
-      if (accountData) {
-        const CreateProfileURL = `${process.env.REACT_APP_API_HOST}/api/profile`;
-        const fetchConfig = {
-          method: "POST",
-          body: JSON.stringify(data),
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        };
-        const response = await fetch(CreateProfileURL, fetchConfig);
-        console.log(response);
-        if (response.ok) {
-          console.log("Profile created successfully!");
-          setAvatar("");
-          setBannerImage("");
-          setDescription("");
-          setGoals("");
-          setStatus("");
-          setLocation("");
-          navigate("/");
-        } else {
-          console.error("Failed to create profile:", response.statusText);
-        }
+      const updateProfileURL = `${process.env.REACT_APP_API_HOST}/api/profile/${accountData.id}`;
+      const fetchConfig = {
+        method: "PUT",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      const response = await fetch(updateProfileURL, fetchConfig);
+      console.log(response);
+      if (response.ok) {
+        console.log("Profile updated successfully!");
+        setDescription("");
+        setGoals("");
+        setStatus("");
+        setLocation("");
+        setAvatar("");
+        setBannerImage("");
+        navigate(`/profile/${accountData.id}`);
+      } else {
+        console.error("2 Failed to update profile:", response.statusText);
       }
     } catch (error) {
-      console.error("Error creating profile:", error);
+      console.error("1 Error updating:", error);
     }
   };
   useEffect(() => {
@@ -90,10 +79,11 @@ function CreateForm() {
     <div className="row">
       <form onSubmit={handleSubmit} className="row g-3">
         <div className="offset-3 col-6">
-          <div className="shadow p-4 mt-4"style={{ background: "#ffffff" }}>
+          <div className="shadow p-4 mt-4" style={{ background: "#ffffff" }}>
             <h1>
-              Your Profile
+              {`${first_name}`} {`${last_name}`}'s Profile
             </h1>
+            <p> Enter All Fields To Update Your Profile!</p>
 
             <label className="form-label">Location:</label>
             <input
@@ -142,12 +132,13 @@ function CreateForm() {
               onChange={(e) => setStatus(e.target.value)}
             />
 
-            <div>
+            <div className="d-flex justify-content-center">
               <input
                 className="btn btn-primary"
                 required
                 type="submit"
                 value="Finish"
+                style={{ backgroundColor: "#464F2E" }}
               />
             </div>
           </div>
@@ -157,4 +148,4 @@ function CreateForm() {
   );
 }
 
-export default CreateForm;
+export default EditProfileForm;

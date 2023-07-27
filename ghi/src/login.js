@@ -20,7 +20,6 @@ const LoginForm = () => {
         if (ourToken === null) {
             setIsError(true);
             setErrorMessage("email/password was entered incorrectly");
-            setEmail("");
             setPassword("");
             }
     };
@@ -71,6 +70,7 @@ const LoginForm = () => {
                                     className="btn btn-primary"
                                     required type="submit"
                                     value="Login"
+                                    style={{backgroundColor: "#464F2E"}}
                                 />
                             </div>
                         </form>

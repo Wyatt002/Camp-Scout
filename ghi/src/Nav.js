@@ -27,10 +27,17 @@ function CampNav() {
     return (
       <Navbar bg="white" data-bs-theme="dark" sticky="top">
         <Container fluid>
-          <Navbar.Brand href="/" className="logo">
-          </Navbar.Brand>
+          <Navbar.Brand href="/">
+            <img
+                src={campLogo}
+                alt="Your Alt Text"
+                width="75px"
+                height="45px"
+                className="d-inline-block align-top"
+            />{' '}
+            </Navbar.Brand>
           <Navbar.Brand href="/" className="Title">
-            Camp Scout
+            Home
           </Navbar.Brand>
 
           <Navbar.Collapse id="responsive-navbar-nav">

@@ -84,92 +84,94 @@ function SignupForm() {
     };
 
     return (
-		<div className="Signup-Container">
-			<div className="row">
-				<div className="offset-3 col-6">
-					<div className="shadow p-4 mt-4"style={{ background: "#ffffff" }}>
-						<h1>Sign Up! </h1>
-						<div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-							{showProfileButton && (
-								<button className="btn btn-primary mt-3" onClick={() => navigate("/profile")}>
-									Create Your Profile!
-								</button>
-							)}
-							{success && <p className="text-success">Account created successfully!</p>}
-						</div>
-						<form onSubmit={handleSubmit} id="sign-up-form">
-							<div className="form-floating mb-3">
-								<input
-									onChange={handleFirstNameChange}
-									placeholder="First Name"
-									required
-									type="text"
-									value={firstName}
-									name="firstName"
-									id="firstName"
-									className="form-control"
-								/>
-								<label htmlFor="first_name">First Name</label>
+		<div className={styles.signupBackground}>
+			<div className="Signup-Container">
+				<div className="row">
+					<div className="offset-3 col-6">
+						<div className="shadow p-4 mt-4"style={{ background: "#ffffff" }}>
+							<h1>Sign Up! </h1>
+							<div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+								{showProfileButton && (
+									<button className="btn btn-primary mt-3" onClick={() => navigate("/profile")}>
+										Create Your Profile!
+									</button>
+								)}
+								{success && <p className="text-success">Account created successfully!</p>}
 							</div>
-							<div className="form-floating mb-3">
-								<input
-									onChange={handleLastNameChange}
-									placeholder="Last Name"
-									required
-									value={lastName}
-									type="text"
-									name="lastName"
-									id="lastName"
-									className="form-control"
-								/>
-								<label htmlFor="last_name">Last Name</label>
-							</div>
-							<div className="form-floating mb-3">
-								<input
-									onChange={handleEmailChange}
-									placeholder="Email"
-									required
-									value={email}
-									type="text"
-									name="email"
-									id="email"
-									className="form-control"
-								/>
-								<label htmlFor="email">Email</label>
-							</div>
-							<div className="form-floating mb-3">
-								<input
-									name="password"
-									placeholder="Password"
-									type={passwordShown ? "text" : "password"}
-									required value={password}
-									className="form-control input-field"
-									onChange={(e) => setPassword(e.target.value)}
+							<form onSubmit={handleSubmit} id="sign-up-form">
+								<div className="form-floating mb-3">
+									<input
+										onChange={handleFirstNameChange}
+										placeholder="First Name"
+										required
+										type="text"
+										value={firstName}
+										name="firstName"
+										id="firstName"
+										className="form-control"
 									/>
-								<label htmlFor="password">Password</label>
-							</div>
-							<div className="form-floating mb-3">
-								<input
-									onChange={handleConfirmPassword}
-									placeholder="Confirm Password"
-									required value={confirmPassword}
-									type={passwordShown ? "text" : "password"}
-									name="confirmPassword"
-									id="confirmPassword"
-									className="form-control"
-								/>
-								<i onClick={togglePasswordVisiblity} className="password-icon">
-									{passwordShown ? <FiEyeOff /> : <FiEye />} Show password
-								</i>
-								<label htmlFor="confirmPassword">Confirm Password</label>
-							</div>
-							<button style={{ backgroundColor: "#464F2E" }} className="btn btn-primary">Create</button>
-						</form>
-						<p className="text-center mt-3">
-                        Already have an Account?</p>
-                        <Link to="/login" className="join-now-link">
-                            <p className="text-center mt-3">Login!</p>
-                        </Link>
+									<label htmlFor="first_name">First Name</label>
+								</div>
+								<div className="form-floating mb-3">
+									<input
+										onChange={handleLastNameChange}
+										placeholder="Last Name"
+										required
+										value={lastName}
+										type="text"
+										name="lastName"
+										id="lastName"
+										className="form-control"
+									/>
+									<label htmlFor="last_name">Last Name</label>
+								</div>
+								<div className="form-floating mb-3">
+									<input
+										onChange={handleEmailChange}
+										placeholder="Email"
+										required
+										value={email}
+										type="text"
+										name="email"
+										id="email"
+										className="form-control"
+									/>
+									<label htmlFor="email">Email</label>
+								</div>
+								<div className="form-floating mb-3">
+									<input
+										name="password"
+										placeholder="Password"
+										type={passwordShown ? "text" : "password"}
+										required value={password}
+										className="form-control input-field"
+										onChange={(e) => setPassword(e.target.value)}
+										/>
+									<label htmlFor="password">Password</label>
+								</div>
+								<div className="form-floating mb-3">
+									<input
+										onChange={handleConfirmPassword}
+										placeholder="Confirm Password"
+										required value={confirmPassword}
+										type={passwordShown ? "text" : "password"}
+										name="confirmPassword"
+										id="confirmPassword"
+										className="form-control"
+									/>
+									<i onClick={togglePasswordVisiblity} className="password-icon">
+										{passwordShown ? <FiEyeOff /> : <FiEye />} Show password
+									</i>
+									<label htmlFor="confirmPassword">Confirm Password</label>
+								</div>
+								<button style={{ backgroundColor: "#464F2E" }} className="btn btn-primary">Create</button>
+							</form>
+							<p className="text-center mt-3">
+							Already have an Account?</p>
+							<Link to="/login" className="join-now-link">
+								<p className="text-center mt-3">Login!</p>
+							</Link>
+						</div>
 					</div>
 				</div>
 			</div>

@@ -168,9 +168,8 @@ a:hover {
 }
 
 .weatherCard {
-  border: 3px solid rgb(131, 153, 117);
-  color: rgb(255, 255, 255);
-  background: linear-gradient(to right, rgb(180, 204, 164), rgb(109, 128, 96));
+  color: rgb(17, 17, 17);
+  background-color: rgb(240, 238, 238);
   border-radius: 10px;
   height: 40vh;
 }

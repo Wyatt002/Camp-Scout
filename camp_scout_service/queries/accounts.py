@@ -29,6 +29,7 @@ class AccountOut(BaseModel):
     last_name: str
 
 
+
 class AccountOutWithPassword(AccountOut):
     hashed_password: str
 

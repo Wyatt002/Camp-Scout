@@ -5,6 +5,7 @@ from typing import List, Optional
 
 class ReviewIn(BaseModel):
     facility_id: str
+    park_code: str
     review: str
     rating: int
     first_name: str
@@ -15,6 +16,7 @@ class ReviewIn(BaseModel):
 class ReviewOut(BaseModel):
     id: int
     facility_id: str
+    park_code: str
     review: str
     rating: int
     first_name: str
@@ -29,11 +31,12 @@ class ReviewQueries:
             review = ReviewOut(
                 id=record[0],
                 facility_id=record[1],
-                review=record[2],
-                rating=record[3],
-                first_name=record[4],
-                last_name=record[5],
-                account_id=record[6],
+                park_code=record[2],
+                review=record[3],
+                rating=record[4],
+                first_name=record[5],
+                last_name=record[6],
+                account_id=record[7],
             )
             data.append(review)
         return data
@@ -43,7 +46,7 @@ class ReviewQueries:
             with conn.cursor() as db:
                 data = db.execute(
                     """
-                    SELECT id, facility_id, review, rating, first_name, last_name, account_id
+                    SELECT id, facility_id, park_code, review, rating, first_name, last_name, account_id
                     FROM review ORDER BY id;
                     """,
                 )
@@ -55,7 +58,7 @@ class ReviewQueries:
             with conn.cursor() as db:
                 data = db.execute(
                     """
-                    SELECT id, facility_id, review, rating, first_name, last_name, account_id
+                    SELECT id, facility_id, park_code, review, rating, first_name, last_name, account_id
                     FROM review WHERE facility_id = %s ORDER BY id;
                     """,
                     [facility_id],
@@ -68,7 +71,7 @@ class ReviewQueries:
             with conn.cursor() as db:
                 data = db.execute(
                     """
-                    SELECT id, facility_id, review, rating, first_name, last_name, account_id
+                    SELECT id, facility_id, park_code, review, rating, first_name, last_name, account_id
                     FROM review WHERE account_id = %s ORDER BY id;
                     """,
                     [account_id],
@@ -83,6 +86,7 @@ class ReviewQueries:
                     """
                     INSERT INTO review (
                         facility_id,
+                        park_code,
                         review,
                         rating,
                         first_name,
@@ -90,11 +94,12 @@ class ReviewQueries:
                         account_id
 
                     )
-                    VALUES (%s, %s, %s, %s, %s, %s)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
                     RETURNING id;
                     """,
                     [
                         review.facility_id,
+                        review.park_code,
                         review.review,
                         review.rating,
                         review.first_name,

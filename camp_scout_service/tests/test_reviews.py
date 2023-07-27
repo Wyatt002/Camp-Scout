@@ -14,6 +14,7 @@ class ReviewQueriesMock:
             ReviewOut(
                 id=1,
                 facility_id="saij3289",
+                park_code="bril",
                 review="Nice place!",
                 rating=4,
                 first_name="terry",
@@ -30,6 +31,7 @@ def test_get_all_reviews():
         {
             "id": 1,
             "facility_id": "saij3289",
+            "park_code": "bril",
             "review": "Nice place!",
             "rating": 4,
             "first_name": "terry",
@@ -76,6 +78,7 @@ def test_create_review():
 
     json = {
         "facility_id": "saij3289",
+        "park_code": "bril",
         "review": "Nice place!",
         "rating": 4,
         "first_name": "terry",
@@ -85,6 +88,7 @@ def test_create_review():
     expected = {
         "id": 1,
         "facility_id": "saij3289",
+        "park_code": "bril",
         "review": "Nice place!",
         "rating": 4,
         "first_name": "terry",
@@ -122,6 +126,7 @@ class FacilityReviewQueriesmock:
             ReviewOut(
                 id=1,
                 facility_id="saij3289",
+                park_code="bril",
                 review="Nice place!",
                 rating=4,
                 first_name="terry",
@@ -137,6 +142,7 @@ def test_get_facility_review():
         {
             "id": 1,
             "facility_id": "saij3289",
+            "park_code": "bril",
             "review": "Nice place!",
             "rating": 4,
             "first_name": "terry",
@@ -159,6 +165,7 @@ class AccountReviewQueriesmock:
             ReviewOut(
                 id=1,
                 facility_id="saij3289",
+                park_code="bril",
                 review="Nice place!",
                 rating=4,
                 first_name="terry",
@@ -174,6 +181,7 @@ def test_get_account_review():
         {
             "id": 1,
             "facility_id": "saij3289",
+            "park_code": "bril",
             "review": "Nice place!",
             "rating": 4,
             "first_name": "terry",

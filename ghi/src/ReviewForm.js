@@ -30,6 +30,7 @@ const ReviewForm = () => {
             review: review,
             rating: rating,
             facility_id: facilityId,
+            park_code: parkCode,
             first_name: accountData.first_name,
             last_name: accountData.last_name,
             account_id: accountData.id,

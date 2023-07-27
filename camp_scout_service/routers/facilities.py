@@ -118,6 +118,7 @@ async def get_camp_details(park_code: str, facility_id: str):
         content = response.json()
         camp = {
             "facility_id": content["data"][0]["id"],
+            "park_code": content["data"][0]["parkCode"],
             "name": content["data"][0]["name"],
             "description": content["data"][0]["description"],
             "images": content["data"][0]["images"],

@@ -28,9 +28,6 @@ function CampNav() {
       <Navbar bg="white" data-bs-theme="dark" sticky="top">
         <Container fluid>
           <Navbar.Brand href="/" className="logo">
-            <PiCampfireBold
-              style={{ color: "rgb(190, 84, 13)", fontSize: "40px" }}
-            />
           </Navbar.Brand>
           <Navbar.Brand href="/" className="Title">
             Camp Scout

@@ -18,8 +18,8 @@ services:
       DATABASE_URL: postgresql://adminuser:passcamp@postgres:5432/campscout_db
       SIGNING_KEY: testing0signkey
       WAIT_HOSTS: postgres:5432
-      WAIT_BEFORE: 5
-      WAIT_TIMEOUT: 60
+      WAIT_BEFORE: 10
+      WAIT_TIMEOUT: 90
       PORT: 8000
 
   ghi:

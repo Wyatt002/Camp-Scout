@@ -4,6 +4,8 @@ import useToken from "@galvanize-inc/jwtdown-for-react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import styles from "./FacilityDetail.module.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 
 function Weather(facility) {
     const [active, setActive] = useState(false);
@@ -52,7 +54,7 @@ function Weather(facility) {
     if (active === false) {
         return (
             <div className="card-body">
-                <h3>Weather Overview:</h3>
+                <h3>Weather Overview</h3>
                 <p>{ prop.weather_overview }</p>
                 <button onClick={getWeather}>Get the weather!</button>
             </div>
@@ -151,7 +153,7 @@ function Reviews() {
             })}
             </Carousel>
             {token && (
-                <button onClick={SubmitReview}>Leave a review!</button>
+                <button onClick={SubmitReview} className={styles.leaveReview}>Leave a review!</button>
             )}
         </div>
     );
@@ -242,21 +244,46 @@ function FacilityDetail() {
         }
     }
 
+
+
     useEffect(() => {
         fetchFacility();
         }, []);
 
     if (facility["facility_id"] != null) {
         return (
-            <div className="row">
-                <div className="offset-3 col-6">
-                    <div className="shadow p-1 mt-1">
-                        <div className="card">
-                            <div className="card-body">
+            <div>
+                <div>
+                    <div>
+                        <div>
+                            <div>
+                                <div className={styles.facilityDetailContainer}>
                                 <h1>{facility.name}</h1>
-                                <p>{facility.description}</p>
+                                </div>
+                                <div className={styles.address}>
+                                <p style={{ fontWeight: 'bold' }} >Address</p>
+                                {facility.addresses.map(address => {
+                                    return (
+                                        <p key={address.line1}>
+                                            { address.city }, { address.stateCode }, { address.postalCode } - { address.line1 }
+                                        </p>
+                                    )
+                                })}
                             </div>
-                            <div className={styles.container}>
+                            <div className={styles.contactInfo}>
+                                <p style={{ fontWeight: 'bold' }} >Contact Info</p>
+                                {facility.contacts.emailAddresses.map(email =>
+                                    <p key={email.emailAddress}>
+                                        <FontAwesomeIcon icon={faEnvelope} /> {email.emailAddress} </p>
+                                )}
+                                {facility.contacts.phoneNumbers.map(phone =>
+                                    <p key={phone.phoneNumber}>
+                                        <FontAwesomeIcon icon={faPhone} /> {phone.phoneNumber} </p>
+                                )}
+                            </div>
+                            </div>
+                            </div>
+                                <div className={styles.container}>
                             <Carousel
                                 responsive={responsive}
                                 infinite={true}
@@ -271,8 +298,15 @@ function FacilityDetail() {
                                 })}
                             </Carousel>
                             </div>
-                            <div className="card-body">
-                                <h3>Campsites:</h3>
+                            <hr />
+                            <div className={styles.mainDetailContainer}>
+                                <div className={styles.about}>
+                            <h3>About</h3>
+                                <p>{facility.description}</p>
+                                </div>
+                            <div className={styles.detailContainer}>
+                            <div className={styles.section}>
+                                <h3>Campsites</h3>
                                 <p>Total Campsites - { facility.campsites.totalSites }</p>
                                 <p>Electrical Hookups - { facility.campsites.electricalHookups }</p>
                                 <p>Group - { facility.campsites.group }</p>
@@ -282,8 +316,8 @@ function FacilityDetail() {
                                 <p>Tent Only - { facility.campsites.tentOnly }</p>
                                 <p>Walk Boat To - { facility.campsites.walkBoatTo }</p>
                             </div>
-                            <div className="card-body">
-                                <h3>Amenities:</h3>
+                            <div className={styles.section}>
+                                <h3>Amenities</h3>
                                 <p>Amphitheater - { facility.amenities.amphitheater }</p>
                                 <p>Camp Store - { facility.amenities.campStore }</p>
                                 <p>Cell Reception - { facility.amenities.cellPhoneReception }</p>
@@ -299,8 +333,13 @@ function FacilityDetail() {
                                 <p>Toilets - { facility.amenities.toilets["0"] }</p>
                                 <p>Trash Collection Point - { facility.amenities.trashRecyclingCollection }</p>
                             </div>
-                            <div className="card-body">
-                                <h3>Accessibility:</h3>
+                            </div>
+                            </div>
+                            <hr />
+                            <div className={styles.accesibility}>
+                                <h3>Accessibility</h3>
+                                </div>
+                            <div className={styles.accesibility}>
                                 <div className={styles.individual}>
                                 {facility.accessibility.accessRoads.map(road => {
                                     return (
@@ -346,40 +385,12 @@ function FacilityDetail() {
                                 </div>
                             </div>
                             <OperatingHours facility={facility} />
-                            <div className="card-body">
-                                <h3>Addresses: </h3>
-                                {facility.addresses.map(address => {
-                                    return (
-                                        <p key={address.line1}>
-                                            { address.city }, { address.stateCode }, { address.postalCode } - { address.line1 }
-                                        </p>
-                                    )
-                                })}
-                            </div>
-                            <div className="card-body">
-                                <h3>Contacts:</h3>
-                                <p> Emails:</p>
-                                {facility.contacts.emailAddresses.map(email => {
-                                    return (
-                                        <p key={email.emailAddress}>
-                                            { email.emailAddress }
-                                        </p>
-                                    )
-                                })}
-                            </div>
-                            <div className="card-body">
-                                <p>Phone Numbers:</p>
-                                {facility.contacts.phoneNumbers.map(phone => {
-                                    return (
-                                        <p key={phone.phoneNumber}>
-                                            { phone.phoneNumber }
-                                        </p>
-                                    )
-                                })}
-                            </div>
+                            <div className={styles.reviews}>
                             <Reviews/>
+                            </div>
+                            <div className={styles.weatherOverview}>
                             <Weather facility={facility} />
-                        </div>
+                            </div>
                     </div>
                 </div>
             </div>

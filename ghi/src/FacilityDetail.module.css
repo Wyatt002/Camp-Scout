@@ -12,6 +12,14 @@
   box-shadow: 0 3px 8px rgba(1, 94, 16, 0.5);
 }
 
+.address {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  margin: 0 4rem;
+}
+
 
 .forecast {
   margin-left: 0.75rem;
@@ -23,8 +31,10 @@
   line-height: 0.85;
 }
 
-h3 {
-  padding: 0.5rem 0;
+.facilityDetailContainer {
+  padding: 20px;
+  padding-left: 4rem;
+  padding-right: 4rem;
 }
 
 .details {
@@ -58,4 +68,71 @@ a:hover {
 
 .no-shadow {
   box-shadow: none;
+}
+
+.mainDetailContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 4rem;
+}
+
+.about {
+  width: 50%;
+  margin-right: 2rem;
+}
+
+.detailContainer {
+  width: 50%;
+}
+
+.section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 5px;
+}
+
+.section h3 {
+    grid-column: span 3;
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  margin: 0 4rem;
+}
+
+.accesibility {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 4rem;
+}
+
+.leaveReview {
+    display: block;
+    padding: 10px 20px;
+    margin: 20px auto;
+    background-color: #ba7000;
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.leaveReview:hover {
+    background-color: rgb(247, 167, 38);
+    color: #eeeeed;
+    border: 2px solid #ba8800;
+}
+.reviews {
+  padding: 0 4rem;
+}
+
+.weatherOverview {
+  padding: 0 4rem;
 }

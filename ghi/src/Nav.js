@@ -3,6 +3,7 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import campLogo from './img/campLogo.jpg';
 
 function CampNav() {
     return (
@@ -10,8 +11,8 @@ function CampNav() {
             <Container fluid>
                 <img
                 alt=""
-                src='/img/camplogo.png'
-                width="30"
+                src={campLogo}
+                width="45"
                 height="30"
                 className="d-inline-block align-top"
                 />

@@ -26,8 +26,8 @@ body {
 
     min-height: 100vh;
 
-    background-image: url('../src/img/guy-sitting.jpg');
+    /* background-image: url('../src/img/main-background.jpg');
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: cover;
+    background-size: cover; */
 }

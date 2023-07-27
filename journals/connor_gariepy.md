@@ -1,3 +1,24 @@
+## July 27, 2023
+
+Today we worked on:
+* Merging our ProfileForm and Profile pages to main
+* CSS work
+* Overviewing our plan for Friday (Clean up code, finish CI/CD)
+
+Today we spent the day getting our ProfileForm and Profile page ready to and cleaned
+up to be merged to main, going through the process of sorting out any weird issues
+or bugs we ran into before creating the request and merging it to main.  After that
+Brian R created a new merge request for his CSS changes and we accepted and merged
+that to main next, prettifying many of our webpages and making it more organized
+and user friendly.
+
+After our evening attendance we went over our plan for our last project day (Friday),
+deciding in the morning we will work on cleaning up our code to remove any unused
+imports, comments, console/print statements, etc, and then after lunch we will try
+to wrap up our CI/CD and get it working, in the worst case scenario we can deploy
+our app locally with Docker, but we can always ask an instructor or SIER for
+assistance with getting our deployment working.
+
 ## July 26, 2023
 
 Today we worked on:

@@ -1,9 +1,8 @@
-
 import { Button, Container, Form, Nav, Navbar, NavLink } from "react-bootstrap";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import { FaUser } from "react-icons/fa";
-import { PiCampfireBold } from "react-icons/pi";
 import React, { useState, useEffect } from "react";
+import campLogo from '../src/img/campLogo.jpg';
 
 function CampNav() {
     const { logout, token } = useToken();
@@ -24,6 +23,7 @@ function CampNav() {
     }, [token]);
 
     const profileURL = `http://localhost:3000/profile/${account_id}`;
+
     return (
       <Navbar bg="white" data-bs-theme="dark" sticky="top">
         <Container fluid>

@@ -39,7 +39,7 @@ const LoginForm = () => {
     return (
         <div className="row">
             <div className="offset-3 col-6">
-                <div className="shadow p-4 mt-4" style={{ background: "#ffffff" }}>
+                <div className="shadow p-4 mt-4">
                     <h1>Login! </h1>
                     <div className="card-body">
                         <form onSubmit={handleSubmit}>

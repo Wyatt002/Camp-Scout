@@ -1,0 +1,7 @@
+.backgroundImage {
+    background-color: #F3F2EF;
+    background-image: url("../src/img/card-background3.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 95vh;
+}

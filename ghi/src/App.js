@@ -15,6 +15,7 @@ import Description from "./DescriptionPage";
 function App() {
   const baseUrl = process.env.REACT_APP_API_HOST;
 
+
   return (
     <AuthProvider baseUrl={baseUrl}>
       <BrowserRouter>
@@ -24,10 +25,7 @@ function App() {
             <Route path="" element={<Main />} />
             <Route path="description" element={<Description />} />
             <Route path="facilities" element={<FacilitiesPage />} />
-            <Route
-              path="facility/:parkCode/:facilityId"
-              element={<FacilityDetail />}
-            />
+            <Route path="facility/:parkCode/:facilityId" element={<FacilityDetail />} />
             <Route path="signup" element={<SignupForm />} />
             <Route path="login" element={<LoginForm />} />
             <Route path="profile/:account_id" element={<UserProfile />} />

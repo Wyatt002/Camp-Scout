@@ -47,3 +47,31 @@ Still working with team to resolve syntax error we are getting at login page.  R
 Conner created merge request for API Profile and Brian created merge request for API Reviews.
 
 We started working on component for details page.
+
+## July 20, 2023
+
+* Worked with Connor to finalize the facility details page.  We were able to get all details to display.
+
+Brian worked on main page and Jennifer finalizing the profile page.
+
+## July 24, 2023
+
+* Worked with Connor to add features to facility detail page. We added the ability to choose stars when a review is created and display the associated review on facility page with stars.
+
+Altered the layout of 5 day weather forecast to post along side each other in a row.  We implemented the getDay method to display the day of the week.
+
+Brian R worked on details for Main page and Jennifer continued her work to integrate the Profile page to show associated reviews.
+
+## July 25, 2023
+
+Connor discovered issue when pulling description detail for Facility Detail page.  He fixed by adding the park_code in addition to facility_id for API call. this resolved the error.  He did a final push.  I created a merge request to main.
+
+Brian created a merge request for Main page.  Jennifer continued to work on Profile page.
+
+## July 26, 2023
+
+Brian R worked on updating the Main page display.
+
+Jennifer was finalizing the Profile page and creating a merge request.
+
+Connor and I worked on CI/CD. We encountered issue with the way documentation wanted us to add the commands.  Instead of a "\" behind each line, we had to put all the code in one long line.  This allowed us the get the URL address needed to deploy our database. We encountered a 502 and 503 error.  Dalonte is working on a solution for us.

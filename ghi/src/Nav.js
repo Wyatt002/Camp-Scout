@@ -12,9 +12,9 @@ function CampNav() {
     const [account_id, setAccountId] = useState(null);
 
     const getAccountData = async () => {
-        const data = await fetchWithCookie(`${process.env.REACT_APP_API_HOST}/token`);
-        setAccountData(data.account);
-        setAccountId(data.account.id);
+        const accountData = await fetchWithCookie(`${process.env.REACT_APP_API_HOST}/token`);
+        setAccountData(accountData.account);
+        setAccountId(accountData.account.id);
     };
 
     useEffect(() => {
@@ -39,7 +39,7 @@ function CampNav() {
                 <Nav className="justify-content-end flex-grow-1 pe-3">
                 {!token && (
                     <Nav.Link href="/login">
-                    <Button variant="success">LogIn </Button>
+                    <Button style={{ backgroundColor: "#464F2E", color: "white" }}>LogIn</Button>
                     </Nav.Link>
                 )}
 
@@ -52,7 +52,7 @@ function CampNav() {
                 )}
                 {!token && (
                     <Nav.Link href="/signup">
-                    <Button variant="success">SignUp </Button>
+                    <Button style={{ backgroundColor: "#464F2E", color: "white" }}>SignUp </Button>
                     </Nav.Link>
                 )}
                 </Nav>

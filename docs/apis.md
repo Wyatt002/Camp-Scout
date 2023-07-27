@@ -88,6 +88,8 @@
   "facility_id": int,
   "review": string,
   "rating": int,
+  "first_name": string,
+  "last_name": string,
   "account_id": int,
 }
 ```
@@ -101,6 +103,8 @@
   "facility_id": int,
   "review": string,
   "rating": int,
+  "first_name": string,
+  "last_name": string,
   "account_id": int,
 }
 ```
@@ -125,6 +129,8 @@
   "facility_id": int,
   "review": string,
   "rating": int,
+  "first_name": string,
+  "last_name": string,
   "account_id": int,
 }
 ```
@@ -149,6 +155,8 @@
   "facility_id": int,
   "review": string,
   "rating": int,
+  "first_name": string,
+  "last_name": string,
   "account_id": int,
 }
 ```
@@ -176,6 +184,7 @@
 {
   "1": {
     "facility_id": string,
+    "park_code": string,
     "name": string,
     "description": string,
     "phone_number": string,
@@ -191,13 +200,14 @@
 - Endpoint path: `GET`,
 - Endpoint method: `/api/facility_details`,
 - Query parameters:
-
+  - park_code: string
   - facility_id: string
 
 - Request shape (JSON):
 
 ```json
 {
+  "park_code": stirng,
   "facility_id": string,
 }
 ```

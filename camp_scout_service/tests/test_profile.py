@@ -199,8 +199,7 @@ def test_update_profile():
     ] = fake_get_current_account_data
     app.dependency_overrides[ProfileQueries] = UpdateProfileQueriesMock
     json = {
-        "first_name": "Happyer",
-        "last_name": "Camperer",
+
         "description": "I like to camp a lot",
         "goals": "I want to camp even more",
         "status": "I am a camper",

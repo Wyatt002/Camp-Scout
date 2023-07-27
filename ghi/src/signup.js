@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
 import useToken from "@galvanize-inc/jwtdown-for-react";
+import styles from './signup.module.css';
+
 
 function SignupForm() {
     const [firstName, setFirstName] = useState('');
@@ -90,7 +92,7 @@ function SignupForm() {
 						<div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
 							{showProfileButton && (
 								<button className="btn btn-primary mt-3" onClick={() => navigate("/profile")}>
-									Go to Profile
+									Create Your Profile!
 								</button>
 							)}
 							{success && <p className="text-success">Account created successfully!</p>}

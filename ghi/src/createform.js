@@ -54,7 +54,7 @@ function CreateForm() {
 
     try {
       if (accountData) {
-        const CreateProfileURL = "http://localhost:8000/api/profile";
+        const CreateProfileURL = `${process.env.REACT_APP_API_HOST}/api/profile`;
         const fetchConfig = {
           method: "POST",
           body: JSON.stringify(data),

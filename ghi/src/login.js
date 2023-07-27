@@ -24,11 +24,6 @@ const LoginForm = () => {
             setPassword("");
             }
     };
-    let errorClass = "alert alert-danger d-none";
-    if (isError) {
-        errorClass = "alert alert-danger";
-    }
-
 
     useEffect(() => {
         if (token !== null) {
@@ -45,12 +40,9 @@ const LoginForm = () => {
     return (
         <div className="row">
             <div className="offset-3 col-6">
-                <div className="shadow p-4 mt-4">
+                <div className="shadow p-4 mt-4" style={{ background: "#ffffff" }}>
                     <h1>Login! </h1>
                     <div className="card-body">
-                            <div className={errorClass}>
-                                {errorMessage}
-                            </div>
                         <form onSubmit={handleSubmit}>
                             <div className="mb-3">
                                 <label className="form-label">Email:</label>

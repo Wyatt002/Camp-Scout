@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import useToken from "@galvanize-inc/jwtdown-for-react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import styles from "./FacilityDetail.module.css";
@@ -70,9 +72,11 @@ function Weather(facility) {
     }
 }
 
-function Reviews(facility) {
+function Reviews() {
+    const navigate = useNavigate();
     const [reviews, setReviews] = useState([]);
-    const prop = facility.facility;
+    const { parkCode, facilityId } = useParams();
+    const { token } = useToken()
     const responsive = {
     superLargeDesktop: {
         breakpoint: { max: 4000, min: 3000 },
@@ -92,6 +96,11 @@ function Reviews(facility) {
     },
     };
 
+    const SubmitReview = (e) => {
+        e.preventDefault();
+        navigate(`/reviews/${parkCode}/${facilityId}`);
+    }
+
     function rating(rating) {
         if (rating >= 0 && rating <= 5) {
             var stars = "";
@@ -107,7 +116,7 @@ function Reviews(facility) {
     }
 
     const fetchReviews = async () => {
-        const url = `${process.env.REACT_APP_API_HOST}/api/facility_reviews?facility_id=${prop.facility_id}`;
+        const url = `${process.env.REACT_APP_API_HOST}/api/facility_reviews?facility_id=${facilityId}`;
         const response = await fetch(url);
         if (response.ok) {
             const data = await response.json();
@@ -141,46 +150,70 @@ function Reviews(facility) {
                 )
             })}
             </Carousel>
-            <button value={prop.facility_id}>Leave a review!</button>
+            {token && (
+                <button onClick={SubmitReview}>Leave a review!</button>
+            )}
         </div>
     );
 }
 
-
-function ExceptionHours(facility) {
+function OperatingHours(facility) {
     const prop = facility.facility;
-    if (prop["facility_id"] != null) {
-        if (prop.operating_hours["0"].exceptions.length > 0) {
-            const exception = prop.operating_hours["0"].exceptions["0"];
-            return (
-                <>
-                    <p>Exceptions ({ exception.name }):</p>
-                    <p>Starts - { exception.startDate }</p>
-                    <p>Ends - { exception.endDate }</p>
-                    <ul key="exceptions">
-                        <li key="eSunday">Sunday - { exception.exceptionHours.sunday }</li>
-                        <li key="eMonday">Monday - { exception.exceptionHours.monday }</li>
-                        <li key="eTuesday">Tuesday - { exception.exceptionHours.tuesday }</li>
-                        <li key="eWednesday">Wednesday - { exception.exceptionHours.wednesday }</li>
-                        <li key="eThursday">Thursday - { exception.exceptionHours.thursday }</li>
-                        <li key="eFriday">Friday - { exception.exceptionHours.friday }</li>
-                        <li key="eSaturday">Saturday - { exception.exceptionHours.saturday }</li>
-                    </ul>
-                </>
-            );
-        } else {
-            return (
-                <>
-                <h3>Exceptions:</h3>
-                <p>None</p>
-                </>
-            );
+    function ExceptionHours(facility) {
+        const prop = facility.facility;
+        if (prop["facility_id"] != null) {
+            if (prop.operating_hours["0"].exceptions.length > 0) {
+                const exception = prop.operating_hours["0"].exceptions["0"];
+                return (
+                    <>
+                        <p>Exceptions ({ exception.name }):</p>
+                        <p>Starts - { exception.startDate }</p>
+                        <p>Ends - { exception.endDate }</p>
+                        <ul key="exceptions">
+                            <li key="eSunday">Sunday - { exception.exceptionHours.sunday }</li>
+                            <li key="eMonday">Monday - { exception.exceptionHours.monday }</li>
+                            <li key="eTuesday">Tuesday - { exception.exceptionHours.tuesday }</li>
+                            <li key="eWednesday">Wednesday - { exception.exceptionHours.wednesday }</li>
+                            <li key="eThursday">Thursday - { exception.exceptionHours.thursday }</li>
+                            <li key="eFriday">Friday - { exception.exceptionHours.friday }</li>
+                            <li key="eSaturday">Saturday - { exception.exceptionHours.saturday }</li>
+                        </ul>
+                    </>
+                );
+            } else {
+                return (
+                    <>
+                    <h3>Exceptions:</h3>
+                    <p>None</p>
+                    </>
+                );
+            }
         }
+    }
+    if (prop["operating_hours" != []]) {
+        return (
+            <div className="card-body">
+                <h3>Operating Hours:</h3>
+                <p>{ facility.operating_hours["0"].description }</p>
+                <p>Standard: </p>
+                <ul key="operatingHours">
+                    <li key="sunday">Sunday - { facility.operating_hours["0"].standardHours.sunday }</li>
+                    <li key="monday">Monday - { facility.operating_hours["0"].standardHours.monday }</li>
+                    <li key="tuesday">Tuesday - { facility.operating_hours["0"].standardHours.tuesday }</li>
+                    <li key="wednesday">Wednesday - { facility.operating_hours["0"].standardHours.wednesday }</li>
+                    <li key="thursday">Thursday - { facility.operating_hours["0"].standardHours.thursday }</li>
+                    <li key="friday">Friday - { facility.operating_hours["0"].standardHours.friday }</li>
+                    <li key="saturday">Saturday - { facility.operating_hours["0"].standardHours.saturday }</li>
+                </ul>
+                <ExceptionHours facility={facility} />
+            </div>
+        );
     }
 }
 
 function FacilityDetail() {
     const [facility, setFacility] = useState('');
+    const { parkCode, facilityId } = useParams();
     const responsive = {
     superLargeDesktop: {
         breakpoint: { max: 4000, min: 3000 },
@@ -199,10 +232,9 @@ function FacilityDetail() {
         items: 1,
     },
     };
-    const id = "9D607267-5063-463F-8487-DF928F788339";
 
     const fetchFacility  = async () => {
-        const url = `${process.env.REACT_APP_API_HOST}/api/facility_details?facility_id=${id}`;
+        const url = `${process.env.REACT_APP_API_HOST}/api/facility_details?park_code=${parkCode}&facility_id=${facilityId}`;
         const response = await fetch(url);
         if (response.ok) {
             const data = await response.json();
@@ -272,7 +304,7 @@ function FacilityDetail() {
                                 <div className={styles.individual}>
                                 {facility.accessibility.accessRoads.map(road => {
                                     return (
-                                        <p>
+                                        <p key={Math.random}>
                                             { road }
                                         </p>
                                     )
@@ -313,21 +345,7 @@ function FacilityDetail() {
                                 <p>Additional Info - { facility.accessibility.additionalInfo }</p>
                                 </div>
                             </div>
-                            <div className="card-body">
-                                <h3>Operating Hours:</h3>
-                                <p>{ facility.operating_hours["0"].description }</p>
-                                <p>Standard: </p>
-                                <ul key="operatingHours">
-                                    <li key="sunday">Sunday - { facility.operating_hours["0"].standardHours.sunday }</li>
-                                    <li key="monday">Monday - { facility.operating_hours["0"].standardHours.monday }</li>
-                                    <li key="tuesday">Tuesday - { facility.operating_hours["0"].standardHours.tuesday }</li>
-                                    <li key="wednesday">Wednesday - { facility.operating_hours["0"].standardHours.wednesday }</li>
-                                    <li key="thursday">Thursday - { facility.operating_hours["0"].standardHours.thursday }</li>
-                                    <li key="friday">Friday - { facility.operating_hours["0"].standardHours.friday }</li>
-                                    <li key="saturday">Saturday - { facility.operating_hours["0"].standardHours.saturday }</li>
-                                </ul>
-                                <ExceptionHours facility={facility} />
-                            </div>
+                            <OperatingHours facility={facility} />
                             <div className="card-body">
                                 <h3>Addresses: </h3>
                                 {facility.addresses.map(address => {
@@ -359,7 +377,7 @@ function FacilityDetail() {
                                     )
                                 })}
                             </div>
-                            <Reviews facility={facility} />
+                            <Reviews/>
                             <Weather facility={facility} />
                         </div>
                     </div>

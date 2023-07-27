@@ -16,8 +16,6 @@ class ProfileIn(BaseModel):
 
 
 class ProfileInUpdate(BaseModel):
-    first_name: str
-    last_name: str
     description: str
     goals: str
     status: str
@@ -134,9 +132,7 @@ class ProfileQueries:
                 result = db.execute(
                     """
                         UPDATE profile
-                        SET first_name = %s
-                        , last_name = %s
-                        , description = %s
+                        SET description = %s
                         , goals = %s
                         , status = %s
                         , location  = %s
@@ -146,8 +142,7 @@ class ProfileQueries:
                         RETURNING id;
                     """,
                     [
-                        profile.first_name,
-                        profile.last_name,
+
                         profile.description,
                         profile.goals,
                         profile.status,

@@ -21,6 +21,7 @@ steps = [
         CREATE TABLE review (
             id serial PRIMARY KEY NOT NULL,
             facility_id VARCHAR(100) NOT NULL,
+            park_code VARCHAR(4) NOT NULL,
             review TEXT NOT NULL,
             rating INTEGER NOT NULL,
             first_name VARCHAR(50) NOT NULL,

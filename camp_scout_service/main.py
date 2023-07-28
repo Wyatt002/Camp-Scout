@@ -39,3 +39,8 @@ def launch_details():
             "min": "00",
         }
     }
+
+
+@app.get("/")
+def root():
+    return {"message": "You hit the root path!"}

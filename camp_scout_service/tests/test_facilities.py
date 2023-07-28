@@ -15,6 +15,12 @@ def test_bad_state_code():
     assert data is None
 
 
+def test_no_empty_data_facilities():
+    response = client.get("/api/facilities", params={"state_code": "NC"})
+    data = response.json()
+    assert data is not None
+
+
 def test_get_facility_details():
     response = client.get("/api/facilities", params={"state_code": "NC"})
     data = response.json()
@@ -26,3 +32,4 @@ def test_get_facility_details():
         },
     )
     assert response.status_code == 200
+    assert data is not None

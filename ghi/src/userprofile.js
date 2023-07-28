@@ -89,7 +89,7 @@ function UserProfile() {
 
     if (profileData && profileData["account_id"] != null) {
         return (
-          <div className="container">
+          <div className="container d-flex justify-content-center align-items-center">
             <div id="profile-body" className="row mtb-5 me-4">
               <div className="card mb-5">
                 <div className="card inner-card m-3">
@@ -120,7 +120,7 @@ function UserProfile() {
                       src={profileData.avatar}
                       alt=""
                       className=" rounded-circle"
-                      style={{ height: "200px", padding: "10px" }}
+                      style={{ height: "200px", width:"180px", padding: "10px" }}
                     />
                     <h3 className="text-center" id="title-name">
                       {`${profileData.first_name} ${profileData.last_name}`}
@@ -199,6 +199,7 @@ function UserProfile() {
                                       width="100"
                                       height="110"
                                       className="rounded-circle"
+                                      style={{ height: "130px", width:"120px"}}
                                     />
                                   </div>
                                   <div
@@ -207,15 +208,16 @@ function UserProfile() {
                                   >
                                     <div className="card-body">
                                       <h4>
-                                        {review.first_name}
-                                        {review.last_name}
+                                        {review.first_name}  {review.last_name}
                                       </h4>
                                       <Link
                                         to={`/facility/${review.park_code}/${review.facility_id}`}
                                       >
                                         <h5>{review.facility}</h5>
                                       </Link>
-                                      <div>{rating(review.rating)}</div>
+                                      <div style={{ color: "#f1c232", fontSize: "25px"}}>
+                                        {rating(review.rating)}
+                                      </div>
                                       <div>{review.review}</div>
                                     </div>
                                   </div>

@@ -53,6 +53,7 @@ function SignupForm() {
 			}
 
 			const accountsURL = `${process.env.REACT_APP_API_HOST}/api/accounts/`;
+			const accountsURL = `${process.env.REACT_APP_API_HOST}/api/accounts/`;
 			const fetchConfig = {
 				method: "post",
 				body: JSON.stringify(data),

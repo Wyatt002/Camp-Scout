@@ -147,9 +147,9 @@ function Reviews() {
                     <div className="card" key={review.id}>
                         <div className="card-body">
                             <Link to={`/profile/${review.account_id}/`}>
-                                <p>{ review.first_name } { review.last_name }</p>
+                                <h4>{ review.first_name } { review.last_name }</h4>
                             </Link>
-                            <p>Rating - { rating(review.rating) }</p>
+                            <p style={{ color: "#f1c232", fontSize: "25px"}}> { rating(review.rating) }</p>
                             <p>{ review.review }</p>
                         </div>
                     </div>

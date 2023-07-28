@@ -21,6 +21,8 @@ api-unit-tests-job:
   stage: test
   variables:
     SIGNING_KEY: ${SIGNING_KEY}
+    NPS_API_KEY: ${NPS_API_KEY}
+    OPEN_WEATHER_API_KEY: ${OPEN_WEATHER_API_KEY}
   needs:
     - lint-test-job
   script:

@@ -19,6 +19,8 @@ lint-test-job:
 api-unit-tests-job:
   image: python:3-bullseye
   stage: test
+  variables:
+    SIGNING_KEY: ${SIGNING_KEY}
   needs:
     - lint-test-job
   script:

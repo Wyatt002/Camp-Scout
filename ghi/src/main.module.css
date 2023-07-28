@@ -1,0 +1,103 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cabin+Sketch&display=swap');
+
+
+.helloText {
+    font-family: 'Cabin Sketch';
+}
+
+.hero {
+    background-color: #F3F2EF;
+    background-image: url("../src/img/main-background.jpg");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: top center;
+    height: 70vh;
+    padding-top: 10%;
+}
+
+.helloContainer {
+    width: 50%;
+    padding: 20px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #f8f8f8;
+    border-radius: 20px;
+    position: relative;
+    top: -150px;
+    padding-bottom: 80px;
+}
+
+.boldText {
+    font-family: 'Impact', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.adventurousText {
+    font-family: 'Fredericka the Great', cursive;
+    font-size: 74px;
+}
+
+main {
+    background-color: #F3F2EF;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.smallCard {
+    max-width: 400px;
+    max-height: 500px;
+}
+
+
+.gridContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 20px;
+}
+
+
+.para {
+    margin: 1px 0;
+}
+
+.topLocationsContainer {
+    margin: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.imgFit {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+hr {
+    width: 75%;
+    border: 1px solid #252525;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.searchContainer {
+    width: 50%;
+    padding: 20px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    top: -260px;
+    z-index: 1;
+}

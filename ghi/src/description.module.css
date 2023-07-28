@@ -1,0 +1,13 @@
+.infoContainer {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    align-items: center;
+    padding-left: 4rem;
+    padding-right: 4rem;
+}
+
+.column {
+    flex: 1;
+    padding: 20px;
+}

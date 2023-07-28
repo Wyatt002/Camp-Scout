@@ -13,7 +13,7 @@ lint-test-job:
   stage: test
   script:
     - pip install flake8
-    - flake8 camp_scout
+    - flake8 camp_scout_service
 
   # # Run the unit tests
 api-unit-tests-job:
@@ -22,7 +22,7 @@ api-unit-tests-job:
   needs:
     - lint-test-job
   script:
-    - cd camp_scout
+    - cd camp_scout_service
     - pip install -r requirements.txt
     - python -m pytest
 

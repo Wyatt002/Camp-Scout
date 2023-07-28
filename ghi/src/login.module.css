@@ -1,0 +1,12 @@
+.body {
+    min-height: 100vh;
+
+    background-image: url('../src/img/signup2.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.rounded-card {
+    border-radius: 15px;
+}

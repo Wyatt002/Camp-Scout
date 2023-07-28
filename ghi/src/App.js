@@ -1,17 +1,25 @@
-//import { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-//import Construct from "./Construct.js";
-//import ErrorNotification from "./ErrorNotification";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
-import "./App.css";
 import SignupForm from "./signup.js";
 import LoginForm from "./login.js";
-import CampNav from './Nav';
+import ReviewForm from "./ReviewForm";
+import Main from "./MainPage";
+import FacilityDetail from "./FacilityDetail";
+import CampNav from "./Nav";
+import UserProfile from "./userprofile";
+import CreateProfileForm from "./CreateProfileform.js";
+import EditProfileForm from "./EditProfileForm.js";
+
 
 function App() {
+<<<<<<< HEAD
   const domain = /https:\/\/[^/]+/;
   const basename = process.env.PUBLIC_URL.replace(domain, "");
   const baseUrl = process.env.REACT_APP_API_HOST
+=======
+  const baseUrl = process.env.REACT_APP_API_HOST;
+
+>>>>>>> main
 
   return (
     <AuthProvider baseUrl={baseUrl}>
@@ -19,10 +27,16 @@ function App() {
         <CampNav />
         <Routes>
           <Route path="/">
+            <Route path="" element={<Main />} />
+            <Route path="facility/:parkCode/:facilityId" element={<FacilityDetail />} />
             <Route path="signup" element={<SignupForm />} />
             <Route path="login" element={<LoginForm />} />
+            <Route path="profile/:account_id" element={<UserProfile />} />
+            <Route path="main" element={<UserProfile />} />
+            <Route path="profile/" element={<CreateProfileForm />} />
+            <Route path="profile/edit" element={<EditProfileForm />} />
+            <Route path="reviews/:parkCode/:facilityId" element={<ReviewForm />} />
           </Route>
-
         </Routes>
       </BrowserRouter>
     </AuthProvider>

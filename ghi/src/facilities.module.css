@@ -1,0 +1,85 @@
+.cardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-image: url('../src/img/card-background4.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    border-radius: 5px;
+}
+
+.card {
+    flex-basis: calc(25% - 20px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #484848;
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 20px;
+    width: 200px;
+    height: auto;
+    border-radius: 15px;
+    background-color: #f8f8f8;
+    font-weight: bold;
+    text-shadow: 2px 2px 1px #d6d6d6;
+}
+/* background-image: url('../src/img/signup.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; */
+
+
+
+
+.loadMore {
+    display: block;
+    padding: 10px 20px;
+    margin: 20px auto;
+    background-color: #ba7000;
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.loadMore:hover {
+    background-color: white;
+    color: #333121;
+    border: 2px solid #ba3500;
+}
+
+.search {
+    justify-content: center;
+}
+
+.searchContainer {
+    width: 50%;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #f8f8f8;
+    border-radius: 15px;
+    box-shadow: 0px 10px 20px -10px rgba(0, 0, 0, 0.2);
+}
+
+.detailsButton {
+    background-color: #464F2E;
+    border-radius: 10px;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.detailsButton:hover {
+    background-color: #555f39;
+}

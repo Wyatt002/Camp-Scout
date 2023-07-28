@@ -1,0 +1,9 @@
+.signupBackground {
+    min-height: 100vh;
+    background-image: url('../src/img/signup1.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+

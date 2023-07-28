@@ -1,4 +1,3 @@
-import requests
 from fastapi import APIRouter, Depends
 from typing import List, Optional
 from authenticator import authenticator

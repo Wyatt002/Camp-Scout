@@ -1,8 +1,8 @@
 from main import app
 from pydantic import BaseModel
 from fastapi.testclient import TestClient
-from queries.profiles import ProfileQueries, ProfileOut, ProfileIn
-from typing import List, Optional
+from queries.profiles import ProfileQueries, ProfileOut
+from typing import List
 from authenticator import authenticator
 
 client = TestClient(app)
@@ -119,7 +119,7 @@ def test_create_profile():
     expected = {
         "id": 1,
         "first_name": "Happy",
-        "last_name":"Camper",
+        "last_name": "Camper",
         "description": "I like to camp",
         "goals": "I want to camp more",
         "status": "I am a camper",
@@ -199,7 +199,6 @@ def test_update_profile():
     ] = fake_get_current_account_data
     app.dependency_overrides[ProfileQueries] = UpdateProfileQueriesMock
     json = {
-
         "description": "I like to camp a lot",
         "goals": "I want to camp even more",
         "status": "I am a camper",

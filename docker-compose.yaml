@@ -21,6 +21,8 @@ services:
       WAIT_BEFORE: 10
       WAIT_TIMEOUT: 90
       PORT: 8000
+      NPS_API_KEY: ${NPS_API_KEY}
+      OPEN_WEATHER_API_KEY: ${OPEN_WEATHER_API_KEY}
 
   ghi:
     image: node:lts-bullseye

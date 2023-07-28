@@ -1,12 +1,9 @@
 import requests
 from fastapi import APIRouter
-from dotenv import load_dotenv
 import os
 
 
-load_dotenv()
 api_key = os.environ["NPS_API_KEY"]
-
 router = APIRouter()
 
 

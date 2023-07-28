@@ -1,11 +1,8 @@
 import requests
 from fastapi import APIRouter
-from dotenv import load_dotenv
 import os
 
-load_dotenv()
 api_key = os.environ["OPEN_WEATHER_API_KEY"]
-
 router = APIRouter()
 
 
@@ -39,7 +36,7 @@ async def get_forecast(lat: float, lon: float):
                     "weather_icon": content["list"][day]["weather"][0]["icon"],
                     "clouds": content["list"][day]["clouds"]["all"],
                     "wind": content["list"][day]["wind"]["speed"],
-                    "visiblity": content["list"][day]["visibility"],
+                    "visibility": content["list"][day]["visibility"],
                     "date": content["list"][day]["dt_txt"],
                 }
                 weather[num_day] = info

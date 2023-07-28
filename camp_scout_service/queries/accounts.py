@@ -1,6 +1,5 @@
 from pydantic import BaseModel
 from queries.pool import pool
-from jwtdown_fastapi.authentication import Token
 
 
 class DuplicateAccountError(ValueError):
@@ -27,7 +26,6 @@ class AccountOut(BaseModel):
     email: str
     first_name: str
     last_name: str
-
 
 
 class AccountOutWithPassword(AccountOut):

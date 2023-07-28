@@ -53,7 +53,6 @@ function SignupForm() {
 			}
 
 			const accountsURL = `${process.env.REACT_APP_API_HOST}/api/accounts/`;
-			const accountsURL = `${process.env.REACT_APP_API_HOST}/api/accounts/`;
 			const fetchConfig = {
 				method: "post",
 				body: JSON.stringify(data),
@@ -64,15 +63,13 @@ function SignupForm() {
 
 			const response = await fetch(accountsURL, fetchConfig);
 			if(response.ok) {
-				const newAccount = await response.json();
-				console.log(newAccount);
+				await response.json();
 				await login(email, password);
 				setFirstName('');
 				setLastName('');
 				setEmail('');
 				setPassword('');
 				setConfirmPassword('');
-
 				setSuccess(true);
 				setShowProfileButton(true);
 			} else {
@@ -80,7 +77,7 @@ function SignupForm() {
 			}
         }
     }
-	const togglePasswordVisiblity = () => {
+	const togglePasswordVisibility = () => {
     	setPasswordShown(passwordShown ? false : true);
     };
 
@@ -160,7 +157,7 @@ function SignupForm() {
 										id="confirmPassword"
 										className="form-control"
 									/>
-									<i onClick={togglePasswordVisiblity} className="password-icon">
+									<i onClick={togglePasswordVisibility} className="password-icon">
 										{passwordShown ? <FiEyeOff /> : <FiEye />} Show password
 									</i>
 									<label htmlFor="confirmPassword">Confirm Password</label>

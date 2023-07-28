@@ -41,3 +41,34 @@ of our code was perfectly fine and did it jobs perfectly, allowing us to login w
 
 7/13 and 7/14
  Brian R and I began to work on the main page and nav of our frontend
+
+7/17 and 7/18
+- I worked on reformating our signup and login pages along with making the navbar buttons visible depending on login status.
+- I also added a eye icon to show and hide our passwords for login and signup
+- Began working on Profile Page
+- I started CI/CD with everyone we didn't get very far but made changes to our code for when we go back to CI/CD
+
+7/19
+- Continued to work on Profile Page
+
+7/20
+- Finished work on Profile Page
+- Began to make a Edit Profile Page, Realized that making an account does not automatically make a profile for the user so added a redirect on sign up to the profile form which will make a profile for them
+- I want to try to use the same form for creating or updating a profile
+
+7/24 7/25
+- Linked reviews/facilities to Profile Page
+- I updated our Profile Backend and tests to add a First and Last name field.
+- couldn't get POST and PUT to work on the same form, ended up making two seprate forms
+- Update needs all fields inputted or else it will update empty fields as empty
+- We went back to CI/CD and managed to deploy our database but had some issues.
+
+7/26
+- Profile is done!
+- I Finalizing and made merge request to main for Profile
+- Fixed out review table and did some minro code clean up
+- We continued to work on CI/CD
+
+7/27
+- Ran into some errors with Edit Profile after the merge from main but we fixed it and pushed the final merge for Profile
+- Everything is done and ready just minor clean up

@@ -51,7 +51,6 @@ function CreateProfileForm() {
       banner_url: banner_url,
       account_id: accountData ? accountData.id : null,
     };
-    console.log(data);
 
     try {
       if (accountData) {
@@ -65,9 +64,7 @@ function CreateProfileForm() {
           },
         };
         const response = await fetch(CreateProfileURL, fetchConfig);
-        console.log(response);
         if (response.ok) {
-          console.log("Profile created successfully!");
           setAvatar("");
           setBannerImage("");
           setDescription("");
@@ -89,70 +86,69 @@ function CreateProfileForm() {
 
   return (
     <div className={styles.backgroundImage}>
-    <div className="row">
-      <form onSubmit={handleSubmit} className="row g-3">
-        <div className="offset-3 col-6">
-          <div className="shadow p-4 mt-4" style={{ background: "#ffffff" }}>
-            <h1>Your Profile</h1>
+      <div className="row">
+        <form onSubmit={handleSubmit} className="row g-3">
+          <div className="offset-3 col-6">
+            <div className="shadow p-4 mt-4" style={{ background: "#ffffff" }}>
+              <h1>Your Profile</h1>
 
-            <label className="form-label">Location:</label>
-            <input
-              value={location}
-              type="text"
-              className="form-control input-field"
-              onChange={(e) => setLocation(e.target.value)}
-            />
+              <label className="form-label">Location:</label>
+              <input
+                value={location}
+                type="text"
+                className="form-control input-field"
+                onChange={(e) => setLocation(e.target.value)}
+              />
 
-            <label className="form-label">Profile Picture:</label>
-            <input
-              value={avatar}
-              type="text"
-              className="form-control input-field"
-              onChange={(e) => setAvatar(e.target.value)}
-            />
+              <label className="form-label">Profile Picture:</label>
+              <input
+                value={avatar}
+                type="text"
+                className="form-control input-field"
+                onChange={(e) => setAvatar(e.target.value)}
+              />
 
-            <label className="form-label">Banner Image:</label>
-            <input
-              value={banner_url}
-              type="text"
-              className="form-control input-field"
-              onChange={(e) => setBannerImage(e.target.value)}
-            />
+              <label className="form-label">Banner Image:</label>
+              <input
+                value={banner_url}
+                type="text"
+                className="form-control input-field"
+                onChange={(e) => setBannerImage(e.target.value)}
+              />
 
-            <label className="form-label">Description:</label>
-            <textarea
-              value={description}
-              type="text-box"
-              className="form-control input-field"
-              onChange={(e) => setDescription(e.target.value)}
-            />
+              <label className="form-label">Description:</label>
+              <textarea
+                value={description}
+                type="text-box"
+                className="form-control input-field"
+                onChange={(e) => setDescription(e.target.value)}
+              />
 
-            <label className="form-label">Goals:</label>
-            <input
-              value={goals}
-              type="text"
-              className="form-control input-field"
-              onChange={(e) => setGoals(e.target.value)}
-            />
-            <label className="form-label">Status:</label>
-            <input
-              value={status}
-              type="text"
-              className="form-control input-field"
-              onChange={(e) => setStatus(e.target.value)}
-            />
-            <input
-                className="btn btn-primary mb-3"
-                style={{ backgroundColor: "#464F2E" }}
-                required
-                type="submit"
-                value="Finish"
-            />
-
+              <label className="form-label">Goals:</label>
+              <input
+                value={goals}
+                type="text"
+                className="form-control input-field"
+                onChange={(e) => setGoals(e.target.value)}
+              />
+              <label className="form-label">Status:</label>
+              <input
+                value={status}
+                type="text"
+                className="form-control input-field"
+                onChange={(e) => setStatus(e.target.value)}
+              />
+              <input
+                  className="btn btn-primary mb-3"
+                  style={{ backgroundColor: "#464F2E" }}
+                  required
+                  type="submit"
+                  value="Finish"
+              />
+            </div>
           </div>
-        </div>
-      </form>
-    </div>
+        </form>
+      </div>
     </div>
   );
 }

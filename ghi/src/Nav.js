@@ -1,4 +1,4 @@
-import { Button, Container, Form, Nav, Navbar, NavLink } from "react-bootstrap";
+import { Button, Container, Nav, Navbar, NavLink } from "react-bootstrap";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import { FaUser } from "react-icons/fa";
 import React, { useState, useEffect } from "react";
@@ -77,7 +77,7 @@ function CampNav() {
             <NavLink href={profileURL} className="profile button">
               {token && (
                 <FaUser
-                  style={{ color: "#464F2E", fontSize: "30px", margi: "15px" }}
+                  style={{ color: "#464F2E", fontSize: "30px", margin: "15px" }}
                 />
               )}
             </NavLink>

@@ -262,18 +262,18 @@ function FacilityDetail() {
                         <div>
                             <div>
                                 <div className={styles.facilityDetailContainer}>
-                                <h1>{facility.name}</h1>
+                                    <h1>{facility.name}</h1>
                                 </div>
                                 <div className={styles.address}>
-                                <p style={{ fontWeight: 'bold' }} >Address</p>
-                                {facility.addresses.map(address => {
-                                    return (
-                                        <p key={address.line1}>
-                                            { address.city }, { address.stateCode }, { address.postalCode } - { address.line1 }
-                                        </p>
-                                    )
-                                })}
-                            </div>
+                                    <p style={{ fontWeight: 'bold' }} >Address</p>
+                                    {facility.addresses.map(address => {
+                                        return (
+                                            <p key={address.line1}>
+                                                { address.city }, { address.stateCode }, { address.postalCode } - { address.line1 }
+                                            </p>
+                                        )
+                                    })}
+                                </div>
                             <div className={styles.contactInfo}>
                                 <p style={{ fontWeight: 'bold' }} >Contact Info</p>
                                 {facility.contacts.emailAddresses.map(email =>
@@ -285,12 +285,12 @@ function FacilityDetail() {
                                         <FontAwesomeIcon icon={faPhone} color="#ba7000"/> {phone.phoneNumber} </p>
                                 )}
                             </div>
-                            </div>
-                            </div>
-                            <div className={styles.reviewsScroll}>
-                                    <AnchorLink href='#Reviews'><a><strong>CampSites Reviews</strong></a></AnchorLink>
-                                    </div>
-                                <div className={styles.container}>
+                        </div>
+                    </div>
+                    <div className={styles.reviewsScroll}>
+                        <AnchorLink href='#Reviews'><a><strong>CampSites Reviews</strong></a></AnchorLink>
+                    </div>
+                    <div className={styles.container}>
                             <Carousel
                                 responsive={responsive}
                                 infinite={true}
@@ -299,18 +299,20 @@ function FacilityDetail() {
                             >
                                 {facility.images.map((image) => {
                                     return (
-                                        <div><img key={Math.random()} src={image.url} /></div>
+                                        <div>
+                                            <img key={Math.random()} src={image.url} />
+                                        </div>
                                     )
                                 })}
                             </Carousel>
-                            </div>
-                            <hr />
-                            <div className={styles.mainDetailContainer}>
-                                <div className={styles.about}>
+                    </div>
+                    <hr />
+                    <div className={styles.mainDetailContainer}>
+                        <div className={styles.about}>
                             <h3>About</h3>
                                 <p>{facility.description}</p>
-                                </div>
-                            <div className={styles.detailContainer}>
+                        </div>
+                        <div className={styles.detailContainer}>
                             <div className={styles.section}>
                                 <h3>Campsites</h3>
                                 <p><strong>Total Campsites</strong> - { facility.campsites.totalSites }</p>
@@ -339,69 +341,68 @@ function FacilityDetail() {
                                 <p><strong>Toilets</strong> - { facility.amenities.toilets["0"] }</p>
                                 <p><strong>Trash Collection Point</strong> - { facility.amenities.trashRecyclingCollection }</p>
                             </div>
-                            </div>
-                            </div>
-                            <hr />
-                            <div className={styles.weatherOverview}>
-                            <Weather facility={facility} />
-                            </div>
-                            <hr />
-                            <div className={styles.accesibility}>
-                                <h3>Accessibility</h3>
-                                </div>
-                            <div className={styles.accesibility}>
-                                <div className={styles.individual}>
-                                {facility.accessibility.accessRoads.map(road => {
-                                    return (
-                                        <p key={Math.random}>
-                                            { road }
-                                        </p>
-                                    )
-                                })}
-                                </div>
-                                <div className={styles.individual}>
-                                <p>{ facility.accessibility.adaInfo }</p>
-                                </div>
-                                <div className={styles.individual}>
-                                <p><strong>Cell Phone Info</strong> - { facility.accessibility.cellPhoneInfo }</p>
-                                {facility.accessibility.classifications.map((classification) => (
-                                <p key={Math.random()}><strong>Classifcation</strong> - {classification}</p>
-                                ))}
-                                </div>
-                                <div className={styles.individual}>
-                                <p><strong>Fire Stove Policy</strong> - { facility.accessibility.fireStovePolicy }</p>
-                                </div>
-                                <div className={styles.individual}>
-                                <p><strong>Internet Info</strong> - { facility.accessibility.internetInfo }</p>
-                                </div>
-                                <div className={styles.individual}>
-                                <p>
-                                    <strong>RV Info</strong> - { facility.accessibility.rvInfo }
-                                    , <strong>Allowed</strong> - { facility.accessibility.rvAllowed }
-                                    , <strong>Max Length</strong> - { facility.accessibility.rvMaxLength }
-                                </p>
-                                </div>
-                                <div className={styles.individual}>
-                                <p>
-                                    <strong>Trailer Info</strong> - { facility.accessibility.trailerInfo }
-                                    , <strong>Max Length</strong> - { facility.accessibility.trailerMaxLength }
-                                </p>
-                                </div>
-                                <div className={styles.individual}>
-                                <p><strong>Wheelchair Access</strong> - { facility.accessibility.wheelchairAccess }</p>
-                                </div>
-                                <div className={styles.individual}>
-                                <p><strong>Additional Info</strong> - { facility.accessibility.additionalInfo }</p>
-                                </div>
-                            </div>
-                            <OperatingHours facility={facility} />
-                            <div className={styles.reviews}>
-                            <Reviews/>
-                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div className={styles.weatherOverview}>
+                        <Weather facility={facility} />
+                    </div>
+                    <hr />
+                    <div className={styles.accessibility}>
+                        <h3>Accessibility</h3>
+                    </div>
+                    <div className={styles.accessibility}>
+                        <div className={styles.individual}>
+                            {facility.accessibility.accessRoads.map(road => {
+                                return (
+                                    <p key={Math.random}>
+                                        { road }
+                                    </p>
+                                )
+                            })}
+                        </div>
+                        <div className={styles.individual}>
+                            <p>{ facility.accessibility.adaInfo }</p>
+                        </div>
+                        <div className={styles.individual}>
+                            <p><strong>Cell Phone Info</strong> - { facility.accessibility.cellPhoneInfo }</p>
+                            {facility.accessibility.classifications.map((classification) => (
+                            <p key={Math.random()}><strong>Classification</strong> - {classification}</p>
+                            ))}
+                        </div>
+                        <div className={styles.individual}>
+                            <p><strong>Fire Stove Policy</strong> - { facility.accessibility.fireStovePolicy }</p>
+                        </div>
+                        <div className={styles.individual}>
+                            <p><strong>Internet Info</strong> - { facility.accessibility.internetInfo }</p>
+                        </div>
+                        <div className={styles.individual}>
+                            <p>
+                                <strong>RV Info</strong> - { facility.accessibility.rvInfo }
+                                , <strong>Allowed</strong> - { facility.accessibility.rvAllowed }
+                                , <strong>Max Length</strong> - { facility.accessibility.rvMaxLength }
+                            </p>
+                        </div>
+                        <div className={styles.individual}>
+                            <p>
+                                <strong>Trailer Info</strong> - { facility.accessibility.trailerInfo }
+                                , <strong>Max Length</strong> - { facility.accessibility.trailerMaxLength }
+                            </p>
+                        </div>
+                        <div className={styles.individual}>
+                            <p><strong>Wheelchair Access</strong> - { facility.accessibility.wheelchairAccess }</p>
+                        </div>
+                        <div className={styles.individual}>
+                            <p><strong>Additional Info</strong> - { facility.accessibility.additionalInfo }</p>
+                        </div>
+                    </div>
+                    <OperatingHours facility={facility} />
+                    <div className={styles.reviews}>
+                        <Reviews/>
                     </div>
                 </div>
             </div>
-        );
-    }
-}
+        </div>
+    );
+}}
 export default FacilityDetail;

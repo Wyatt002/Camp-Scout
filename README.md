@@ -28,8 +28,7 @@ We are targeting general camping enthusiast looking for their next adventure at 
 - Detail page provides specific data for campground located at selected park
 - Weather forecast and contact information is provided
 - Accounts
-- Autheticated users can provide reviews for campgrounds
-- Wish list for registered accounts so users can build a list of campgrounds they wish to visit
+- Authenticated users can provide reviews for campgrounds
 
 ## Project Initialization
 
@@ -42,4 +41,4 @@ To fully enjoy this application on your local machine, please make sure to follo
 5. Run `docker compose up`
 6. Run `docker exec -it camp-scout-api-1 bash`
 7. Run `python manage.py loaddata products.json`
-8. Exit the container's CLI, and enjoy Smelli Belli to its fullest!
+8. Exit the container's CLI, and enjoy Camp Scout to its fullest!

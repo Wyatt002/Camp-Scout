@@ -43,8 +43,15 @@ class ProfileQueries:
             with conn.cursor() as db:
                 data = db.execute(
                     """
-                    SELECT id, first_name, last_name, description, goals, status, location, avatar,
-                    banner_url, account_id FROM profile ORDER BY id;
+                    SELECT id, first_name,
+                    last_name,
+                    description,
+                    goals,
+                    status,
+                    location,
+                    avatar,
+                    banner_url,
+                    account_id FROM profile ORDER BY id;
                     """,
                 )
                 data = []
@@ -129,7 +136,7 @@ class ProfileQueries:
     def update(self, account_id: int, profile: ProfileInUpdate) -> ProfileOut:
         with pool.connection() as conn:
             with conn.cursor() as db:
-                result = db.execute(
+                db.execute(
                     """
                         UPDATE profile
                         SET description = %s
@@ -142,7 +149,6 @@ class ProfileQueries:
                         RETURNING id;
                     """,
                     [
-
                         profile.description,
                         profile.goals,
                         profile.status,

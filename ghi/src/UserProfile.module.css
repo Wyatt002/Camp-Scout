@@ -1,7 +1,3 @@
-.container card{
-    width: 100%;
-    margin: 50px;
-}
 
 .container img {
     max-height: 300px;
@@ -13,4 +9,12 @@
 }
 .review-slide {
     text-align: center;
+}
+.profileBackground {
+    min-height: 100vh;
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255,255,255,1) 42%, rgba(255,203,120,1) 100%);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
 }

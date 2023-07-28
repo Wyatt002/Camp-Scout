@@ -20,7 +20,7 @@ def test_bad_params():
 
 def test_no_empty_data():
     response = client.get(
-        "/api/weather", params={"lat": 42.357371, "lon": -71.060913}
+        "/api/weather", params={"lat": 42.357371, "lon": 42.357371}
     )
     data = response.json()
     assert data["1"] is not None

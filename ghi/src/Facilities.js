@@ -102,7 +102,8 @@ const FacilitiesPage = () => {
                     </div>
                 ))}
                 {displayCount < facilities.length && (
-                    <button onClick={loadMore} className={styles.loadMore}>Load More</button>
+                    <button onClick={loadMore}
+                    className={styles.loadMore}>Load More</button>
                 )}
             </div>
         </div>

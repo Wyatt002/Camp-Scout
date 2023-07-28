@@ -46,7 +46,14 @@ class ReviewQueries:
             with conn.cursor() as db:
                 data = db.execute(
                     """
-                    SELECT id, facility_id, park_code, review, rating, first_name, last_name, account_id
+                    SELECT id,
+                    facility_id,
+                    park_code,
+                    review,
+                    rating,
+                    first_name,
+                    last_name,
+                    account_id
                     FROM review ORDER BY id;
                     """,
                 )
@@ -58,7 +65,14 @@ class ReviewQueries:
             with conn.cursor() as db:
                 data = db.execute(
                     """
-                    SELECT id, facility_id, park_code, review, rating, first_name, last_name, account_id
+                    SELECT id,
+                    facility_id,
+                    park_code,
+                    review,
+                    rating,
+                    first_name,
+                    last_name,
+                    account_id
                     FROM review WHERE facility_id = %s ORDER BY id;
                     """,
                     [facility_id],
@@ -71,7 +85,14 @@ class ReviewQueries:
             with conn.cursor() as db:
                 data = db.execute(
                     """
-                    SELECT id, facility_id, park_code, review, rating, first_name, last_name, account_id
+                    SELECT id,
+                    facility_id,
+                    park_code,
+                    review,
+                    rating,
+                    first_name,
+                    last_name,
+                    account_id
                     FROM review WHERE account_id = %s ORDER BY id;
                     """,
                     [account_id],

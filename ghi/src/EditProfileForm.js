@@ -41,7 +41,6 @@ function EditProfileForm() {
       avatar: avatar,
       banner_url: banner_url,
     };
-    console.log(data);
 
     try {
       const updateProfileURL = `${process.env.REACT_APP_API_HOST}/api/profile/${accountData.id}`;
@@ -54,9 +53,8 @@ function EditProfileForm() {
         },
       };
       const response = await fetch(updateProfileURL, fetchConfig);
-      console.log(response);
+
       if (response.ok) {
-        console.log("Profile updated successfully!");
         setDescription("");
         setGoals("");
         setStatus("");
@@ -65,10 +63,10 @@ function EditProfileForm() {
         setBannerImage("");
         navigate(`/profile/${accountData.id}`);
       } else {
-        console.error("2 Failed to update profile:", response.statusText);
+        console.error(" Failed to update profile:", response.statusText);
       }
     } catch (error) {
-      console.error("1 Error updating:", error);
+      console.error(" Error updating:", error);
     }
   };
   useEffect(() => {
@@ -84,7 +82,6 @@ function EditProfileForm() {
               {`${first_name}`} {`${last_name}`}'s Profile
             </h1>
             <p> Enter All Fields To Update Your Profile!</p>
-
             <label className="form-label">Location:</label>
             <input
               value={location}

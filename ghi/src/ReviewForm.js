@@ -46,7 +46,6 @@ const ReviewForm = () => {
         };
         const response = await fetch(url, fetchConfig);
         if (response.ok) {
-            console.log(response);
             setReview('');
             setRating('');
             navigate(`/facility/${parkCode}/${facilityId}`);
@@ -66,57 +65,57 @@ const ReviewForm = () => {
 
     return (
         <div className={styles.body}>
-        <div className="row">
-        <div className="offset-3 col-6">
-            <div className="shadow p-4 mt-4">
-            <div className="card text-bg-light mb-3">
-                <h5 className="card-header">Enter Your Review</h5>
-                <div className="card-body">
-                <form onSubmit={handleSubmit} id="create-review-form" >
-                    <div className="mb-3">
-                    <label htmlFor="review">Review:</label>
-                    <textarea onChange={handleReviewChange}
-                        id="review"
-                        placeholder="Review"
-                        name="review"
-                        type="text"
-                        className="form-control"
-                        value={review}
-                        rows={4}
-                        cols={50}
-                    />
+            <div className="row">
+                <div className="offset-3 col-6">
+                    <div className="shadow p-4 mt-4">
+                        <div className="card text-bg-light mb-3">
+                            <h5 className="card-header">Enter Your Review</h5>
+                            <div className="card-body">
+                                <form onSubmit={handleSubmit} id="create-review-form" >
+                                <div className="mb-3">
+                                    <label htmlFor="review">Review:</label>
+                                    <textarea onChange={handleReviewChange}
+                                        id="review"
+                                        placeholder="Review"
+                                        name="review"
+                                        type="text"
+                                        className="form-control"
+                                        value={review}
+                                        rows={4}
+                                        cols={50}
+                                    />
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="rating">Rating</label>
+                                    <select onChange={handleRatingChange}
+                                        id="rating"
+                                        placeholder="Rating"
+                                        name="rating"
+                                        value={rating}
+                                        type="text"
+                                        className="form-control">
+                                        <option value={0}>Select Rating</option>
+                                        <option value={1}>1 Star</option>
+                                        <option value={2}>2 Stars</option>
+                                        <option value={3}>3 Stars</option>
+                                        <option value={4}>4 Stars</option>
+                                        <option value={5}>5 Stars</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <input
+                                        className="btn btn-primary"
+                                        type="submit"
+                                        value="Submit Review"
+                                    />
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <div className="mb-3">
-                    <label htmlFor="rating">Rating</label>
-                    <select onChange={handleRatingChange}
-                        id="rating"
-                        placeholder="Rating"
-                        name="rating"
-                        value={rating}
-                        type="text"
-                        className="form-control">
-                        <option value={0}>Select Rating</option>
-                        <option value={1}>1 Star</option>
-                        <option value={2}>2 Stars</option>
-                        <option value={3}>3 Stars</option>
-                        <option value={4}>4 Stars</option>
-                        <option value={5}>5 Stars</option>
-                    </select>
-                    </div>
-                    <div>
-                    <input
-                        className="btn btn-primary"
-                        type="submit"
-                        value="Submit Review"
-                    />
-                    </div>
-                </form>
                 </div>
             </div>
-            </div>
         </div>
-        </div>
-        </div>
+    </div>
     );
 };
 

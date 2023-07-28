@@ -12,13 +12,14 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
 .code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
 .body {
     min-height: 100vh;
-
     background-image: url('../src/img/zion.jpg');
     background-repeat: no-repeat;
     background-position: center center;

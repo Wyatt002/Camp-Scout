@@ -2,13 +2,7 @@ import requests
 from fastapi import APIRouter
 import os
 
-<<<<<<< HEAD:camp_scout/routers/weather.py
-load_dotenv()
 api_key = os.environ["OPEN_WEATHER_API_KEY"]
-
-=======
-api_key = os.environ["OPEN_WEATHER_API_KEY"]
->>>>>>> main:camp_scout_service/routers/weather.py
 router = APIRouter()
 
 

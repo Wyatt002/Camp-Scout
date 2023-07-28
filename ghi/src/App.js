@@ -12,14 +12,9 @@ import EditProfileForm from "./EditProfileForm.js";
 
 
 function App() {
-<<<<<<< HEAD
   const domain = /https:\/\/[^/]+/;
   const basename = process.env.PUBLIC_URL.replace(domain, "");
   const baseUrl = process.env.REACT_APP_API_HOST
-=======
-  const baseUrl = process.env.REACT_APP_API_HOST;
-
->>>>>>> main
 
   return (
     <AuthProvider baseUrl={baseUrl}>

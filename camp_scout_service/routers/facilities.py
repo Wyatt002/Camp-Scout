@@ -3,13 +3,7 @@ from fastapi import APIRouter
 import os
 
 
-<<<<<<< HEAD:camp_scout/routers/facilities.py
-load_dotenv()
 api_key = os.environ["NPS_API_KEY"]
-
-=======
-api_key = os.environ["NPS_API_KEY"]
->>>>>>> main:camp_scout_service/routers/facilities.py
 router = APIRouter()
 
 

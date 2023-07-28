@@ -22,7 +22,7 @@ function CampNav() {
         }
     }, [token]);
 
-    const profileURL = `http://localhost:3000/profile/${account_id}`;
+    const profileURL = `/profile/${account_id}`;
 
     return (
       <Navbar bg="white" data-bs-theme="dark" sticky="top">

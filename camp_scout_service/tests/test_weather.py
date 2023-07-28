@@ -23,8 +23,8 @@ def test_no_empty_data():
         "/api/weather", params={"lat": 42.357371, "lon": 42.357371}
     )
     data = response.json()
-    assert data["1"] is not None
-    assert data["2"] is not None
-    assert data["3"] is not None
-    assert data["4"] is not None
-    assert data["5"] is not None
+    assert data["1"]
+    assert data["2"]
+    assert data["3"]
+    assert data["4"]
+    assert data["5"]

@@ -5,3 +5,8 @@
         sans-serif;
     color:red
 }
+.logo {
+    background-image: url('../src/img/campLogo.jpg');
+    height: 20px;
+    width: 20px;
+}

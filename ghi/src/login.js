@@ -2,6 +2,7 @@ import useToken from "@galvanize-inc/jwtdown-for-react";
 import { useState, useEffect} from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { FiEye, FiEyeOff } from "react-icons/fi";
+import styles from './login.module.css'
 
 const LoginForm = () => {
     const [email, setEmail] = useState("");
@@ -37,10 +38,11 @@ const LoginForm = () => {
 
 
     return (
+        <div className={styles.body}>
         <div className="row">
             <div className="offset-3 col-6">
-                <div className="shadow p-4 mt-4">
-                    <h1>Login! </h1>
+                <div className="shadow p-4 mt-4 bg-white">
+                    <h1>Login </h1>
                     <div className="card-body">
                         <form onSubmit={handleSubmit}>
                             <div className="mb-3">
@@ -83,6 +85,7 @@ const LoginForm = () => {
                     </p>
                 </div>
             </div>
+        </div>
         </div>
     );
 };

@@ -134,7 +134,7 @@ function Reviews() {
 
     return (
         <div className="card-body" id='Reviews'>
-            <h3>Reviews:</h3>
+            <h3>Reviews</h3>
             <Carousel
                 responsive={responsive}
                 infinite={true}

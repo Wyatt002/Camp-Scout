@@ -1,8 +1,8 @@
 import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
-import styles from "./ReviewForm.css";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import styles from './ReviewForm.module.css'
 
 const ReviewForm = () => {
     const navigate = useNavigate();
@@ -65,6 +65,7 @@ const ReviewForm = () => {
       }, []);
 
     return (
+        <div className={styles.body}>
         <div className="row">
         <div className="offset-3 col-6">
             <div className="shadow p-4 mt-4">
@@ -113,6 +114,7 @@ const ReviewForm = () => {
                 </div>
             </div>
             </div>
+        </div>
         </div>
         </div>
     );
